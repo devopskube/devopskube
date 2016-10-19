@@ -1,0 +1,14 @@
+name: nexus
+version: 0.0.1
+description: Sonatype Nexus Repository Manager 3.
+keywords:
+  - Maven Repository
+  - NPM Repository
+  - Nuget Repository
+home: http://www.sonatype.org/nexus/category/nexus-3/
+sources:
+  - https://github.com/sonatype/docker-nexus3
+maintainers:
+  - name: Markus M. May
+    email: triplem@javafreedom.org
+engine: gotpl

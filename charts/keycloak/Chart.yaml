@@ -1,0 +1,12 @@
+name: keycloak
+version: 0.0.1
+description: Keycloak Server
+keywords:
+  - Authentication
+home: http://keycloak.org
+sources:
+  - https://keycloak.org
+maintainers:
+  - name: Markus M. May
+    email: triplem@javafreedom.org
+engine: gotpl

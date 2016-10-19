@@ -1,0 +1,24 @@
+site_name: DevOpsKube
+site_author: DevOpsKube Team
+theme: readthedocs
+copyright: (c) 2016- by the DevOpsKube Team
+pages:
+- Home: 'index.md'
+- Setup:
+  - 'Setup Single Node': 'setup/single-node.md'
+  - 'Setup Helm': 'setup/helm.md'
+- Components:
+  - 'Gogs': 'components/gogs.md'
+  - 'Jenkins': 'components/jenkins.md'
+  - 'Keycloak': 'components/keycloak.md'
+  - 'Kube-Lego': 'components/kube-lego.md'
+  - 'TheNexus': 'components/nexus.md'
+  - 'Redmine': 'components/redmine.md'
+  - 'SonarQube': 'components/sonarqube.md'
+- About:
+  - 'License': 'about/license.md'
+  - 'Team': 'about/team.md'
+  - 'Release Notes': 'about/release-notes.md'
+  - 'Roadmap': 'about/roadmap.md'
+extra:
+  version: 0.1

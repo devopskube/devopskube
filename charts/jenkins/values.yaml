@@ -1,0 +1,33 @@
+# Default values for jenkins.
+# This is a YAML-formatted file.
+# Declare name/value pairs to be passed into your templates.
+# name: value
+
+master:
+  name: jenkins-master
+  image: "gcr.io/kubernetes-charts-ci/jenkins-master-k8s"
+  imageTag: "v0.1.0"
+  imagePullPolicy: "Always"
+  component: "jenkins-master"
+  adminUser: admin
+  adminPassword: admin1234
+  cpu: "200m"
+  memory: "256Mi"
+  javaOpts: "-Xms512m -Xmx512m"
+  servicePort: 80
+  hostName: jenkins.example.com
+  containerPort: 8080
+  slaveListenerPort: 50000
+
+agent:
+  image: jenkinsci/jnlp-slave
+  imageTag: 2.52
+  cpu: "200m"
+  memory: "256Mi"
+
+persistence:
+#  enabled: true
+#  storageClass: generic
+#  accessMode: ReadWriteOnce
+#  size: 8Gi
+  path: /data/jenkins

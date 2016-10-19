@@ -1,0 +1,14 @@
+imageTag: 3.0.2
+
+# Hostname on which the nexus service will be published
+hostName: nexus.example.com
+
+# the port the service will be published inside the container
+# this is not the port facing the public
+containerPort: 8081
+maxMem: 1200M
+minMem: 1200M
+#javaOpts:
+
+persistence:
+  path: /data/nexus

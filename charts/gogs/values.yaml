@@ -1,0 +1,18 @@
+# Default values for gogs.
+domainName: example.com
+hostName: gogs.example.com
+httpContainerPort: 3000
+sshContainerPort: 2222
+
+startSshServer: true
+
+persistence:
+  dataPath: /data/gogs/data
+
+databaseType: mysql
+mysql:
+  databaseName: gogs
+  databaseUser: gogs
+  databasePassword: gogs
+  persistence:
+    path: /data/gogs/mysql

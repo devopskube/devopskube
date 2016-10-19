@@ -1,0 +1,12 @@
+name: nginx-ingress
+version: 0.0.1
+description: Ingress-Controller using nginx for devopskube.
+keywords:
+  - Ingress
+home: http://kubernetes.io/docs/user-guide/ingress/
+sources:
+  - https://github.com/kubernetes/contrib/tree/master/ingress
+maintainers:
+  - name: Markus M. May
+    email: triplem@javafreedom.org
+engine: gotpl

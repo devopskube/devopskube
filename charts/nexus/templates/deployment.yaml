@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: "{{ .Chart.Name }}"
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    provider: "devopskube"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}"
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        provider: "devopskube"
+    spec:
+      containers:
+      - name: {{ template "fullname" . }}
+        image: "sonatype/nexus3:{{ .Values.imageTag }}"
+        imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
+        env:
+        - name: JAVA_MAX_MEM
+          value: {{ .Values.maxMem }}
+        - name: JAVA_MIN_MEM
+          value: {{ .Values.minMem }}
+        - name: EXTRA_JAVA_OPTS
+          value: {{ default "" .Values.javaOpts | quote }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.containerPort }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 120
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+        volumeMounts:
+        - name: nexus-data
+          mountPath: /nexus-data
+      volumes:
+      - name: nexus-data
+        hostPath:
+          path: {{ .Values.persistence.path }}

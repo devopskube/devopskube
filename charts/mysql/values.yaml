@@ -1,0 +1,20 @@
+imageTag: 0.0.1
+
+cpu: 200m
+memory: 512Mi
+
+imagePullPolicy: Always
+
+databaseName: test
+databaseUser: test
+databasePassword: test
+databaseCharset: utf8
+databaseCollation: utf8_unicode_ci
+
+## Persist data to a persitent volume
+persistence:
+# we do not need the following right now, since we are not using pv or pvc
+#  storageClass: generic
+#  accessMode: ReadWriteOnce
+#  size: 8Gi
+  path: /data/mysql

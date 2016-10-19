@@ -1,0 +1,17 @@
+name: redmine
+version: 0.0.1
+description: Redmine is a flexible project management web application.
+keywords:
+  - Multiple projects support
+  - Flexible issue tracking system
+  - Per project wiki
+home: http://www.redmine.org/
+sources:
+  - https://svn.redmine.org/redmine/
+  - https://github.com/redmine/redmine
+  - https://github.com/sameersbn/docker-redmine
+  - https://github.com/bitnami/charts/tree/master/redmine
+maintainers:
+  - name: Markus M. May
+    email: triplem@javafreedom.org
+engine: gotpl

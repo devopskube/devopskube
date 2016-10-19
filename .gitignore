@@ -1,0 +1,8 @@
+repository
+docs/components/*.md
+site
+*.private
+*.private.yaml
+*.private.md
+*.tgz
+requirements.lock

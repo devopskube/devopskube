@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{template "fullname" . }}
+data:
+  # modify this to specify your address
+  lego.email: " {{ .Values.email }}"
+  # configure letencrypt's production api
+  lego.url: "{{ .Values.lego_url }}"

@@ -1,0 +1,47 @@
+imageTag: 3.3.0-4
+
+imagePullPolicy: Always
+
+# Hostname on which the redmine service will be published
+hostName: redmine.example.com
+
+redminePort: 80
+redmineHttps: false
+
+nginx:
+  enabled: true
+  workers:  1
+  maxUploadSize: 20m
+
+unicorn:
+  workers: 2
+  timeout: 60
+
+smtp:
+  enabled: false
+  domain: example.com
+  host: smtp.gmail.com
+  port: 587
+  user: username
+  pass: password
+  method: smtp
+  opensslVerifyMode: none
+  startTLS: true
+  TLS: false
+  authentication: :login
+
+persistence:
+  enabled: true
+  storageClass: generic
+  accessMode: ReadWriteOnce
+  size: 8Gi
+  path: /data/redmine/files
+
+databaseAdapter: mysql2
+mysql:
+  databasePort: 3306
+  databaseName: redmine
+  databaseUser: redmine
+  databasePassword: redmine
+  persistence:
+    path: /data/redmine/mysql

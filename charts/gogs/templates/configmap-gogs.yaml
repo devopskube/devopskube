@@ -1,0 +1,41 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  creationTimestamp: 2016-09-22T20:05:38Z
+  name: gogs-config
+  namespace: default
+  provider: "devopskube"
+data:
+  app.ini: |-
+    RUN_MODE=prod
+    VERSION=0.9.97
+    RUN_USER=git
+    [log]
+    ROOT_PATH=/data/gogs/logs
+    LEVEL=Trace
+    [security]
+    INSTALL_LOCK=true
+    [server]
+    START_SSH_SERVER={{ .Values.startSshServer }}
+    APP_DATA_PATH=/data/gogs/data
+    DOMAIN={{ .Values.hostName }}
+    ROOT_URL=http://{{ .Values.hostName }}
+    HTTP_PORT=3000
+    SSH_ROOT_PATH=/data/ssh
+    SSH_PORT=2222
+    [service]
+    ENABLE_REVERSE_PROXY_AUTO_REGISTRATION=true
+    ENABLE_REVERSE_PROXY_AUTHENTICATION=true
+    [repository]
+    ROOT=/data/gogs/git
+    [attachment]
+    PATH=/data/gogs/data/attachments
+    [database]
+    DB_TYPE={{ .Values.databaseType }}
+    HOST={{ .Release.Name }}-mysql:3306
+    USER={{ .Values.mysql.databaseUser }}
+    PASSWD={{ .Values.mysql.databasePassword }}
+    [session]
+    PROVIDER_CONFIG=/data/gogs/data/sessions
+    [picture]
+    AVATAR_UPLOAD_PATH=/data/gogs/data/avatars

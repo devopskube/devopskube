@@ -1,0 +1,10 @@
+eadinessProbe:
+  httpGet:
+    path: /ingress-controller-healthz
+    port: 80
+    scheme: HTTP
+livenessProbe:
+  httpGet:
+    path: /ingress-controller-healthz
+    port: 80
+    scheme: HTTP

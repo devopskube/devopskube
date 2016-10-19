@@ -1,0 +1,17 @@
+name: mysql
+version: 0.0.2
+description: Chart for MySQL
+keywords:
+- mysql
+- database
+- sql
+home: https://www.mysql.com/
+sources:
+- https://github.com/kubernetes/charts
+- https://github.com/docker-library/mysql
+maintainers:
+- name: Vic Iglesias
+  email: viglesias@google.com
+- name: Markus M. May
+  email: triplem@devopsku.be
+engine: gotpl

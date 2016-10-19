@@ -1,0 +1,16 @@
+hostName: key.example.com
+
+imageTag: 2.2.1.Final
+
+keycloakUser: admin
+keycloakPass: admin123
+
+containerPort: 8080
+
+mysql:
+  databasePort: 3306
+  databaseName: keycloak
+  databaseUser: keycloak
+  databasePassword: keycloak
+  persistence:
+    path: /data/keycloak/mysql

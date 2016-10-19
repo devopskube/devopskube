@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{template "fullname" . }}
+  labels:
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    component: "{{.Release.Name}}-{{.Values.master.component}}"
+    provider: "devopskube"
+  annotations:
+    "helm.sh/created": {{.Release.Time.Seconds | quote }}
+spec:
+  ports:
+    - port: {{.Values.master.servicePort}}
+      targetPort: {{.Values.master.containerPort}}
+      name: http
+    - port: {{.Values.master.slaveListenerPort}}
+      targetPort: {{.Values.master.slaveListenerPort}}
+      name: slavelistener
+  selector:
+    component: "{{.Release.Name}}-{{.Values.master.component}}"

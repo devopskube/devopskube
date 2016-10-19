@@ -1,0 +1,71 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    component: "{{.Release.Name}}-{{.Values.master.name}}"
+    provider: "devopskube"
+  annotations:
+    "helm.sh/created": {{.Release.Time.Seconds | quote }}
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      component: "{{.Release.Name}}-{{.Values.master.component}}"
+  template:
+    metadata:
+      labels:
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        component: "{{.Release.Name}}-{{.Values.master.component}}"
+        provider: "devopskube"
+    spec:
+      securityContext:
+        privileged: true
+      containers:
+        - name: {{ template "fullname" . }}
+          image: "{{.Values.master.image}}:{{.Values.master.imageTag}}"
+          imagePullPolicy: "{{.Values.master.imagePullPolicy}}"
+          args: [ "--argumentsRealm.passwd.$(ADMIN_USER)=$(ADMIN_PASSWORD)",  "--argumentsRealm.roles.$(ADMIN_USER)=admin"]
+          env:
+            - name: JAVA_OPTS
+              value: "{{ default "" .Values.master.javaOpts}}"
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: jenkins-admin-password
+            - name: ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: jenkins-admin-user
+          ports:
+            - containerPort: {{.Values.master.containerPort}}
+              name: http
+            - containerPort: {{.Values.master.slaveListenerPort}}
+              name: slavelistener
+          resources:
+            requests:
+              cpu: "{{.Values.master.cpu}}"
+              memory: "{{.Values.master.memory}}"
+          volumeMounts:
+            - mountPath: /var/jenkins_home
+              name: jenkins-home
+              readOnly: false
+            - mountPath: /var/jenkins_config
+              name: jenkins-config
+              readOnly: true
+      volumes:
+      - name: jenkins-config
+        configMap:
+          name: {{ template "fullname" . }}
+      - name: jenkins-home
+        hostPath:
+          path: {{ .Values.persistence.path }}

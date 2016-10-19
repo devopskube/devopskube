@@ -1,0 +1,20 @@
+imageTag: 6.1-alpine
+
+containerPort: 9000
+
+## LoadBalancer Hostname
+hostName: sonar.example.com
+
+#webJvmOpts: 
+
+persistence:
+  dataPath: /data/sonarqube/data
+  extensionsPath: /data/sonarqube/extensions
+
+mysql:
+  databasePort: 3306
+  databaseName: sonar
+  databaseUser: sonar
+  databasePassword: sonar
+  persistence:
+    path: /data/sonarqube/mysql

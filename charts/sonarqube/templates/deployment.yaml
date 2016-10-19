@@ -1,0 +1,64 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: "{{ .Chart.Name }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    provider: "devopskube"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+        provider: "devopskube"
+    spec:
+      containers:
+      - name: {{ template "fullname" . }}
+        image: "sonarqube:{{ .Values.imageTag }}"
+        imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
+        env:
+        - name: SONARQUBE_JDBC_USERNAME
+          value: {{ .Values.mysql.databaseUser | quote }}
+        - name: SONARQUBE_JDBC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "{{ .Release.Name }}-mysql"
+              key: database-password
+        - name: SONARQUBE_JDBC_URL
+          value: jdbc:mysql://{{ .Release.Name }}-mysql:{{ .Values.mysql.databasePort }}/{{ .Values.mysql.databaseName }}?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+        - name: SONARQUBE_WEB_JVM_OPTS
+          value: {{ default "" .Values.webJvmOpts }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.containerPort }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 120
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+        volumeMounts:
+        - name: sonar-data
+          mountPath: /opt/sonarqube/data
+        - name: sonar-extensions
+          mountPath: /opt/sonarqube/extensions
+      volumes:
+      - name: sonar-data
+        hostPath:
+          path: {{ .Values.persistence.dataPath }}
+      - name: sonar-extensions
+        hostPath:
+          path: {{ .Values.persistence.extensionsPath }}

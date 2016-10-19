@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: "{{ .Chart.Name }}"
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    provider: "devopskube"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}"
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        provider: "devopskube"
+    spec:
+      containers:
+      - name: {{ template "fullname" . }}
+        image: "jboss/keycloak-mysql:{{ .Values.imageTag }}"
+        imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
+        env:
+        - name: KEYCLOAK_USER
+          value: {{ .Values.keycloakUser }}
+        - name: KEYCLOAK_PASSWORD
+          value: {{ .Values.keycloakPass }}
+        - name: MYSQL_PORT_3306_TCP_ADDR
+          value: {{ .Release.Name }}-mysql
+# this is more then a default value, it is the set value of all mysql
+# database servers
+        - name: MYSQL_PORT_3306_TCP_PORT
+          value: {{ .Values.mysql.databasePort | quote }}
+        - name: MYSQL_DATABASE
+          value: {{ .Values.mysql.databaseName }}
+        - name: MYSQL_USER
+          value: {{ .Values.mysql.databaseUser }}
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "{{ .Release.Name }}-mysql"
+              key: database-password
+        ports:
+        - name: http
+          containerPort: {{ .Values.containerPort }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 120
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 5
+          timeoutSeconds: 1

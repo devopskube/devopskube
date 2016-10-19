@@ -1,0 +1,103 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: "{{ .Chart.Name }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    provider: "devopskube"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+        provider: "devopskube"
+    spec:
+      containers:
+      - name: {{ template "fullname" . }}
+        image: "sameersbn/redmine:{{ .Values.imageTag }}"
+        imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
+        env:
+        - name: REDMINE_PORT
+          value: {{ .Values.redminePort | quote }}
+        - name: REDMINE_HTTPS
+          value: {{ .Values.redmineHttps | quote }}
+
+        - name: NGINX_ENABLED
+          value: {{ .Values.nginx.enabled | quote }}
+        - name: NGINX_WORKERS
+          value: {{ .Values.nginx.workers | quote }}
+        - name: NGINX_MAX_UPLOAD_SIZE
+          value: {{ .Values.nginx.maxUploadSize | quote }}
+
+        - name: UNICORN_WORKERS
+          value: {{ .Values.unicorn.workers | quote }}
+        - name: UNICORN_TIMEOUT
+          value: {{ .Values.unicorn.timeout | quote }}
+
+        - name: SMTP_ENABLED
+          value: {{ .Values.smtp.enabled | quote }}
+        - name: SMTP_DOMAIN
+          value: {{ .Values.smtp.domain | quote }}
+        - name: SMTP_HOST
+          value: {{ .Values.smtp.host | quote }}
+        - name: SMTP_PORT
+          value: {{ .Values.smtp.port | quote }}
+        - name: SMTP_USER
+          value: {{ .Values.smtp.user | quote }}
+        - name: SMTP_PASS
+          value: {{ .Values.smtp.pass | quote }}
+        - name: SMTP_METHOD
+          value: {{ .Values.smtp.method | quote }}
+        - name: SMTP_OPENSSL_VERIFY_MODE
+          value: {{ .Values.smtp.opensslVerifyMode | quote }}
+        - name: SMTP_STARTTLS
+          value: {{ .Values.smtp.startTLS | quote }}
+        - name: SMTP_TLS
+          value: {{ .Values.smtp.TLS | quote }}
+        - name: SMTP_AUTHENTICATION
+          value: {{ .Values.smtp.authentication | quote }}
+
+        - name: DB_ADAPTER
+          value: {{ .Values.databaseAdapter | quote }}
+        - name: DB_HOST
+          value: "{{ .Release.Name }}-mysql"
+        - name: DB_PORT
+          value: "{{ .Values.mysql.databasePort }}"
+        - name: DB_NAME
+          value: {{ .Values.mysql.databaseName | quote }}
+        - name: DB_USER
+          value: {{ .Values.mysql.databaseUser | quote }}
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: "{{ .Release.Name }}-mysql"
+              key: database-password
+        ports:
+        - name: http
+          containerPort: {{ .Values.redminePort }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 120
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+        volumeMounts:
+        - name: redmine-data
+          mountPath: /home/redmine/data
+      volumes:
+      - name: redmine-data
+        hostPath:
+          path: {{ .Values.persistence.path }}

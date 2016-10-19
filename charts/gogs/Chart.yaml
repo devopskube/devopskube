@@ -1,0 +1,11 @@
+name: gogs
+version: 0.0.1
+description: A painless self-hosted Git service.
+home: https://gogs.io/
+sources:
+  - https://github.com/gogits/gogs
+  - https://hub.docker.com/r/fabric8/gogs/
+  - https://gogs.io/docs/advanced/configuration_cheat_sheet.html
+maintainers:
+  - name: Markus M. May
+    email: mmay@javafreedom.org

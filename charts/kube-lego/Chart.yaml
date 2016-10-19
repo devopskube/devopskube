@@ -1,0 +1,10 @@
+name: kube-lego
+version: 0.0.1
+description: Kube-Lego retrieves ssl-certificates for all configured ingress.
+home: https://github.com/jetstack/kube-lego
+sources:
+  - https://github.com/jetstack/kube-lego
+maintainers:
+  - name: Markus M. May
+    email: mmay@javafreedom.org
+engine: gotpl

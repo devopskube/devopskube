@@ -1,0 +1,17 @@
+imageTag: 0.1.2
+
+## The email used for the generated certificates
+email: cert@example.com
+
+## The Url with which the certificates are created, staging by default
+# lego_url: https://acme-v01.api.letsencrypt.org/directory
+lego_url: https://acme-staging.api.letsencrypt.org/directory
+
+imagePullPolicy: Always
+
+containerPort: 8080
+extNodePort: 32767
+
+# Url where the letsencrypt server contacts us (domain name and additionally
+# the extNodePort)
+legoKubeApiUrl: http://lego.example.com

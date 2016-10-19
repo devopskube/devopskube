@@ -1,0 +1,35 @@
+## MySql image version
+## ref: https://hub.docker.com/r/sameersbn/mysql/tags/
+##
+imageTag: 5.6-3
+
+## Specify a imagePullPolicy
+## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
+## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+##
+# imagePullPolicy:
+
+## MySql user
+## ref: https://github.com/sameersbn/docker-mysql#creating-user-and-database-at-launch
+##
+databaseUser: keycloak
+
+## MySql password
+## ref: https://github.com/sameersbn/docker-mysql#creating-user-and-database-at-launch
+##
+databasePassword: keycloak
+
+## Database to create
+## ref: https://github.com/sameersbn/docker-mysql#creating-user-and-database-at-launch
+##
+databaseName: keycloak
+
+## Database Charset
+## ref: https://github.com/sameersbn/docker-mysql#creating-user-and-database-at-launch
+##
+# databaseCharset: utf8
+
+## Database Collation
+## ref: https://github.com/sameersbn/docker-mysql#creating-user-and-database-at-launch
+##
+# databaseCollation: utf8_unicode_ci

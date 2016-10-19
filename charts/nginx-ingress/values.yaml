@@ -1,0 +1,6 @@
+imageTag: 0.8.3
+
+defaultBackend:
+  containerPort: 8081
+
+defaultBackendName: default-http-backend
