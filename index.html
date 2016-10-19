@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="DevOpsKube Team">
+  
+  <title>DevOpsKube</title>
+  
+
+  <link rel="shortcut icon" href="./img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "None";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script src="./js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> DevOpsKube</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#devopskube">DevOpsKube</a></li>
+                
+                    <li><a class="toctree-l4" href="#motivation">Motivation</a></li>
+                
+                    <li><a class="toctree-l4" href="#components">Components</a></li>
+                
+                    <li><a class="toctree-l4" href="#helper">Helper</a></li>
+                
+                    <li><a class="toctree-l4" href="#contributions">Contributions</a></li>
+                
+                    <li><a class="toctree-l4" href="#documentation">Documentation</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Setup</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="setup/single-node/">Setup Single Node</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="setup/helm/">Setup Helm</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Components</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="components/gogs/">Gogs</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="components/jenkins/">Jenkins</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="components/keycloak/">Keycloak</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="components/kube-lego/">Kube-Lego</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="components/nexus/">TheNexus</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="components/redmine/">Redmine</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="components/sonarqube/">SonarQube</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>About</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="about/license/">License</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="about/team/">Team</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="about/release-notes/">Release Notes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="about/roadmap/">Roadmap</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">DevOpsKube</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="devopskube">DevOpsKube</h1>
+<p>A Kubernetes "cluster" with all things SDLC (Software Development Life Cycle)/DevOps related.</p>
+<h2 id="motivation">Motivation</h2>
+<p>It was/is the dream of the team to be able to install such a stack easily on own Hardware and/or environment. Kubernetes seems like the natural choice for this.</p>
+<p>Up until now there is no full DevOps Stack for vanilla Kubernetes. The following "solutions" can be found when googling:</p>
+<ul>
+<li><a href="http://fabric8.io/">fabric8</a> - highly based on RedHats <a href="https://www.openshift.com/">OpenShift</a>, probably the closest to our requirements</li>
+<li><a href="https://github.com/harbur/docker-sdlc">Harbur</a> - mainly focused on docker and has no real kubernetes support</li>
+<li><a href="http://softwarefactory-project.io/">Software Factory</a> - from RedHat as well, based on OpenStack</li>
+<li><a href="https://blog.codecentric.de/en/2015/10/continuous-integration-platform-using-docker-container-jenkins-sonarqube-nexus-gitlab/">Marcel Birkner</a> - a blog-post from codecentric (merely an blog-post with some docker containers)</li>
+<li><a href="https://www.gopaddle.io/#/">GoPaddle</a> - seems to be focused on a full CI Environment to install Container on Kubernetes and uses eg. Jenkins, but is commercial and has a different focus then the above mentioned ones</li>
+</ul>
+<p>None of the above mentioned stacks do fulfill our needs, therefor we decided to put this stack together to allow you to install a full SDLC stack on your own Kubernetes cluster.</p>
+<h2 id="components">Components</h2>
+<p>The following components are included in the current version:</p>
+<ul>
+<li><a href="./components/redmine">Redmine</a> - Project Management/Issue Tracking</li>
+<li><a href="./components/jenkins">Jenkins</a> - Automation Server for CI and CD stuff</li>
+<li><a href="./components/nexus">TheNexus</a> - Central Repository for Maven/Gradle/...</li>
+<li><a href="./components/sonarqube">SonarQube</a> - Platform to manage code quality</li>
+<li><a href="./components/gogs">Gogs</a> - central Git Repository</li>
+<li><a href="./components/keycloak">Keycloak</a> - central authentication server</li>
+</ul>
+<p>To provide central data-storeage options we are using <a href="./components/mysql">MySql</a> for all components in need of a database.</p>
+<h2 id="helper">Helper</h2>
+<p>Since a vanilla Kubernetes Cluster does not provide any Edge-Loadbalancer or an SSO-Component, we are going to provide documentation on how to setup the whole cluster including an Edge-Loadbalancer and other useful tools (eg. SSO Components). An initial set of Helpers are:</p>
+<ul>
+<li><a href="./components/nginx-ingress">Nginx Ingress</a> - Load-Balancing for Kubernetes PODs</li>
+<li><a href="./components/kube-lego">Kube-Lego</a> - Kube-Lego automatically requests certificates for Kubernetes Ingress resources from Let's Encrypt</li>
+</ul>
+<p>For the use of a configurable set of PODs, we are using <a href="https://github.com/kubernetes/helm">helm</a> in its latest (not yet ready for production) incarnation (&gt; 2.0.0-alpha5).</p>
+<h2 id="contributions">Contributions</h2>
+<p>Contributions to this project are very welcome. Please do not hesitate to fork this project and provide pull-requests. We try to integrate those asap.</p>
+<p>Documentation is always nice, so pull-requests not only for code is welcome as well.</p>
+<p>Contributions could be in the area of new features and/or bugs as well, please open a GitHub-Issue for this.</p>
+<h2 id="documentation">Documentation</h2>
+<p>This documentation is generated using <a href="http://www.mkdocs.org/">MkDocs</a>. If you are editing this documentation, please make sure, that the Documentation can be generated. Provide a Pull-Request, if all is fine. We are then updating the Documentation. For details on how to generate the documentation, see the <code>build-docs.sh</code> script.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="setup/single-node/" class="btn btn-neutral float-right" title="Setup Single Node">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>(c) 2016- by the DevOpsKube Team</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="setup/single-node/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.15.3
+Build Date UTC : 2016-10-19 20:22:33.868218
+-->

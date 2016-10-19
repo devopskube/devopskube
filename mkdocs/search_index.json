@@ -1,0 +1,444 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "DevOpsKube\n\n\nA Kubernetes \"cluster\" with all things SDLC (Software Development Life Cycle)/DevOps related.\n\n\nMotivation\n\n\nIt was/is the dream of the team to be able to install such a stack easily on own Hardware and/or environment. Kubernetes seems like the natural choice for this.\n\n\nUp until now there is no full DevOps Stack for vanilla Kubernetes. The following \"solutions\" can be found when googling:\n\n\n\n\nfabric8\n - highly based on RedHats \nOpenShift\n, probably the closest to our requirements\n\n\nHarbur\n - mainly focused on docker and has no real kubernetes support\n\n\nSoftware Factory\n - from RedHat as well, based on OpenStack\n\n\nMarcel Birkner\n - a blog-post from codecentric (merely an blog-post with some docker containers)\n\n\nGoPaddle\n - seems to be focused on a full CI Environment to install Container on Kubernetes and uses eg. Jenkins, but is commercial and has a different focus then the above mentioned ones\n\n\n\n\nNone of the above mentioned stacks do fulfill our needs, therefor we decided to put this stack together to allow you to install a full SDLC stack on your own Kubernetes cluster.\n\n\nComponents\n\n\nThe following components are included in the current version:\n\n\n\n\nRedmine\n - Project Management/Issue Tracking\n\n\nJenkins\n - Automation Server for CI and CD stuff\n\n\nTheNexus\n - Central Repository for Maven/Gradle/...\n\n\nSonarQube\n - Platform to manage code quality\n\n\nGogs\n - central Git Repository\n\n\nKeycloak\n - central authentication server\n\n\n\n\nTo provide central data-storeage options we are using \nMySql\n for all components in need of a database.\n\n\nHelper\n\n\nSince a vanilla Kubernetes Cluster does not provide any Edge-Loadbalancer or an SSO-Component, we are going to provide documentation on how to setup the whole cluster including an Edge-Loadbalancer and other useful tools (eg. SSO Components). An initial set of Helpers are:\n\n\n\n\nNginx Ingress\n - Load-Balancing for Kubernetes PODs\n\n\nKube-Lego\n - Kube-Lego automatically requests certificates for Kubernetes Ingress resources from Let's Encrypt\n\n\n\n\nFor the use of a configurable set of PODs, we are using \nhelm\n in its latest (not yet ready for production) incarnation (> 2.0.0-alpha5).\n\n\nContributions\n\n\nContributions to this project are very welcome. Please do not hesitate to fork this project and provide pull-requests. We try to integrate those asap.\n\n\nDocumentation is always nice, so pull-requests not only for code is welcome as well.\n\n\nContributions could be in the area of new features and/or bugs as well, please open a GitHub-Issue for this.\n\n\nDocumentation\n\n\nThis documentation is generated using \nMkDocs\n. If you are editing this documentation, please make sure, that the Documentation can be generated. Provide a Pull-Request, if all is fine. We are then updating the Documentation. For details on how to generate the documentation, see the \nbuild-docs.sh\n script.",
+            "title": "Home"
+        },
+        {
+            "location": "/#devopskube",
+            "text": "A Kubernetes \"cluster\" with all things SDLC (Software Development Life Cycle)/DevOps related.",
+            "title": "DevOpsKube"
+        },
+        {
+            "location": "/#motivation",
+            "text": "It was/is the dream of the team to be able to install such a stack easily on own Hardware and/or environment. Kubernetes seems like the natural choice for this.  Up until now there is no full DevOps Stack for vanilla Kubernetes. The following \"solutions\" can be found when googling:   fabric8  - highly based on RedHats  OpenShift , probably the closest to our requirements  Harbur  - mainly focused on docker and has no real kubernetes support  Software Factory  - from RedHat as well, based on OpenStack  Marcel Birkner  - a blog-post from codecentric (merely an blog-post with some docker containers)  GoPaddle  - seems to be focused on a full CI Environment to install Container on Kubernetes and uses eg. Jenkins, but is commercial and has a different focus then the above mentioned ones   None of the above mentioned stacks do fulfill our needs, therefor we decided to put this stack together to allow you to install a full SDLC stack on your own Kubernetes cluster.",
+            "title": "Motivation"
+        },
+        {
+            "location": "/#components",
+            "text": "The following components are included in the current version:   Redmine  - Project Management/Issue Tracking  Jenkins  - Automation Server for CI and CD stuff  TheNexus  - Central Repository for Maven/Gradle/...  SonarQube  - Platform to manage code quality  Gogs  - central Git Repository  Keycloak  - central authentication server   To provide central data-storeage options we are using  MySql  for all components in need of a database.",
+            "title": "Components"
+        },
+        {
+            "location": "/#helper",
+            "text": "Since a vanilla Kubernetes Cluster does not provide any Edge-Loadbalancer or an SSO-Component, we are going to provide documentation on how to setup the whole cluster including an Edge-Loadbalancer and other useful tools (eg. SSO Components). An initial set of Helpers are:   Nginx Ingress  - Load-Balancing for Kubernetes PODs  Kube-Lego  - Kube-Lego automatically requests certificates for Kubernetes Ingress resources from Let's Encrypt   For the use of a configurable set of PODs, we are using  helm  in its latest (not yet ready for production) incarnation (> 2.0.0-alpha5).",
+            "title": "Helper"
+        },
+        {
+            "location": "/#contributions",
+            "text": "Contributions to this project are very welcome. Please do not hesitate to fork this project and provide pull-requests. We try to integrate those asap.  Documentation is always nice, so pull-requests not only for code is welcome as well.  Contributions could be in the area of new features and/or bugs as well, please open a GitHub-Issue for this.",
+            "title": "Contributions"
+        },
+        {
+            "location": "/#documentation",
+            "text": "This documentation is generated using  MkDocs . If you are editing this documentation, please make sure, that the Documentation can be generated. Provide a Pull-Request, if all is fine. We are then updating the Documentation. For details on how to generate the documentation, see the  build-docs.sh  script.",
+            "title": "Documentation"
+        },
+        {
+            "location": "/setup/single-node/",
+            "text": "Single Node CoreOS and Kubernetes Install\n\n\nCoreOS\n is the Host System we are using for the kubernetes installation. Since we are using CoreOS on a single-node (right now), in the following, you can find a description on how to setup a CoreOS single-node cluster. We are using a KVM-Base at \nnetcup\n, but any other Hoster should work fine as well.\n\n\nIn the following, I am trying to re-play, what I did and provide some links and useful information on how to make this one work.\n\n\nInstall CoreOS\n\n\nMost of the following was taken from \nThe Hyperpessimist\n.\nI chose the usual Ubuntu-Image, which is offered by netcup as a base to be able to install coreos.\n\n\nwget https://raw.github.com/coreos/init/master/bin/coreos-install\n\n\nTo install CoreOS in a \"non-cloud\" environment like netcup, you do need to provide an adopted\ncloud-config. This is included in this repository. To be able to use this config-file, you do\nneed to upload it to a server, where you can fetch this file via a wget, so that coreos can\nuse it.\n\n\nwget https://raw.github.com/triplem74/kubernetes-netcup/master/cloud-config.yml\n\n\nAfterwards the CoreOS installer can be called using the following commands:\n\n\nchmod u+x coreos-install\nbash coreos-install -d /dev/vda -C alpha -c cloud-config.yml\n\n\nCould be, that you have to provide the above mentioned cloud-config.yml again\nduring the install as an http-link again. Furthermore I needed to copy the\ncloud-config file to a specific location, so that it could be loaded after a\nreboot again, see \nCoreOS Issue 100\n.\n\n\nsudo cp cloud-config.yml /var/lib/coreos-install/user_data\nsudo coreos-cloudinit --from-file /var/lib/coreos-install/user_data\n\n\nInstall kubernetes\n\n\nTo install kubernetes on a single-node, I followed the \nCoreOS - Single-Node Kubernetes Installation\n. This installation description is\nmainly for vagrant, but since we do have a single-node install as well, this fits quite nicely.\n\n\nPrepare Installation\n\n\nBefore we do setup kubernetes, we do need some SSL certificates. This can be done using the scripts in the\nrepository mentioned in the above description \nCoreOS - Single-Node Repository (scripts)\n.\nAll of this should happen on the local machine.\n\n\nNote: Those scripts are in this local repository as well, but those are not updated regularly, so in case\nof errors or questions, I cannot really help you.\n\n\nThe IP.1 should be the Public IP of the CoreOS host (eg. 8.8.8.8), the IP.2 should be the Internal IP of the\nCoreOS host, which is defined in the Cloud-Config-file above.\n\n\n./init-ssl-ca ssl\n./init-ssl ssl apiserver controller IP.1=<PUBLIC_IP_HOST>,IP.2=172.17.0.1\n./init-ssl ssl admin kube-admin\n\n\nThe generated files are then copied to the CoreOS host:\n\n\nscp -r ssl core@<PUBLIC_IP_HOST>:/home/core\n\n\nThen on the remote machine (CoreOS host), those files need to get moved to the correct location:\n\n\nsudo tar -C /etc/kubernetes/ssl -xf ssl/controller.tar\n\n\nStart Installation\n\n\nTo start the installation, the user_data from the \nCoreOS-repository\n\nhas to be adopted and copied to the remote host. Afterwards it can get executed and the install is basically done.\n\n\nNote: I have adopted this file, which can be found in the current repository.\n\n\n\u0108opy the user data to the remote host:\n\n\nscp user_data core@<PUBLIC_IP_HOST>:/home/core\n\n\nMove the User-Data on the remote host to the correct location and execute it:\n\n\nsudo mkdir -p /var/lib/coreos-kubernetes\nsudo cp /home/core/user_data /var/lib/coreos-kubernetes/user_data\nsudo /var/lib/coreos-kubernetes/user_data\n\n\nExecute kubectl\n\n\nTo be able to execute kubectl on your local machine, you have to provide a valid kubeconfig. There is\none in this repository, but it needs to get adopted. Afterwards, you are able to use the following\ncommands:\n\n\nexport KUBECONFIG=\"${KUBECONFIG}:$(pwd)/kubeconfig\"\nkubectl config use-context netcup\n\n\nAdd useful pods\n\n\nPre-Requisite (SSL-Login-Certificate)\n\n\nTo be able to login to the following pods, k18s expects you to have an certificate. This can be\ngenerated using the already created ssl-certificates:\n\n\nopenssl pkcs12 -export -in ./ssl/admin.pem -inkey ./ssl/admin-key.pem -out ./ssl/admin.p12\n\n\nAfterwards you have to import the generated file into chromium using the used password.\n\n\nKubernetes Dashboard (Management)\n\n\nWe are going to add the \nKubernetes Dashboard\n the following two\ncommands should be executed, so that the Administration is helped by a nice web-ui.\n\n\n``\nkubectl create -f addon/da\n\n\nshboard-controller.yaml\nkubectl create -f addon/dashboard-service.yaml\n``\n\n\nAfterwards the Dashboad can be reached on the URL:\n\n\nhttps://<PUBLIC_IP_HOST>/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/replicationcontrollers\n\n\nPlease note, that to be able to login to the above mentioned dashboard, the Certificate should be\nimported in Chrome.\n\n\nKubernetes Dash (Monitoring)\n\n\nTo show the Monitoring information, the \nKubernetes Dash\n should\nbe installed using the following command:\n\n\nkubectl create -f addon/kubedash-config.yaml\n\n\nAfterwards the Monitoring can be reached via the following URL:\n\n\nhttps://<PUBLIC_IP_HOST>/api/v1/proxy/namespaces/kube-system/services/kubedash/#!/\n\n\nPlease note, that to be able to login to the above mentioned dash, the Certificate should be\nimported in Chrome.\n\n\nService-LoadBalancer --> replaced by Ingress...\n\n\nTo be able to access services from the outside, Kubernetes uses the Service-Type \"Loadbalancer\" on\ncloud platforms like GCE and/or AWS. This is not available on Vagrant/Bare Metal/Netcup. For this to\nwork, we do need to use a contrib module called service-loadbalancer (see \nKubernetes Contrib Repository\n).\n\n\nkubectl create -f addon/loadbalancer-controller.yml\nkubectl label node <PUBLIC_IP_HOST> role=loadbalancer\n\n\nThe Public IP of the Host is equal to the Nodename. To gather the Nodenames, please use\n\n\nkubectl get nodes\n\n\nThe Service-Loadbalancer has to be configured in the services. Usually the Service-Type defined in Kubernetes-Services are\n\"LoadBalancer\", but the Service-Loadbalancer requires \"NodePort\". Furthermore there are several types of mappings offered by\nthe Service-Loadbalancer. Me was interested in the Host-Mapping mainly. There is no example in the documentation of the\nannotation used for this, therefor I did some investigations and found the following (see container/redmine/redmine-service.yml):\n\n\nannotations:\n    serviceloadbalancer/lb.host: \"<PUBLIC_HOSTNAME>\"\n\n\nThis makes the service available on the given PUBLIC_HOSTNAME (eg. redmine.example.org).\n\n\nTODO\n\n\n[] Add email possibility for Redmine\n[] Make Redmine and other containers SSL-aware\n[] Ingress needs 443, blocked by kube-apiserver (/etc/kubernetes/manifests/kube-apiserver.yaml), use port 444 in there and restart kubelet service",
+            "title": "Setup Single Node"
+        },
+        {
+            "location": "/setup/single-node/#single-node-coreos-and-kubernetes-install",
+            "text": "CoreOS  is the Host System we are using for the kubernetes installation. Since we are using CoreOS on a single-node (right now), in the following, you can find a description on how to setup a CoreOS single-node cluster. We are using a KVM-Base at  netcup , but any other Hoster should work fine as well.  In the following, I am trying to re-play, what I did and provide some links and useful information on how to make this one work.",
+            "title": "Single Node CoreOS and Kubernetes Install"
+        },
+        {
+            "location": "/setup/single-node/#install-coreos",
+            "text": "Most of the following was taken from  The Hyperpessimist .\nI chose the usual Ubuntu-Image, which is offered by netcup as a base to be able to install coreos.  wget https://raw.github.com/coreos/init/master/bin/coreos-install  To install CoreOS in a \"non-cloud\" environment like netcup, you do need to provide an adopted\ncloud-config. This is included in this repository. To be able to use this config-file, you do\nneed to upload it to a server, where you can fetch this file via a wget, so that coreos can\nuse it.  wget https://raw.github.com/triplem74/kubernetes-netcup/master/cloud-config.yml  Afterwards the CoreOS installer can be called using the following commands:  chmod u+x coreos-install\nbash coreos-install -d /dev/vda -C alpha -c cloud-config.yml  Could be, that you have to provide the above mentioned cloud-config.yml again\nduring the install as an http-link again. Furthermore I needed to copy the\ncloud-config file to a specific location, so that it could be loaded after a\nreboot again, see  CoreOS Issue 100 .  sudo cp cloud-config.yml /var/lib/coreos-install/user_data\nsudo coreos-cloudinit --from-file /var/lib/coreos-install/user_data",
+            "title": "Install CoreOS"
+        },
+        {
+            "location": "/setup/single-node/#install-kubernetes",
+            "text": "To install kubernetes on a single-node, I followed the  CoreOS - Single-Node Kubernetes Installation . This installation description is\nmainly for vagrant, but since we do have a single-node install as well, this fits quite nicely.",
+            "title": "Install kubernetes"
+        },
+        {
+            "location": "/setup/single-node/#prepare-installation",
+            "text": "Before we do setup kubernetes, we do need some SSL certificates. This can be done using the scripts in the\nrepository mentioned in the above description  CoreOS - Single-Node Repository (scripts) .\nAll of this should happen on the local machine.  Note: Those scripts are in this local repository as well, but those are not updated regularly, so in case\nof errors or questions, I cannot really help you.  The IP.1 should be the Public IP of the CoreOS host (eg. 8.8.8.8), the IP.2 should be the Internal IP of the\nCoreOS host, which is defined in the Cloud-Config-file above.  ./init-ssl-ca ssl\n./init-ssl ssl apiserver controller IP.1=<PUBLIC_IP_HOST>,IP.2=172.17.0.1\n./init-ssl ssl admin kube-admin  The generated files are then copied to the CoreOS host:  scp -r ssl core@<PUBLIC_IP_HOST>:/home/core  Then on the remote machine (CoreOS host), those files need to get moved to the correct location:  sudo tar -C /etc/kubernetes/ssl -xf ssl/controller.tar",
+            "title": "Prepare Installation"
+        },
+        {
+            "location": "/setup/single-node/#start-installation",
+            "text": "To start the installation, the user_data from the  CoreOS-repository \nhas to be adopted and copied to the remote host. Afterwards it can get executed and the install is basically done.  Note: I have adopted this file, which can be found in the current repository.  \u0108opy the user data to the remote host:  scp user_data core@<PUBLIC_IP_HOST>:/home/core  Move the User-Data on the remote host to the correct location and execute it:  sudo mkdir -p /var/lib/coreos-kubernetes\nsudo cp /home/core/user_data /var/lib/coreos-kubernetes/user_data\nsudo /var/lib/coreos-kubernetes/user_data",
+            "title": "Start Installation"
+        },
+        {
+            "location": "/setup/single-node/#execute-kubectl",
+            "text": "To be able to execute kubectl on your local machine, you have to provide a valid kubeconfig. There is\none in this repository, but it needs to get adopted. Afterwards, you are able to use the following\ncommands:  export KUBECONFIG=\"${KUBECONFIG}:$(pwd)/kubeconfig\"\nkubectl config use-context netcup",
+            "title": "Execute kubectl"
+        },
+        {
+            "location": "/setup/single-node/#add-useful-pods",
+            "text": "",
+            "title": "Add useful pods"
+        },
+        {
+            "location": "/setup/single-node/#pre-requisite-ssl-login-certificate",
+            "text": "To be able to login to the following pods, k18s expects you to have an certificate. This can be\ngenerated using the already created ssl-certificates:  openssl pkcs12 -export -in ./ssl/admin.pem -inkey ./ssl/admin-key.pem -out ./ssl/admin.p12  Afterwards you have to import the generated file into chromium using the used password.",
+            "title": "Pre-Requisite (SSL-Login-Certificate)"
+        },
+        {
+            "location": "/setup/single-node/#kubernetes-dashboard-management",
+            "text": "We are going to add the  Kubernetes Dashboard  the following two\ncommands should be executed, so that the Administration is helped by a nice web-ui.  ``\nkubectl create -f addon/da  shboard-controller.yaml\nkubectl create -f addon/dashboard-service.yaml\n``  Afterwards the Dashboad can be reached on the URL:  https://<PUBLIC_IP_HOST>/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/replicationcontrollers  Please note, that to be able to login to the above mentioned dashboard, the Certificate should be\nimported in Chrome.",
+            "title": "Kubernetes Dashboard (Management)"
+        },
+        {
+            "location": "/setup/single-node/#kubernetes-dash-monitoring",
+            "text": "To show the Monitoring information, the  Kubernetes Dash  should\nbe installed using the following command:  kubectl create -f addon/kubedash-config.yaml  Afterwards the Monitoring can be reached via the following URL:  https://<PUBLIC_IP_HOST>/api/v1/proxy/namespaces/kube-system/services/kubedash/#!/  Please note, that to be able to login to the above mentioned dash, the Certificate should be\nimported in Chrome.",
+            "title": "Kubernetes Dash (Monitoring)"
+        },
+        {
+            "location": "/setup/single-node/#service-loadbalancer-replaced-by-ingress",
+            "text": "To be able to access services from the outside, Kubernetes uses the Service-Type \"Loadbalancer\" on\ncloud platforms like GCE and/or AWS. This is not available on Vagrant/Bare Metal/Netcup. For this to\nwork, we do need to use a contrib module called service-loadbalancer (see  Kubernetes Contrib Repository ).  kubectl create -f addon/loadbalancer-controller.yml\nkubectl label node <PUBLIC_IP_HOST> role=loadbalancer  The Public IP of the Host is equal to the Nodename. To gather the Nodenames, please use  kubectl get nodes  The Service-Loadbalancer has to be configured in the services. Usually the Service-Type defined in Kubernetes-Services are\n\"LoadBalancer\", but the Service-Loadbalancer requires \"NodePort\". Furthermore there are several types of mappings offered by\nthe Service-Loadbalancer. Me was interested in the Host-Mapping mainly. There is no example in the documentation of the\nannotation used for this, therefor I did some investigations and found the following (see container/redmine/redmine-service.yml):  annotations:\n    serviceloadbalancer/lb.host: \"<PUBLIC_HOSTNAME>\"  This makes the service available on the given PUBLIC_HOSTNAME (eg. redmine.example.org).",
+            "title": "Service-LoadBalancer --&gt; replaced by Ingress..."
+        },
+        {
+            "location": "/setup/single-node/#todo",
+            "text": "[] Add email possibility for Redmine\n[] Make Redmine and other containers SSL-aware\n[] Ingress needs 443, blocked by kube-apiserver (/etc/kubernetes/manifests/kube-apiserver.yaml), use port 444 in there and restart kubelet service",
+            "title": "TODO"
+        },
+        {
+            "location": "/setup/helm/",
+            "text": "Setup Helm\n\n\nHelm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources. helm is still in its infancy and not production ready, documentation can be found \nhere\n.\n\n\nhelm can now downloaded from the above mentioned page and installed using the described method in the \ninstall\n document.\n\n\nWe do use version 2.0.0-alpha5 of helm, so make sure, that you are using the same or a later version.",
+            "title": "Setup Helm"
+        },
+        {
+            "location": "/setup/helm/#setup-helm",
+            "text": "Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources. helm is still in its infancy and not production ready, documentation can be found  here .  helm can now downloaded from the above mentioned page and installed using the described method in the  install  document.  We do use version 2.0.0-alpha5 of helm, so make sure, that you are using the same or a later version.",
+            "title": "Setup Helm"
+        },
+        {
+            "location": "/components/gogs/",
+            "text": "Gogs - Go Git Service\n\n\nGogs\n is a painless self-hosted Git service. It is used in our environment to allow an easy management of Git-Repositories.\n\n\nRight now we do use version 0.9.97.\n\n\nChart Details\n\n\nThis chart uses the \nDocker image\n provided by gogs itself. Furthermore it has a requirement on our Mysql-Chart to provide a datastore.\n\n\nGet this Chart\n\n\nOur central repository is located at: \nhttps://devopsku.be/charts\n, please configure this in your helm installation (via \nhelm repo add\n). Then you can download and install this chart using the usual helm procedure (see \nUsing Helm\n).\n\n\nIf you would like to contribute and/or like to make changes on this chart, please clone this repo via:\n\n\ngit clone https://github.com/devopskube/devopskube.git\n\n\nInstalling the chart\n\n\nIf you have cloned this repository, you do need to update the requirements of this chart beforehand via \nhelm dependencies update\n in the chart-folder.\n\n\nOther installation-instructions can be found on the above mentioned \nUsing Helm\n page.\n\n\nConfiguration\n\n\nThe following tables lists the configurable parameters of the Gogs chart and their default values.\n\n\n\n\n\n\n\n\nParameter\n\n\nDescription\n\n\nDefault\n\n\n\n\n\n\n\n\n\n\ndomainName\n\n\nDomain Name of this Gogs Instance\n\n\nexample.com\n\n\n\n\n\n\nhostName\n\n\nHost Name of this Gogs Instance\n\n\ngogs.example.com\n\n\n\n\n\n\nhttpContainerPort\n\n\nHTTP Port of gogs in the container\n\n\n3000\n\n\n\n\n\n\nsshContainerPort\n\n\nSSH Port of gogs in the container\n\n\n2222\n\n\n\n\n\n\nstartSshServer\n\n\nShould the SSH-Server of gogs be startet\n\n\ntrue\n\n\n\n\n\n\npersistence.dataPath\n\n\nPath on the host, where gogs stores data\n\n\n/data/gogs/data\n\n\n\n\n\n\ndatabaseType\n\n\nThe databaseType \nmysql\n. \npostgres\n or \nsqlite3\n\n\nmysql\n\n\n\n\n\n\nmysql.databaseName\n\n\nThe name of the database\n\n\ngogs\n\n\n\n\n\n\nmysql.databaseUser\n\n\nThe database user\n\n\ngogs\n\n\n\n\n\n\nmysql.databasePassword\n\n\nThe password of the database\n\n\ngogs\n\n\n\n\n\n\nmysql.persistence.path\n\n\nthe path where the mysql stores the data on the  node\n\n\n/data/gogs/mysql\n\n\n\n\n\n\n\n\n\n\nNOTE\n: If you do change the sshContainerPort, you also have to change this port in the nginx-ingress-controller.\n\n\n\n\nFurther configuration settings can easily added in the deployment.yaml file and/or in the configmap-gogs.yaml. Please have a look on the Gogs \nconfiguration cheat sheet\n for a detailed explanation of settings.\n\n\nSpecify each parameter using the --set key=value[,key=value] argument to helm install.\n\n\nAlternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,\n\n\n$ helm install --name my-gogs -f values.private.yaml gogs-x.x.x.tgz\n\n\n\n\n\n\nTip\n: You can use the default \nvalues.yaml\n\n\n\n\nPersistence\n\n\nTo be able to keep stateful data in the gogs kubernetes container, the following path is used:\n\n\n/data/gogs/data\n\n\n\n\nRight now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.\n\n\nTodo\n\n\n\n\nAdopt persistence to be able to run this in the cloud as well as on single node \"clusters\"\n\n\nUpdate to a later version of MariaDb",
+            "title": "Gogs"
+        },
+        {
+            "location": "/components/gogs/#gogs-go-git-service",
+            "text": "Gogs  is a painless self-hosted Git service. It is used in our environment to allow an easy management of Git-Repositories.  Right now we do use version 0.9.97.",
+            "title": "Gogs - Go Git Service"
+        },
+        {
+            "location": "/components/gogs/#chart-details",
+            "text": "This chart uses the  Docker image  provided by gogs itself. Furthermore it has a requirement on our Mysql-Chart to provide a datastore.",
+            "title": "Chart Details"
+        },
+        {
+            "location": "/components/gogs/#get-this-chart",
+            "text": "Our central repository is located at:  https://devopsku.be/charts , please configure this in your helm installation (via  helm repo add ). Then you can download and install this chart using the usual helm procedure (see  Using Helm ).  If you would like to contribute and/or like to make changes on this chart, please clone this repo via:  git clone https://github.com/devopskube/devopskube.git",
+            "title": "Get this Chart"
+        },
+        {
+            "location": "/components/gogs/#installing-the-chart",
+            "text": "If you have cloned this repository, you do need to update the requirements of this chart beforehand via  helm dependencies update  in the chart-folder.  Other installation-instructions can be found on the above mentioned  Using Helm  page.",
+            "title": "Installing the chart"
+        },
+        {
+            "location": "/components/gogs/#configuration",
+            "text": "The following tables lists the configurable parameters of the Gogs chart and their default values.     Parameter  Description  Default      domainName  Domain Name of this Gogs Instance  example.com    hostName  Host Name of this Gogs Instance  gogs.example.com    httpContainerPort  HTTP Port of gogs in the container  3000    sshContainerPort  SSH Port of gogs in the container  2222    startSshServer  Should the SSH-Server of gogs be startet  true    persistence.dataPath  Path on the host, where gogs stores data  /data/gogs/data    databaseType  The databaseType  mysql .  postgres  or  sqlite3  mysql    mysql.databaseName  The name of the database  gogs    mysql.databaseUser  The database user  gogs    mysql.databasePassword  The password of the database  gogs    mysql.persistence.path  the path where the mysql stores the data on the  node  /data/gogs/mysql      NOTE : If you do change the sshContainerPort, you also have to change this port in the nginx-ingress-controller.   Further configuration settings can easily added in the deployment.yaml file and/or in the configmap-gogs.yaml. Please have a look on the Gogs  configuration cheat sheet  for a detailed explanation of settings.  Specify each parameter using the --set key=value[,key=value] argument to helm install.  Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,  $ helm install --name my-gogs -f values.private.yaml gogs-x.x.x.tgz   Tip : You can use the default  values.yaml",
+            "title": "Configuration"
+        },
+        {
+            "location": "/components/gogs/#persistence",
+            "text": "To be able to keep stateful data in the gogs kubernetes container, the following path is used:  /data/gogs/data  Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.",
+            "title": "Persistence"
+        },
+        {
+            "location": "/components/gogs/#todo",
+            "text": "Adopt persistence to be able to run this in the cloud as well as on single node \"clusters\"  Update to a later version of MariaDb",
+            "title": "Todo"
+        },
+        {
+            "location": "/components/jenkins/",
+            "text": "Jenkins Helm Chart\n\n\nJenkins master and slave cluster utilizing the Jenkins Kubernetes plugin\n\n\n\n\nhttps://wiki.jenkins-ci.org/display/JENKINS/Kubernetes+Plugin\n\n\n\n\nInspired by the awesome work of Carlos Sanchez \ncarlos@apache.org\n\n\nChart Details\n\n\nThis chart will do the following:\n\n\n\n\n1 x Jenkins Master with port 8080 exposed on an external LoadBalancer\n\n\nAll using Kubernetes Deployments\n\n\n\n\nGet this chart\n\n\nDownload the latest release of the chart from the \nreleases\n page.\n\n\nAlternatively, clone the repo if you wish to use the development snapshot:\n\n\n$ git clone https://github.com/kubernetes/charts.git\n\n\n\n\nInstalling the Chart\n\n\nTo install the chart with the release name \nmy-release\n:\n\n\n$ helm install --name my-release jenkins-x.x.x.tgz\n\n\n\n\nConfiguration\n\n\nThe following tables lists the configurable parameters of the Jenkins chart and their default values.\n\n\nJenkins Master\n\n\n\n\n\n\n\n\nParameter\n\n\nDescription\n\n\nDefault\n\n\n\n\n\n\n\n\n\n\nMaster.Name\n\n\nJenkins master name\n\n\njenkins-master\n\n\n\n\n\n\nMaster.Image\n\n\nMaster image name\n\n\ngcr.io/kubernetes-charts-ci/jenkins-master-k8s\n\n\n\n\n\n\nMaster.ImageTag\n\n\nMaster image tag\n\n\nv0.1.0\n\n\n\n\n\n\nMaster.ImagePullPolicy\n\n\nMaster image pull policy\n\n\nAlways\n\n\n\n\n\n\nMaster.Component\n\n\nk8s selector key\n\n\njenkins-master\n\n\n\n\n\n\nMaster.Cpu\n\n\nMaster requested cpu\n\n\n200m\n\n\n\n\n\n\nMaster.Memory\n\n\nMaster requested memory\n\n\n256Mi\n\n\n\n\n\n\nMaster.ServicePort\n\n\nk8s service port\n\n\n8080\n\n\n\n\n\n\nMaster.ContainerPort\n\n\nMaster listening port\n\n\n8080\n\n\n\n\n\n\nMaster.SlaveListenerPort\n\n\nListening port for agents\n\n\n50000\n\n\n\n\n\n\n\n\nJenkins Agent\n\n\n\n\n\n\n\n\nParameter\n\n\nDescription\n\n\nDefault\n\n\n\n\n\n\n\n\n\n\nAgent.Image\n\n\nAgent image name\n\n\njenkinsci/jnlp-slave\n\n\n\n\n\n\nAgent.ImageTag\n\n\nAgent image tag\n\n\n2.52\n\n\n\n\n\n\nAgent.Cpu\n\n\nAgent requested cpu\n\n\n200m\n\n\n\n\n\n\nAgent.Memory\n\n\nAgent requested memory\n\n\n256Mi\n\n\n\n\n\n\n\n\nSpecify each parameter using the \n--set key=value[,key=value]\n argument to \nhelm install\n.\n\n\nAlternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,\n\n\n$ helm install --name my-release -f values.yaml jenkins-x.x.x.tgz\n\n\n\n\n\n\nTip\n: You can use the default \nvalues.yaml\n\n\n\n\nPersistence\n\n\nThe Jenkins image stores persistence under \n/var/jenkins_home\n path of the container. A Persistent Volume\nClaim is used to keep the data across deployments. This is known to work in GCE, AWS, and minikube.\n\n\nTodo\n\n\n\n\nEnable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents",
+            "title": "Jenkins"
+        },
+        {
+            "location": "/components/jenkins/#jenkins-helm-chart",
+            "text": "Jenkins master and slave cluster utilizing the Jenkins Kubernetes plugin   https://wiki.jenkins-ci.org/display/JENKINS/Kubernetes+Plugin   Inspired by the awesome work of Carlos Sanchez  carlos@apache.org",
+            "title": "Jenkins Helm Chart"
+        },
+        {
+            "location": "/components/jenkins/#chart-details",
+            "text": "This chart will do the following:   1 x Jenkins Master with port 8080 exposed on an external LoadBalancer  All using Kubernetes Deployments",
+            "title": "Chart Details"
+        },
+        {
+            "location": "/components/jenkins/#get-this-chart",
+            "text": "Download the latest release of the chart from the  releases  page.  Alternatively, clone the repo if you wish to use the development snapshot:  $ git clone https://github.com/kubernetes/charts.git",
+            "title": "Get this chart"
+        },
+        {
+            "location": "/components/jenkins/#installing-the-chart",
+            "text": "To install the chart with the release name  my-release :  $ helm install --name my-release jenkins-x.x.x.tgz",
+            "title": "Installing the Chart"
+        },
+        {
+            "location": "/components/jenkins/#configuration",
+            "text": "The following tables lists the configurable parameters of the Jenkins chart and their default values.",
+            "title": "Configuration"
+        },
+        {
+            "location": "/components/jenkins/#jenkins-master",
+            "text": "Parameter  Description  Default      Master.Name  Jenkins master name  jenkins-master    Master.Image  Master image name  gcr.io/kubernetes-charts-ci/jenkins-master-k8s    Master.ImageTag  Master image tag  v0.1.0    Master.ImagePullPolicy  Master image pull policy  Always    Master.Component  k8s selector key  jenkins-master    Master.Cpu  Master requested cpu  200m    Master.Memory  Master requested memory  256Mi    Master.ServicePort  k8s service port  8080    Master.ContainerPort  Master listening port  8080    Master.SlaveListenerPort  Listening port for agents  50000",
+            "title": "Jenkins Master"
+        },
+        {
+            "location": "/components/jenkins/#jenkins-agent",
+            "text": "Parameter  Description  Default      Agent.Image  Agent image name  jenkinsci/jnlp-slave    Agent.ImageTag  Agent image tag  2.52    Agent.Cpu  Agent requested cpu  200m    Agent.Memory  Agent requested memory  256Mi     Specify each parameter using the  --set key=value[,key=value]  argument to  helm install .  Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,  $ helm install --name my-release -f values.yaml jenkins-x.x.x.tgz   Tip : You can use the default  values.yaml",
+            "title": "Jenkins Agent"
+        },
+        {
+            "location": "/components/jenkins/#persistence",
+            "text": "The Jenkins image stores persistence under  /var/jenkins_home  path of the container. A Persistent Volume\nClaim is used to keep the data across deployments. This is known to work in GCE, AWS, and minikube.",
+            "title": "Persistence"
+        },
+        {
+            "location": "/components/jenkins/#todo",
+            "text": "Enable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents",
+            "title": "Todo"
+        },
+        {
+            "location": "/components/keycloak/",
+            "text": "",
+            "title": "Keycloak"
+        },
+        {
+            "location": "/components/kube-lego/",
+            "text": "Kube-Lego\n\n\nKube-Lego Kubernetes plugin\n\n\n\n\nhttps://github.com/jetstack/kube-lego\n\n\n\n\nKube-Lego automatically requests certificates for Kubernetes Ingress resources from Let's Encrypt",
+            "title": "Kube-Lego"
+        },
+        {
+            "location": "/components/kube-lego/#kube-lego",
+            "text": "Kube-Lego Kubernetes plugin   https://github.com/jetstack/kube-lego   Kube-Lego automatically requests certificates for Kubernetes Ingress resources from Let's Encrypt",
+            "title": "Kube-Lego"
+        },
+        {
+            "location": "/components/nexus/",
+            "text": "Nexus\n\n\nThis is a helm-chart for [nexxus]\n\n\nThis chart is part of the DevOpsKube package.\n\n\nIt is right now fully based on the \nbitnami\n redmine chart.\n\n\nTODO\n\n\nthis url is password protected, therefor this can not get called without username password\n\n\nlivenessProbe:\n  httpGet:\n    path: /service/metrics/ping\n    port: http\n  initialDelaySeconds: 120\n  timeoutSeconds: 5\nreadinessProbe:\n  httpGet:\n    path: /service/metrics/ping\n    port: http\n  initialDelaySeconds: 5\n  timeoutSeconds: 1\n\n\nDependencies\n\n\nThis chart uses the following sub-dependencies:\n\n\nmariadb\n\n\nVariables\n\n\nTo be able to use this package, the following variables should be set.\n\n\nsee values.yaml\n\n\nRoadmap\n\n\nprovide git as a scm system, does not seem to work right now.\n\n\nRedmine\n\n\nNexus\n is the world's only repository manager with FREE support for popular formats..\n\n\nRight now we do use version 3.0.2.\n\n\nChart Details\n\n\nThis chart uses the docker image from \nsonatype\n.\n\n\nGet this Chart\n\n\nOur central repository is located at: \nhttps://devopsku.be/charts\n, please configure this in your helm installation (via \nhelm repo add\n). Then you can download and install this chart using the usual helm procedure (see \nUsing Helm\n).\n\n\nIf you would like to contribute and/or like to make changes on this chart, please clone this repo via:\n\n\ngit clone https://github.com/devopskube/devopskube.git\n\n\nInstalling the chart\n\n\nOther installation-instructions can be found on the above mentioned \nUsing Helm\n page.\n\n\nConfiguration\n\n\nThe following tables lists the configurable parameters of the Nexus chart and their default values.\n\n\n\n\n\n\n\n\nParameter\n\n\nDescription\n\n\nDefault\n\n\n\n\n\n\n\n\n\n\nhostName\n\n\nHost Name of this Instance\n\n\nnexus.example.com\n\n\n\n\n\n\ncontainerPort\n\n\nPort of the container\n\n\n8081\n\n\n\n\n\n\nmaxMem\n\n\nResource limit memory (-Xmx)\n\n\n1200M\n\n\n\n\n\n\nminMem\n\n\nMinimum Memory (-Xms)\n\n\n1200M\n\n\n\n\n\n\njavaOpts\n\n\nAdditional options for the JVM\n\n\n''\n\n\n\n\n\n\npersistence.path\n\n\nPath where all data on the host is stored\n\n\n/data/nexus\n\n\n\n\n\n\n\n\nSpecify each parameter using the --set key=value[,key=value] argument to helm install.\n\n\nAlternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,\n\n\n$ helm install --name my-nexus -f values.private.yaml nexus-x.x.x.tgz\n\n\n\n\n\n\nTip\n: You can use the default \nvalues.yaml\n\n\n\n\nThe initial Username/Pasword combination for the first login is: \nadmin/admin123\n.\n\n\nPersistence\n\n\nTo be able to keep stateful data in the nexus kubernetes container, the following path is used:\n\n\n/data/nexus\n\n\n\n\nRight now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.\n\n\nTodo\n\n\n\n\nProvide more initial configurations (smtp-settings, ldap-settings, ...)\n\n\nuse LDAP and SSO",
+            "title": "TheNexus"
+        },
+        {
+            "location": "/components/nexus/#nexus",
+            "text": "This is a helm-chart for [nexxus]  This chart is part of the DevOpsKube package.  It is right now fully based on the  bitnami  redmine chart.",
+            "title": "Nexus"
+        },
+        {
+            "location": "/components/nexus/#todo",
+            "text": "this url is password protected, therefor this can not get called without username password  livenessProbe:\n  httpGet:\n    path: /service/metrics/ping\n    port: http\n  initialDelaySeconds: 120\n  timeoutSeconds: 5\nreadinessProbe:\n  httpGet:\n    path: /service/metrics/ping\n    port: http\n  initialDelaySeconds: 5\n  timeoutSeconds: 1",
+            "title": "TODO"
+        },
+        {
+            "location": "/components/nexus/#dependencies",
+            "text": "This chart uses the following sub-dependencies:  mariadb",
+            "title": "Dependencies"
+        },
+        {
+            "location": "/components/nexus/#variables",
+            "text": "To be able to use this package, the following variables should be set.  see values.yaml",
+            "title": "Variables"
+        },
+        {
+            "location": "/components/nexus/#roadmap",
+            "text": "provide git as a scm system, does not seem to work right now.",
+            "title": "Roadmap"
+        },
+        {
+            "location": "/components/nexus/#redmine",
+            "text": "Nexus  is the world's only repository manager with FREE support for popular formats..  Right now we do use version 3.0.2.",
+            "title": "Redmine"
+        },
+        {
+            "location": "/components/nexus/#chart-details",
+            "text": "This chart uses the docker image from  sonatype .",
+            "title": "Chart Details"
+        },
+        {
+            "location": "/components/nexus/#get-this-chart",
+            "text": "Our central repository is located at:  https://devopsku.be/charts , please configure this in your helm installation (via  helm repo add ). Then you can download and install this chart using the usual helm procedure (see  Using Helm ).  If you would like to contribute and/or like to make changes on this chart, please clone this repo via:  git clone https://github.com/devopskube/devopskube.git",
+            "title": "Get this Chart"
+        },
+        {
+            "location": "/components/nexus/#installing-the-chart",
+            "text": "Other installation-instructions can be found on the above mentioned  Using Helm  page.",
+            "title": "Installing the chart"
+        },
+        {
+            "location": "/components/nexus/#configuration",
+            "text": "The following tables lists the configurable parameters of the Nexus chart and their default values.     Parameter  Description  Default      hostName  Host Name of this Instance  nexus.example.com    containerPort  Port of the container  8081    maxMem  Resource limit memory (-Xmx)  1200M    minMem  Minimum Memory (-Xms)  1200M    javaOpts  Additional options for the JVM  ''    persistence.path  Path where all data on the host is stored  /data/nexus     Specify each parameter using the --set key=value[,key=value] argument to helm install.  Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,  $ helm install --name my-nexus -f values.private.yaml nexus-x.x.x.tgz   Tip : You can use the default  values.yaml   The initial Username/Pasword combination for the first login is:  admin/admin123 .",
+            "title": "Configuration"
+        },
+        {
+            "location": "/components/nexus/#persistence",
+            "text": "To be able to keep stateful data in the nexus kubernetes container, the following path is used:  /data/nexus  Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.",
+            "title": "Persistence"
+        },
+        {
+            "location": "/components/nexus/#todo_1",
+            "text": "Provide more initial configurations (smtp-settings, ldap-settings, ...)  use LDAP and SSO",
+            "title": "Todo"
+        },
+        {
+            "location": "/components/redmine/",
+            "text": "Redmine\n\n\nRedmine\n is a flexible project management and issue tracking web application.\n\n\nThis chart was based on the \nbitnami\n redmine chart, but adopted to our needs.\n\n\nRight now we do use version 3.3.0.\n\n\nChart Details\n\n\nThis chart uses the docker image from \nsameersbn\n. Furthermore it has a requirement on our Mysql-Chart to provide a datastore.\n\n\nGet this Chart\n\n\nOur central repository is located at: \nhttps://devopsku.be/charts\n, please configure this in your helm installation (via \nhelm repo add\n). Then you can download and install this chart using the usual helm procedure (see \nUsing Helm\n).\n\n\nIf you would like to contribute and/or like to make changes on this chart, please clone this repo via:\n\n\ngit clone https://github.com/devopskube/devopskube.git\n\n\nInstalling the chart\n\n\nIf you have cloned this repository, you do need to update the requirements of this chart beforehand via \nhelm dependencies update\n in the chart-folder.\n\n\nOther installation-instructions can be found on the above mentioned \nUsing Helm\n page.\n\n\nConfiguration\n\n\nThe following tables lists the configurable parameters of the Redmine chart and their default values.\n\n\n\n\n\n\n\n\nParameter\n\n\nDescription\n\n\nDefault\n\n\n\n\n\n\n\n\n\n\nhostName\n\n\nHost Name of this Instance\n\n\nredmine.example.com\n\n\n\n\n\n\nredminePort\n\n\nPort of the container\n\n\n80\n\n\n\n\n\n\nredmineHttps\n\n\nShould https be enabled\n\n\nfalse\n\n\n\n\n\n\nnginx.enabled\n\n\nShould the Nginx-Server be startet\n\n\ntrue\n\n\n\n\n\n\nnginx.workers\n\n\nThe number of nginx workers to start.\n\n\n1\n\n\n\n\n\n\nnginx.maxUploadSize\n\n\nMaximum acceptable upload size\n\n\n20m\n\n\n\n\n\n\nunicorn.workers\n\n\nThe number of unicorn workers to start\n\n\n2\n\n\n\n\n\n\nunicorn.timeout\n\n\nSets the timeout of unicorn worker processes\n\n\n60\n\n\n\n\n\n\nsmtp.enabled\n\n\nEnable mail delivery via SMTP\n\n\nfalse\n\n\n\n\n\n\nsmtp.domain\n\n\nSMTP domain\n\n\nexample.com\n\n\n\n\n\n\nsmtp.host\n\n\nSMTP server host\n\n\nsmtp.google.com\n\n\n\n\n\n\nsmtp.port\n\n\nSMTP server port\n\n\n587\n\n\n\n\n\n\nsmtp.user\n\n\nSMTP username\n\n\nusername\n\n\n\n\n\n\nsmtp.pass\n\n\nSMTP password\n\n\npassword\n\n\n\n\n\n\nsmtp.method\n\n\nSMTP delivery method. Possible values: \nsmtp\n, \nasync_smtp\n\n\nsmtp\n\n\n\n\n\n\nsmtp.opensslVerifyMode\n\n\nSMTP openssl verification mode. Accepted values are \nnone\n, \npeer\n, \nclient_once\n and \nfail_if_no_peer_cert\n\n\nnone\n\n\n\n\n\n\nsmtp.startTLS\n\n\nEnable STARTTLS\n\n\ntrue\n\n\n\n\n\n\nsmtp.TLS\n\n\nEnable SSL/TLS\n\n\nfalse\n\n\n\n\n\n\nsmtp.authentication\n\n\nSpecify the SMTP authentication method\n\n\n:login\n\n\n\n\n\n\npersistence.enabled\n\n\nEnable persistence\n\n\ntrue\n\n\n\n\n\n\npersistence.storageClass\n\n\nstorageClass\n\n\ngeneric\n\n\n\n\n\n\npersistence.accessMode\n\n\nAccess Mode of the persistence volume\n\n\nReadWriteOnce\n\n\n\n\n\n\npersistence.size\n\n\nSize of the volume\n\n\n8Gi\n\n\n\n\n\n\npersistence.path\n\n\nPath where all data on the host is stored\n\n\n/data/redmine/files\n\n\n\n\n\n\ndatabaseAdapter\n\n\nThe databaseAdapter to use \nmysql\n. \nmysql2\n or \npostgresql\n\n\nmysql\n\n\n\n\n\n\nmysql.databasePort\n\n\nThe port of the database\n\n\n3306\n\n\n\n\n\n\nmysql.databaseName\n\n\nThe name of the database\n\n\nredmine\n\n\n\n\n\n\nmysql.databaseUser\n\n\nThe database user\n\n\nredmine\n\n\n\n\n\n\nmysql.databasePassword\n\n\nThe password of the database\n\n\nredmine\n\n\n\n\n\n\nmysql.persistence.path\n\n\nthe path where the mysql stores the data on the  node\n\n\n/data/redmine/mysql\n\n\n\n\n\n\n\n\n\n\nNOTE\n: The persistence settings are right now rather useless (except the path), since we are not using any persistence claim, we are still using hostpath\n\n\n\n\nSpecify each parameter using the --set key=value[,key=value] argument to helm install.\n\n\nAlternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,\n\n\n$ helm install --name my-redmine -f values.private.yaml redmine-x.x.x.tgz\n\n\n\n\n\n\nTip\n: You can use the default \nvalues.yaml\n\n\n\n\nThe initial Username/Pasword combination for the first login is: \nadmin/admin\n.\n\n\nPersistence\n\n\nTo be able to keep stateful data in the redmine kubernetes container, the following path is used:\n\n\n/data/redmine/data\n\n\n\n\nRight now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.\n\n\nTodo\n\n\n\n\nAdopt persistence to be able to run this in the cloud as well as on single node \"clusters\"\n\n\nUpdate to a later version of MariaDb\n\n\nUse LDAP and SSO",
+            "title": "Redmine"
+        },
+        {
+            "location": "/components/redmine/#redmine",
+            "text": "Redmine  is a flexible project management and issue tracking web application.  This chart was based on the  bitnami  redmine chart, but adopted to our needs.  Right now we do use version 3.3.0.",
+            "title": "Redmine"
+        },
+        {
+            "location": "/components/redmine/#chart-details",
+            "text": "This chart uses the docker image from  sameersbn . Furthermore it has a requirement on our Mysql-Chart to provide a datastore.",
+            "title": "Chart Details"
+        },
+        {
+            "location": "/components/redmine/#get-this-chart",
+            "text": "Our central repository is located at:  https://devopsku.be/charts , please configure this in your helm installation (via  helm repo add ). Then you can download and install this chart using the usual helm procedure (see  Using Helm ).  If you would like to contribute and/or like to make changes on this chart, please clone this repo via:  git clone https://github.com/devopskube/devopskube.git",
+            "title": "Get this Chart"
+        },
+        {
+            "location": "/components/redmine/#installing-the-chart",
+            "text": "If you have cloned this repository, you do need to update the requirements of this chart beforehand via  helm dependencies update  in the chart-folder.  Other installation-instructions can be found on the above mentioned  Using Helm  page.",
+            "title": "Installing the chart"
+        },
+        {
+            "location": "/components/redmine/#configuration",
+            "text": "The following tables lists the configurable parameters of the Redmine chart and their default values.     Parameter  Description  Default      hostName  Host Name of this Instance  redmine.example.com    redminePort  Port of the container  80    redmineHttps  Should https be enabled  false    nginx.enabled  Should the Nginx-Server be startet  true    nginx.workers  The number of nginx workers to start.  1    nginx.maxUploadSize  Maximum acceptable upload size  20m    unicorn.workers  The number of unicorn workers to start  2    unicorn.timeout  Sets the timeout of unicorn worker processes  60    smtp.enabled  Enable mail delivery via SMTP  false    smtp.domain  SMTP domain  example.com    smtp.host  SMTP server host  smtp.google.com    smtp.port  SMTP server port  587    smtp.user  SMTP username  username    smtp.pass  SMTP password  password    smtp.method  SMTP delivery method. Possible values:  smtp ,  async_smtp  smtp    smtp.opensslVerifyMode  SMTP openssl verification mode. Accepted values are  none ,  peer ,  client_once  and  fail_if_no_peer_cert  none    smtp.startTLS  Enable STARTTLS  true    smtp.TLS  Enable SSL/TLS  false    smtp.authentication  Specify the SMTP authentication method  :login    persistence.enabled  Enable persistence  true    persistence.storageClass  storageClass  generic    persistence.accessMode  Access Mode of the persistence volume  ReadWriteOnce    persistence.size  Size of the volume  8Gi    persistence.path  Path where all data on the host is stored  /data/redmine/files    databaseAdapter  The databaseAdapter to use  mysql .  mysql2  or  postgresql  mysql    mysql.databasePort  The port of the database  3306    mysql.databaseName  The name of the database  redmine    mysql.databaseUser  The database user  redmine    mysql.databasePassword  The password of the database  redmine    mysql.persistence.path  the path where the mysql stores the data on the  node  /data/redmine/mysql      NOTE : The persistence settings are right now rather useless (except the path), since we are not using any persistence claim, we are still using hostpath   Specify each parameter using the --set key=value[,key=value] argument to helm install.  Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,  $ helm install --name my-redmine -f values.private.yaml redmine-x.x.x.tgz   Tip : You can use the default  values.yaml   The initial Username/Pasword combination for the first login is:  admin/admin .",
+            "title": "Configuration"
+        },
+        {
+            "location": "/components/redmine/#persistence",
+            "text": "To be able to keep stateful data in the redmine kubernetes container, the following path is used:  /data/redmine/data  Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.",
+            "title": "Persistence"
+        },
+        {
+            "location": "/components/redmine/#todo",
+            "text": "Adopt persistence to be able to run this in the cloud as well as on single node \"clusters\"  Update to a later version of MariaDb  Use LDAP and SSO",
+            "title": "Todo"
+        },
+        {
+            "location": "/components/sonarqube/",
+            "text": "SonarQube\n\n\nSonarQube\n is an open platform to manage code quality.\n\n\nRight now we do use version 6.1.\n\n\nChart Details\n\n\nThis chart uses the docker image from \nsonarqube\n. Furthermore it has a requirement on our Mysql-Chart to provide a datastore.\n\n\nGet this Chart\n\n\nOur central repository is located at: \nhttps://devopsku.be/charts\n, please configure this in your helm installation (via \nhelm repo add\n). Then you can download and install this chart using the usual helm procedure (see \nUsing Helm\n).\n\n\nIf you would like to contribute and/or like to make changes on this chart, please clone this repo via:\n\n\ngit clone https://github.com/devopskube/devopskube.git\n\n\nInstalling the chart\n\n\nIf you have cloned this repository, you do need to update the requirements of this chart beforehand via \nhelm dependencies update\n in the chart-folder.\n\n\nOther installation-instructions can be found on the above mentioned \nUsing Helm\n page.\n\n\nConfiguration\n\n\nThe following tables lists the configurable parameters of the SonarQuebe chart and their default values.\n\n\n\n\n\n\n\n\nParameter\n\n\nDescription\n\n\nDefault\n\n\n\n\n\n\n\n\n\n\nhostName\n\n\nHost Name of this Instance\n\n\nsonar.example.com\n\n\n\n\n\n\ncontainerPort\n\n\nPort of the container\n\n\n9000\n\n\n\n\n\n\npersistence.dataPath\n\n\nPath were the data of SonarQube is stored\n\n\n/data/sonarqube/data\n\n\n\n\n\n\npersistence.extensionsPath\n\n\nPath were extenstions to SonarQube are stored\n\n\n/data/sonarqube/extensions\n\n\n\n\n\n\nmysql.databasePort\n\n\nThe port of the database\n\n\n3306\n\n\n\n\n\n\nmysql.databaseName\n\n\nThe name of the database\n\n\nsonar\n\n\n\n\n\n\nmysql.databaseUser\n\n\nThe database user\n\n\nsonar\n\n\n\n\n\n\nmysql.databasePassword\n\n\nThe password of the database\n\n\nsonar\n\n\n\n\n\n\nmysql.persistence.path\n\n\nthe path where the mysql stores the data on the  node\n\n\n/data/sonarqube/mysql\n\n\n\n\n\n\n\n\nSpecify each parameter using the --set key=value[,key=value] argument to helm install.\n\n\nAlternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,\n\n\n$ helm install --name my-sonar -f values.private.yaml sonarqube-x.x.x.tgz\n\n\n\n\n\n\nTip\n: You can use the default \nvalues.yaml\n\n\n\n\nThe initial Username/Pasword combination for the first login is: \nadmin/admin\n.\n\n\nPersistence\n\n\nTo be able to keep stateful data in the redmine kubernetes container, the following path is used:\n\n\n/data/sonarqube/data\n\n\n\n\nRight now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.\n\n\nTodo\n\n\n\n\nAdopt persistence to be able to run this in the cloud as well as on single node \"clusters\"\n\n\nUpdate to a later version of MariaDb\n\n\nUse LDAP and SSO",
+            "title": "SonarQube"
+        },
+        {
+            "location": "/components/sonarqube/#sonarqube",
+            "text": "SonarQube  is an open platform to manage code quality.  Right now we do use version 6.1.",
+            "title": "SonarQube"
+        },
+        {
+            "location": "/components/sonarqube/#chart-details",
+            "text": "This chart uses the docker image from  sonarqube . Furthermore it has a requirement on our Mysql-Chart to provide a datastore.",
+            "title": "Chart Details"
+        },
+        {
+            "location": "/components/sonarqube/#get-this-chart",
+            "text": "Our central repository is located at:  https://devopsku.be/charts , please configure this in your helm installation (via  helm repo add ). Then you can download and install this chart using the usual helm procedure (see  Using Helm ).  If you would like to contribute and/or like to make changes on this chart, please clone this repo via:  git clone https://github.com/devopskube/devopskube.git",
+            "title": "Get this Chart"
+        },
+        {
+            "location": "/components/sonarqube/#installing-the-chart",
+            "text": "If you have cloned this repository, you do need to update the requirements of this chart beforehand via  helm dependencies update  in the chart-folder.  Other installation-instructions can be found on the above mentioned  Using Helm  page.",
+            "title": "Installing the chart"
+        },
+        {
+            "location": "/components/sonarqube/#configuration",
+            "text": "The following tables lists the configurable parameters of the SonarQuebe chart and their default values.     Parameter  Description  Default      hostName  Host Name of this Instance  sonar.example.com    containerPort  Port of the container  9000    persistence.dataPath  Path were the data of SonarQube is stored  /data/sonarqube/data    persistence.extensionsPath  Path were extenstions to SonarQube are stored  /data/sonarqube/extensions    mysql.databasePort  The port of the database  3306    mysql.databaseName  The name of the database  sonar    mysql.databaseUser  The database user  sonar    mysql.databasePassword  The password of the database  sonar    mysql.persistence.path  the path where the mysql stores the data on the  node  /data/sonarqube/mysql     Specify each parameter using the --set key=value[,key=value] argument to helm install.  Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,  $ helm install --name my-sonar -f values.private.yaml sonarqube-x.x.x.tgz   Tip : You can use the default  values.yaml   The initial Username/Pasword combination for the first login is:  admin/admin .",
+            "title": "Configuration"
+        },
+        {
+            "location": "/components/sonarqube/#persistence",
+            "text": "To be able to keep stateful data in the redmine kubernetes container, the following path is used:  /data/sonarqube/data  Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.",
+            "title": "Persistence"
+        },
+        {
+            "location": "/components/sonarqube/#todo",
+            "text": "Adopt persistence to be able to run this in the cloud as well as on single node \"clusters\"  Update to a later version of MariaDb  Use LDAP and SSO",
+            "title": "Todo"
+        },
+        {
+            "location": "/about/license/",
+            "text": "License\n\n\nThe MIT License (MIT)\nCopyright (c) 2016 Markus M. May\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\nINCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A\nPARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+            "title": "License"
+        },
+        {
+            "location": "/about/license/#license",
+            "text": "The MIT License (MIT)\nCopyright (c) 2016 Markus M. May\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\nINCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A\nPARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+            "title": "License"
+        },
+        {
+            "location": "/about/team/",
+            "text": "Team\n\n\nRight now, the Team consist of the following members and contributors:\n\n\nMarkus M. May\n\n\n\n\nFounder and Penguine Herder, living in the \nIntertubes\n\n\nYou?\n\n\nYour participation and contribution is greatly welcome.",
+            "title": "Team"
+        },
+        {
+            "location": "/about/team/#team",
+            "text": "Right now, the Team consist of the following members and contributors:",
+            "title": "Team"
+        },
+        {
+            "location": "/about/team/#markus-m-may",
+            "text": "Founder and Penguine Herder, living in the  Intertubes",
+            "title": "Markus M. May"
+        },
+        {
+            "location": "/about/team/#you",
+            "text": "Your participation and contribution is greatly welcome.",
+            "title": "You?"
+        },
+        {
+            "location": "/about/release-notes/",
+            "text": "Release Notes\n\n\nnothing released yet...",
+            "title": "Release Notes"
+        },
+        {
+            "location": "/about/release-notes/#release-notes",
+            "text": "nothing released yet...",
+            "title": "Release Notes"
+        },
+        {
+            "location": "/about/roadmap/",
+            "text": "Roadmap\n\n\nWe decided to use the following Roadmap to be able to provide some useful Components already and to have something to extend on.\n\n\nNote, that this roadmap is not fixed yet and it could be, that some mentioned features are coming in later versions. This roadmap should just describe the rough idead where DevOpsKube is heading to. Furthermore some tasks are most probably not mentioned and have to be done in some of these versions as well ;-)\n\n\nVersion 0.1\n\n\nAll Components mentioned in the \nHomepage\n should be provided using MySql. Furthermore the configuration for these components is provided and docaumented. All necessary steps to setup a single node cluster (based on \nCoreOS\n) will be documented as well.\n\n\nThis will be a pre-liminary version to provide all the components and steps to build up the future \"development\" environment.\n\n\nVersion 0.2\n\n\nAdd additional components to the Stack to provide a fully featured SDLC Stack. These components could be:\n\n\n\n\nGerrit\n - Web based code Review\n\n\nRocket.chat\n - A chat application\n\n\nGitBucket\n - An open source Github clone (replace Gogs?)\n\n\n\n\nVersion 0.3\n\n\nAdd additional components for eg. SSO and other things, which can be useful in an SDLC Stack:\n\n\n\n\nKeycloak\n - SSO Solution\n\n\nELK\n - Log Stack\n\n\n\n\nVersion 0.4\n\n\nAdditional functionality to be able to create projects via a single REST-API call. This is the first version with some unique functionality. The REST-API should include a web-based client as well as a Command-line client.\n\n\nVersion 0.5\n\n\nMake all of the components (if upstream allows) HA-able. Furthermore integrate those as much as possible.\n\n\nVersion 0.6\n\n\nBe self-hosted. We should eat our own dog-food, therefor we should host this project on our own Kubernetes Cluster.",
+            "title": "Roadmap"
+        },
+        {
+            "location": "/about/roadmap/#roadmap",
+            "text": "We decided to use the following Roadmap to be able to provide some useful Components already and to have something to extend on.  Note, that this roadmap is not fixed yet and it could be, that some mentioned features are coming in later versions. This roadmap should just describe the rough idead where DevOpsKube is heading to. Furthermore some tasks are most probably not mentioned and have to be done in some of these versions as well ;-)",
+            "title": "Roadmap"
+        },
+        {
+            "location": "/about/roadmap/#version-01",
+            "text": "All Components mentioned in the  Homepage  should be provided using MySql. Furthermore the configuration for these components is provided and docaumented. All necessary steps to setup a single node cluster (based on  CoreOS ) will be documented as well.  This will be a pre-liminary version to provide all the components and steps to build up the future \"development\" environment.",
+            "title": "Version 0.1"
+        },
+        {
+            "location": "/about/roadmap/#version-02",
+            "text": "Add additional components to the Stack to provide a fully featured SDLC Stack. These components could be:   Gerrit  - Web based code Review  Rocket.chat  - A chat application  GitBucket  - An open source Github clone (replace Gogs?)",
+            "title": "Version 0.2"
+        },
+        {
+            "location": "/about/roadmap/#version-03",
+            "text": "Add additional components for eg. SSO and other things, which can be useful in an SDLC Stack:   Keycloak  - SSO Solution  ELK  - Log Stack",
+            "title": "Version 0.3"
+        },
+        {
+            "location": "/about/roadmap/#version-04",
+            "text": "Additional functionality to be able to create projects via a single REST-API call. This is the first version with some unique functionality. The REST-API should include a web-based client as well as a Command-line client.",
+            "title": "Version 0.4"
+        },
+        {
+            "location": "/about/roadmap/#version-05",
+            "text": "Make all of the components (if upstream allows) HA-able. Furthermore integrate those as much as possible.",
+            "title": "Version 0.5"
+        },
+        {
+            "location": "/about/roadmap/#version-06",
+            "text": "Be self-hosted. We should eat our own dog-food, therefor we should host this project on our own Kubernetes Cluster.",
+            "title": "Version 0.6"
+        }
+    ]
+}

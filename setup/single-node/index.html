@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="DevOpsKube Team">
+  
+  <title>Setup Single Node - DevOpsKube</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Setup Single Node";
+    var mkdocs_page_input_path = "setup/single-node.md";
+    var mkdocs_page_url = "/setup/single-node/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> DevOpsKube</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Setup</span></li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Setup Single Node</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#single-node-coreos-and-kubernetes-install">Single Node CoreOS and Kubernetes Install</a></li>
+                
+                    <li><a class="toctree-l4" href="#install-coreos">Install CoreOS</a></li>
+                
+                    <li><a class="toctree-l4" href="#install-kubernetes">Install kubernetes</a></li>
+                
+                    <li><a class="toctree-l4" href="#todo">TODO</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../helm/">Setup Helm</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Components</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../components/gogs/">Gogs</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../components/jenkins/">Jenkins</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../components/keycloak/">Keycloak</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../components/kube-lego/">Kube-Lego</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../components/nexus/">TheNexus</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../components/redmine/">Redmine</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../components/sonarqube/">SonarQube</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>About</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../about/license/">License</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../about/team/">Team</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../about/release-notes/">Release Notes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../about/roadmap/">Roadmap</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">DevOpsKube</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Setup &raquo;</li>
+        
+      
+    
+    <li>Setup Single Node</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="single-node-coreos-and-kubernetes-install">Single Node CoreOS and Kubernetes Install</h1>
+<p><a href="https://coreos.com/">CoreOS</a> is the Host System we are using for the kubernetes installation. Since we are using CoreOS on a single-node (right now), in the following, you can find a description on how to setup a CoreOS single-node cluster. We are using a KVM-Base at <a href="https://www.netcup.de/">netcup</a>, but any other Hoster should work fine as well.</p>
+<p>In the following, I am trying to re-play, what I did and provide some links and useful information on how to make this one work.</p>
+<h2 id="install-coreos">Install CoreOS</h2>
+<p>Most of the following was taken from <a href="https://xivilization.net/~marek/blog/2014/08/04/installing-coreos/">The Hyperpessimist</a>.
+I chose the usual Ubuntu-Image, which is offered by netcup as a base to be able to install coreos.</p>
+<p><code>wget https://raw.github.com/coreos/init/master/bin/coreos-install</code></p>
+<p>To install CoreOS in a "non-cloud" environment like netcup, you do need to provide an adopted
+cloud-config. This is included in this repository. To be able to use this config-file, you do
+need to upload it to a server, where you can fetch this file via a wget, so that coreos can
+use it.</p>
+<p><code>wget https://raw.github.com/triplem74/kubernetes-netcup/master/cloud-config.yml</code></p>
+<p>Afterwards the CoreOS installer can be called using the following commands:</p>
+<p><code>chmod u+x coreos-install
+bash coreos-install -d /dev/vda -C alpha -c cloud-config.yml</code></p>
+<p>Could be, that you have to provide the above mentioned cloud-config.yml again
+during the install as an http-link again. Furthermore I needed to copy the
+cloud-config file to a specific location, so that it could be loaded after a
+reboot again, see <a href="https://github.com/coreos/bugs/issues/100">CoreOS Issue 100</a>.</p>
+<p><code>sudo cp cloud-config.yml /var/lib/coreos-install/user_data
+sudo coreos-cloudinit --from-file /var/lib/coreos-install/user_data</code></p>
+<h2 id="install-kubernetes">Install kubernetes</h2>
+<p>To install kubernetes on a single-node, I followed the <a href="https://coreos.com/kubernetes/docs/latest/kubernetes-on-vagrant-single.html">CoreOS - Single-Node Kubernetes Installation</a>. This installation description is
+mainly for vagrant, but since we do have a single-node install as well, this fits quite nicely.</p>
+<h3 id="prepare-installation">Prepare Installation</h3>
+<p>Before we do setup kubernetes, we do need some SSL certificates. This can be done using the scripts in the
+repository mentioned in the above description <a href="https://github.com/coreos/coreos-kubernetes/tree/master/lib">CoreOS - Single-Node Repository (scripts)</a>.
+All of this should happen on the local machine.</p>
+<p>Note: Those scripts are in this local repository as well, but those are not updated regularly, so in case
+of errors or questions, I cannot really help you.</p>
+<p>The IP.1 should be the Public IP of the CoreOS host (eg. 8.8.8.8), the IP.2 should be the Internal IP of the
+CoreOS host, which is defined in the Cloud-Config-file above.</p>
+<p><code>./init-ssl-ca ssl
+./init-ssl ssl apiserver controller IP.1=&lt;PUBLIC_IP_HOST&gt;,IP.2=172.17.0.1
+./init-ssl ssl admin kube-admin</code></p>
+<p>The generated files are then copied to the CoreOS host:</p>
+<p><code>scp -r ssl core@&lt;PUBLIC_IP_HOST&gt;:/home/core</code></p>
+<p>Then on the remote machine (CoreOS host), those files need to get moved to the correct location:</p>
+<p><code>sudo tar -C /etc/kubernetes/ssl -xf ssl/controller.tar</code></p>
+<h3 id="start-installation">Start Installation</h3>
+<p>To start the installation, the user_data from the <a href="https://github.com/coreos/coreos-kubernetes/blob/master/single-node/user-data">CoreOS-repository</a>
+has to be adopted and copied to the remote host. Afterwards it can get executed and the install is basically done.</p>
+<p>Note: I have adopted this file, which can be found in the current repository.</p>
+<p>Ĉopy the user data to the remote host:</p>
+<p><code>scp user_data core@&lt;PUBLIC_IP_HOST&gt;:/home/core</code></p>
+<p>Move the User-Data on the remote host to the correct location and execute it:</p>
+<p><code>sudo mkdir -p /var/lib/coreos-kubernetes
+sudo cp /home/core/user_data /var/lib/coreos-kubernetes/user_data
+sudo /var/lib/coreos-kubernetes/user_data</code></p>
+<h3 id="execute-kubectl">Execute kubectl</h3>
+<p>To be able to execute kubectl on your local machine, you have to provide a valid kubeconfig. There is
+one in this repository, but it needs to get adopted. Afterwards, you are able to use the following
+commands:</p>
+<p>export KUBECONFIG="${KUBECONFIG}:$(pwd)/kubeconfig"
+kubectl config use-context netcup</p>
+<h3 id="add-useful-pods">Add useful pods</h3>
+<h4 id="pre-requisite-ssl-login-certificate">Pre-Requisite (SSL-Login-Certificate)</h4>
+<p>To be able to login to the following pods, k18s expects you to have an certificate. This can be
+generated using the already created ssl-certificates:</p>
+<p><code>openssl pkcs12 -export -in ./ssl/admin.pem -inkey ./ssl/admin-key.pem -out ./ssl/admin.p12</code></p>
+<p>Afterwards you have to import the generated file into chromium using the used password.</p>
+<h4 id="kubernetes-dashboard-management">Kubernetes Dashboard (Management)</h4>
+<p>We are going to add the <a href="https://github.com/kubernetes/dashboard">Kubernetes Dashboard</a> the following two
+commands should be executed, so that the Administration is helped by a nice web-ui.</p>
+<p>``
+kubectl create -f addon/da</p>
+<p>shboard-controller.yaml
+kubectl create -f addon/dashboard-service.yaml
+``</p>
+<p>Afterwards the Dashboad can be reached on the URL:</p>
+<p><code>https://&lt;PUBLIC_IP_HOST&gt;/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/replicationcontrollers</code></p>
+<p>Please note, that to be able to login to the above mentioned dashboard, the Certificate should be
+imported in Chrome.</p>
+<h4 id="kubernetes-dash-monitoring">Kubernetes Dash (Monitoring)</h4>
+<p>To show the Monitoring information, the <a href="https://github.com/kubernetes/kubedash">Kubernetes Dash</a> should
+be installed using the following command:</p>
+<p><code>kubectl create -f addon/kubedash-config.yaml</code></p>
+<p>Afterwards the Monitoring can be reached via the following URL:</p>
+<p><code>https://&lt;PUBLIC_IP_HOST&gt;/api/v1/proxy/namespaces/kube-system/services/kubedash/#!/</code></p>
+<p>Please note, that to be able to login to the above mentioned dash, the Certificate should be
+imported in Chrome.</p>
+<h4 id="service-loadbalancer-replaced-by-ingress">Service-LoadBalancer --&gt; replaced by Ingress...</h4>
+<p>To be able to access services from the outside, Kubernetes uses the Service-Type "Loadbalancer" on
+cloud platforms like GCE and/or AWS. This is not available on Vagrant/Bare Metal/Netcup. For this to
+work, we do need to use a contrib module called service-loadbalancer (see <a href="https://github.com/kubernetes/contrib/tree/master/service-loadbalancer">Kubernetes Contrib Repository</a>).</p>
+<p><code>kubectl create -f addon/loadbalancer-controller.yml
+kubectl label node &lt;PUBLIC_IP_HOST&gt; role=loadbalancer</code></p>
+<p>The Public IP of the Host is equal to the Nodename. To gather the Nodenames, please use</p>
+<p><code>kubectl get nodes</code></p>
+<p>The Service-Loadbalancer has to be configured in the services. Usually the Service-Type defined in Kubernetes-Services are
+"LoadBalancer", but the Service-Loadbalancer requires "NodePort". Furthermore there are several types of mappings offered by
+the Service-Loadbalancer. Me was interested in the Host-Mapping mainly. There is no example in the documentation of the
+annotation used for this, therefor I did some investigations and found the following (see container/redmine/redmine-service.yml):</p>
+<p><code>annotations:
+    serviceloadbalancer/lb.host: "&lt;PUBLIC_HOSTNAME&gt;"</code></p>
+<p>This makes the service available on the given PUBLIC_HOSTNAME (eg. redmine.example.org).</p>
+<h2 id="todo">TODO</h2>
+<p>[] Add email possibility for Redmine
+[] Make Redmine and other containers SSL-aware
+[] Ingress needs 443, blocked by kube-apiserver (/etc/kubernetes/manifests/kube-apiserver.yaml), use port 444 in there and restart kubelet service</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../helm/" class="btn btn-neutral float-right" title="Setup Helm">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>(c) 2016- by the DevOpsKube Team</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../helm/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
