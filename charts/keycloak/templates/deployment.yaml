@@ -21,9 +21,11 @@ spec:
     spec:
       containers:
       - name: {{ template "fullname" . }}
-        image: "jboss/keycloak-mysql:{{ .Values.imageTag }}"
+        image: "devopskube/keycloak:{{ .Values.imageTag }}"
         imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
         env:
+        - name: KEYCLOAK_LOGLEVEL
+          value: {{ .Values.logLevel }}
         - name: KEYCLOAK_USER
           value: {{ .Values.keycloakUser }}
         - name: KEYCLOAK_PASSWORD

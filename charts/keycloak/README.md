@@ -30,6 +30,7 @@ The following table lists the configurable parameters of the Keycloak chart and 
 |`keycloakUser`|Initial admin user| `admin` |
 |`keycloakPass`|Initial password of the admin user| `admin123` |
 |`containerPort`| Listening port of the container | `8080` |
+|`logLevel`|LogLevel of the keycloak server|`INFO`|
 |`mysql.databasePort`|The port of the database|`3306`|
 |`mysql.databaseName`|The name of the database|`keycloak`|
 |`mysql.databaseUser`|The database user|`keycloak`|

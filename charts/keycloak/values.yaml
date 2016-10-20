@@ -1,11 +1,13 @@
 hostName: key.example.com
 
-imageTag: 2.2.1.Final
+imageTag: 0.0.3
 
 keycloakUser: admin
 keycloakPass: admin123
 
 containerPort: 8080
+
+logLevel: INFO
 
 mysql:
   databasePort: 3306
