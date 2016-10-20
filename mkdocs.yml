@@ -1,7 +1,10 @@
 site_name: DevOpsKube
 site_author: DevOpsKube Team
+site_description: DevOpsKube - a full SDLC Stack for Kubernetes
+google_analytics: ['UA-85985871-1', 'auto']
 theme: readthedocs
 copyright: (c) 2016- by the DevOpsKube Team
+repo_url: https://github.com/devopskube/devopskube/
 pages:
 - Home: 'index.md'
 - Setup:
@@ -12,6 +15,7 @@ pages:
   - 'Jenkins': 'components/jenkins.md'
   - 'Keycloak': 'components/keycloak.md'
   - 'Kube-Lego': 'components/kube-lego.md'
+  - 'MySQL': 'components/mysql.md'
   - 'TheNexus': 'components/nexus.md'
   - 'Redmine': 'components/redmine.md'
   - 'SonarQube': 'components/sonarqube.md'
