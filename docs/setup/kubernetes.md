@@ -1,3 +1,11 @@
+# Fedora Atomic
+
+Download QCOW2 Image from https://getfedora.org/de/cloud/download/atomic.html.
+
+Upload this Image to the netcup servers.
+
+
+
 # Kubernetes (k8s)
 
 Because we do have some specific necessities (eg. SSL on all Applications, and we do have only one host), we do need to implement some specific settings in the kubernetes install. These settings are documented in here.
@@ -12,3 +20,12 @@ ports:
   hostPort: 444
   name: https
 ```
+
+## SSO using Keycloak
+
+With the following configuration settings, it is possible to use our own Keycloak container to provide SSO-functionality for Kubernetes (using OpenID Connect).
+
+Before the Kubernetes settings should be put into place, the Keycloak application has to be configured. This is done using the following files.
+
+Based on: http://apigee.com/about/blog/engineering/kubernetes-authentication-enterprise (not necessarily helpful, but...)
+https://key.phreevpn.net/auth/realms/kubernetes/.well-known/openid-configuration
