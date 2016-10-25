@@ -34,6 +34,16 @@
   <script src="../../js/theme.js"></script> 
 
   
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85985871-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -108,6 +118,22 @@
         
             <ul>
             
+                <li class="toctree-l3"><a href="#keycloak-helm-chart">Keycloak Helm Chart</a></li>
+                
+                    <li><a class="toctree-l4" href="#chart-details">Chart Details</a></li>
+                
+                    <li><a class="toctree-l4" href="#get-this-chart">Get this chart</a></li>
+                
+                    <li><a class="toctree-l4" href="#installing-the-chart">Installing the Chart</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+                
+                    <li><a class="toctree-l4" href="#persistence">Persistence</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#todo">Todo</a></li>
+                
+            
             </ul>
         
     </li>
@@ -116,6 +142,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../kube-lego/">Kube-Lego</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../mysql/">MySQL</a>
         
     </li>
 
@@ -209,6 +242,10 @@
     <li>Keycloak</li>
     <li class="wy-breadcrumbs-aside">
       
+        
+          <a href="https://github.com/devopskube/devopskube/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
     </li>
   </ul>
   <hr/>
@@ -216,7 +253,96 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="keycloak-helm-chart">Keycloak Helm Chart</h1>
+<p><a href="http://www.keycloak.org/">Keycloak</a> is an Open Source Identity and Access Management.</p>
+<p>This chart is partially based on the chart found at the <a href="http://fabric8.io/helm/">Fabric8 Charts</a>.</p>
+<h2 id="chart-details">Chart Details</h2>
+<p>Right now, we are using the docker Image from <a href="https://hub.docker.com/r/jboss/keycloak/">jboss</a> in the version 2.2.1.</p>
+<h2 id="get-this-chart">Get this chart</h2>
+<p>Our central repository is located at: <code>https://devopsku.be/charts</code>, please configure this in your helm installation (via <code>helm repo add</code>). Then you can download and install this chart using the usual helm procedure (see <a href="https://github.com/kubernetes/helm/blob/master/docs/using_helm.md">Using Helm</a>).</p>
+<p>If you would like to contribute and/or like to make changes on this chart, please clone this repo via:</p>
+<p><code>git clone https://github.com/devopskube/devopskube.git</code></p>
+<h2 id="installing-the-chart">Installing the Chart</h2>
+<p>The installation-instructions can be found on the above mentioned <a href="https://github.com/kubernetes/helm/blob/master/docs/using_helm.md">Using Helm</a> page.</p>
+<h2 id="configuration">Configuration</h2>
+<p>The following table lists the configurable parameters of the Keycloak chart and their default values.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hostName</code></td>
+<td>Hostname where this Instance can be reached</td>
+<td><code>key.example.com</code></td>
+</tr>
+<tr>
+<td><code>keycloakUser</code></td>
+<td>Initial admin user</td>
+<td><code>admin</code></td>
+</tr>
+<tr>
+<td><code>keycloakPass</code></td>
+<td>Initial password of the admin user</td>
+<td><code>admin123</code></td>
+</tr>
+<tr>
+<td><code>containerPort</code></td>
+<td>Listening port of the container</td>
+<td><code>8080</code></td>
+</tr>
+<tr>
+<td><code>logLevel</code></td>
+<td>LogLevel of the keycloak server</td>
+<td><code>INFO</code></td>
+</tr>
+<tr>
+<td><code>mysql.databasePort</code></td>
+<td>The port of the database</td>
+<td><code>3306</code></td>
+</tr>
+<tr>
+<td><code>mysql.databaseName</code></td>
+<td>The name of the database</td>
+<td><code>keycloak</code></td>
+</tr>
+<tr>
+<td><code>mysql.databaseUser</code></td>
+<td>The database user</td>
+<td><code>keycloak</code></td>
+</tr>
+<tr>
+<td><code>mysql.databasePassword</code></td>
+<td>The password of the database</td>
+<td><code>keycloak</code></td>
+</tr>
+<tr>
+<td><code>mysql.persistence.path</code></td>
+<td>the path where the mysql stores the data on the  node</td>
+<td><code>/data/keycloak/mysql</code></td>
+</tr>
+</tbody>
+</table>
+<p>Specify each parameter using the <code>--set key=value[,key=value]</code> argument to <code>helm install</code>.</p>
+<p>Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,</p>
+<pre><code class="bash">$ helm install --name my-keycloak -f values.yaml keycloak-x.x.x.tgz
+</code></pre>
+
+<blockquote>
+<p><strong>Tip</strong>: You can use the default <a href="https://github.com/devopskube/devopskube/blob/master/charts/keycloak/values.yaml">values.yaml</a></p>
+</blockquote>
+<h2 id="persistence">Persistence</h2>
+<p>This chart does not store any data on any volume.</p>
+<h1 id="todo">Todo</h1>
+<ul>
+<li>Remove mysql dependency chart</li>
+<li>Add required.txt for the dependency</li>
+<li>Add LDAP</li>
+</ul>
               
             </div>
           </div>
@@ -253,6 +379,8 @@
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/devopskube/devopskube/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../jenkins/" style="color: #fcfcfc;">&laquo; Previous</a></span>

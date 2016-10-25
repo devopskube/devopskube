@@ -34,6 +34,16 @@
   <script src="../../js/theme.js"></script> 
 
   
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85985871-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -117,8 +127,28 @@
             
                 <li class="toctree-l3"><a href="#kube-lego">Kube-Lego</a></li>
                 
+                    <li><a class="toctree-l4" href="#chart-details">Chart Details</a></li>
+                
+                    <li><a class="toctree-l4" href="#get-this-chart">Get this Chart</a></li>
+                
+                    <li><a class="toctree-l4" href="#installing-the-chart">Installing the chart</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+                
+                    <li><a class="toctree-l4" href="#persistence">Persistence</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#todo">Todo</a></li>
+                
             
             </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../mysql/">MySQL</a>
         
     </li>
 
@@ -212,6 +242,10 @@
     <li>Kube-Lego</li>
     <li class="wy-breadcrumbs-aside">
       
+        
+          <a href="https://github.com/devopskube/devopskube/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
     </li>
   </ul>
   <hr/>
@@ -220,11 +254,67 @@
             <div class="section">
               
                 <h1 id="kube-lego">Kube-Lego</h1>
-<p>Kube-Lego Kubernetes plugin</p>
-<ul>
-<li>https://github.com/jetstack/kube-lego</li>
-</ul>
-<p>Kube-Lego automatically requests certificates for Kubernetes Ingress resources from Let's Encrypt</p>
+<p><a href="https://github.com/jetstack/kube-lego">Kube-Lego</a> automatically requests certificates for Kubernetes Ingress resources from Let's Encrypt.</p>
+<h2 id="chart-details">Chart Details</h2>
+<p>This chart is fully based on the <a href="https://github.com/jetstack/kube-lego/tree/master/examples/nginx">examples</a> found on their github pages.</p>
+<p>It uses version 0.1.2 of the corresponding docker image.</p>
+<p>This chart needs a Nodeport, so that the letsencrypt server can contact us. This is configured via the properties .Values.extNodePort as well as .Values.legoKubeApiUrl.</p>
+<h2 id="get-this-chart">Get this Chart</h2>
+<p>Our central repository is located at: <code>https://devopsku.be/charts</code>, please configure this in your helm installation (via <code>helm repo add</code>). Then you can download and install this chart using the usual helm procedure (see <a href="https://github.com/kubernetes/helm/blob/master/docs/using_helm.md">Using Helm</a>).</p>
+<p>If you would like to contribute and/or like to make changes on this chart, please clone this repo via:</p>
+<p><code>git clone https://github.com/devopskube/devopskube.git</code></p>
+<h2 id="installing-the-chart">Installing the chart</h2>
+<p>The installation-instructions can be found on the above mentioned <a href="https://github.com/kubernetes/helm/blob/master/docs/using_helm.md">Using Helm</a> page.</p>
+<h2 id="configuration">Configuration</h2>
+<p>The following tables lists the configurable parameters of the SonarQuebe chart and their default values.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email</code></td>
+<td>The email with which the certs are generated at LetsEncrypt</td>
+<td><code>cert@example.com</code></td>
+</tr>
+<tr>
+<td><code>lego_url</code></td>
+<td>The Url with which the certificates are created, staging by default</td>
+<td><code>https://acme-staging.api.letsencrypt.org/directory</code></td>
+</tr>
+<tr>
+<td><code>containerPort</code></td>
+<td>Port of the container</td>
+<td><code>8080</code></td>
+</tr>
+<tr>
+<td><code>legoKubeApiUrl</code></td>
+<td>Url where the letsencrypt server contacts us</td>
+<td><code>http://lego.example.com</code></td>
+</tr>
+<tr>
+<td><code>extNodePort</code></td>
+<td>The external port, where letsencrypt server contacts us</td>
+<td><code>32767</code></td>
+</tr>
+</tbody>
+</table>
+<p>Specify each parameter using the --set key=value[,key=value] argument to helm install.</p>
+<p>Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,</p>
+<pre><code class="bash">$ helm install --name my-kube-lego -f values.private.yaml kube-lego-x.x.x.tgz
+</code></pre>
+
+<blockquote>
+<p><strong>Tip</strong>: You can use the default <a href="https://github.com/devopskube/devopskube/blob/master/charts/kube-lego/values.yaml">values.yaml</a></p>
+<p><strong>Tip</strong>: To use this in a production environment (not recommended by now), you should set the lego_url property to the corresponding production url of letsencrypt (https://acme-v01.api.letsencrypt.org/directory).</p>
+</blockquote>
+<h2 id="persistence">Persistence</h2>
+<p>This chart stores the configuration inside its own configmap, no further persistence-store is necessary.</p>
+<h1 id="todo">Todo</h1>
               
             </div>
           </div>
@@ -232,7 +322,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../nexus/" class="btn btn-neutral float-right" title="TheNexus">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../mysql/" class="btn btn-neutral float-right" title="MySQL">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../keycloak/" class="btn btn-neutral" title="Keycloak"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -262,11 +352,13 @@
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
+          <a href="https://github.com/devopskube/devopskube/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
       
         <span><a href="../keycloak/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../nexus/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../mysql/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

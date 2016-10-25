@@ -34,6 +34,16 @@
   <script src="../../js/theme.js"></script> 
 
   
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85985871-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -112,6 +122,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../components/kube-lego/">Kube-Lego</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../components/mysql/">MySQL</a>
         
     </li>
 
@@ -224,6 +241,10 @@
     <li>Roadmap</li>
     <li class="wy-breadcrumbs-aside">
       
+        
+          <a href="https://github.com/devopskube/devopskube/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
     </li>
   </ul>
   <hr/>
@@ -235,27 +256,28 @@
 <p>We decided to use the following Roadmap to be able to provide some useful Components already and to have something to extend on.</p>
 <p>Note, that this roadmap is not fixed yet and it could be, that some mentioned features are coming in later versions. This roadmap should just describe the rough idead where DevOpsKube is heading to. Furthermore some tasks are most probably not mentioned and have to be done in some of these versions as well ;-)</p>
 <h2 id="version-01">Version 0.1</h2>
-<p>All Components mentioned in the <a href="../../">Homepage</a> should be provided using MySql. Furthermore the configuration for these components is provided and docaumented. All necessary steps to setup a single node cluster (based on <a href="https://coreos.com/">CoreOS</a>) will be documented as well.</p>
+<p>All Components mentioned on our <a href="../../">Homepage</a> should be provided using MySql. Furthermore the configuration for these components is provided and documented. All necessary steps to setup a single node cluster (based on <a href="https://coreos.com/">CoreOS</a>) will be documented as well.</p>
+<p>Furthermore provide tools/documentation on how to generate the charts and offer a download-area for those.</p>
 <p>This will be a pre-liminary version to provide all the components and steps to build up the future "development" environment.</p>
 <h2 id="version-02">Version 0.2</h2>
+<p>Add additional components for eg. SSO and other things, which can be useful in an SDLC Stack:</p>
+<ul>
+<li><a href="http://www.keycloak.org/">Keycloak</a> - SSO Solution</li>
+<li><a href="https://www.elastic.co/products/kibana">ELK</a> - Log Stack</li>
+</ul>
+<h2 id="version-03">Version 0.3</h2>
+<p>Additional functionality to be able to create projects via a single REST-API call. This is the first version with some unique functionality. The REST-API should include a web-based client as well as a Command-line client.</p>
+<h2 id="version-04">Version 0.4</h2>
 <p>Add additional components to the Stack to provide a fully featured SDLC Stack. These components could be:</p>
 <ul>
 <li><a href="https://www.gerritcodereview.com/">Gerrit</a> - Web based code Review</li>
 <li><a href="https://rocket.chat/">Rocket.chat</a> - A chat application</li>
 <li><a href="https://github.com/gitbucket/gitbucket">GitBucket</a> - An open source Github clone (replace Gogs?)</li>
 </ul>
-<h2 id="version-03">Version 0.3</h2>
-<p>Add additional components for eg. SSO and other things, which can be useful in an SDLC Stack:</p>
-<ul>
-<li><a href="http://www.keycloak.org/">Keycloak</a> - SSO Solution</li>
-<li><a href="https://www.elastic.co/products/kibana">ELK</a> - Log Stack</li>
-</ul>
-<h2 id="version-04">Version 0.4</h2>
-<p>Additional functionality to be able to create projects via a single REST-API call. This is the first version with some unique functionality. The REST-API should include a web-based client as well as a Command-line client.</p>
 <h2 id="version-05">Version 0.5</h2>
 <p>Make all of the components (if upstream allows) HA-able. Furthermore integrate those as much as possible.</p>
 <h2 id="version-06">Version 0.6</h2>
-<p>Be self-hosted. We should eat our own dog-food, therefor we should host this project on our own Kubernetes Cluster.</p>
+<p>Be self-hosted. We should eat our own dog-food, therefor we should host this project on our own Kubernetes Cluster. We do look for a in-expensive Hosting solution here. Do you like to offer your Hosts?</p>
               
             </div>
           </div>
@@ -290,6 +312,8 @@
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/devopskube/devopskube/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../release-notes/" style="color: #fcfcfc;">&laquo; Previous</a></span>

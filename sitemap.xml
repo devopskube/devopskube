@@ -4,7 +4,7 @@
     
     <url>
      <loc>None/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,13 +13,13 @@
         
     <url>
      <loc>None/setup/single-node/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/setup/helm/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -29,43 +29,49 @@
         
     <url>
      <loc>None/components/gogs/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/components/jenkins/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/components/keycloak/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/components/kube-lego/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/components/mysql/</loc>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/components/nexus/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/components/redmine/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/components/sonarqube/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -75,25 +81,25 @@
         
     <url>
      <loc>None/about/license/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/about/team/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/about/release-notes/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/about/roadmap/</loc>
-     <lastmod>2016-10-19</lastmod>
+     <lastmod>2016-10-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

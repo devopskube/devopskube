@@ -34,6 +34,16 @@
   <script src="../../js/theme.js"></script> 
 
   
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85985871-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -72,13 +82,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#single-node-coreos-and-kubernetes-install">Single Node CoreOS and Kubernetes Install</a></li>
-                
-                    <li><a class="toctree-l4" href="#install-coreos">Install CoreOS</a></li>
-                
-                    <li><a class="toctree-l4" href="#install-kubernetes">Install kubernetes</a></li>
-                
-                    <li><a class="toctree-l4" href="#todo">TODO</a></li>
+                <li class="toctree-l3"><a href="#setup-single-node">Setup Single Node</a></li>
                 
             
             </ul>
@@ -125,6 +129,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../components/kube-lego/">Kube-Lego</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../components/mysql/">MySQL</a>
         
     </li>
 
@@ -218,6 +229,10 @@
     <li>Setup Single Node</li>
     <li class="wy-breadcrumbs-aside">
       
+        
+          <a href="https://github.com/devopskube/devopskube/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
     </li>
   </ul>
   <hr/>
@@ -225,106 +240,8 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="single-node-coreos-and-kubernetes-install">Single Node CoreOS and Kubernetes Install</h1>
-<p><a href="https://coreos.com/">CoreOS</a> is the Host System we are using for the kubernetes installation. Since we are using CoreOS on a single-node (right now), in the following, you can find a description on how to setup a CoreOS single-node cluster. We are using a KVM-Base at <a href="https://www.netcup.de/">netcup</a>, but any other Hoster should work fine as well.</p>
-<p>In the following, I am trying to re-play, what I did and provide some links and useful information on how to make this one work.</p>
-<h2 id="install-coreos">Install CoreOS</h2>
-<p>Most of the following was taken from <a href="https://xivilization.net/~marek/blog/2014/08/04/installing-coreos/">The Hyperpessimist</a>.
-I chose the usual Ubuntu-Image, which is offered by netcup as a base to be able to install coreos.</p>
-<p><code>wget https://raw.github.com/coreos/init/master/bin/coreos-install</code></p>
-<p>To install CoreOS in a "non-cloud" environment like netcup, you do need to provide an adopted
-cloud-config. This is included in this repository. To be able to use this config-file, you do
-need to upload it to a server, where you can fetch this file via a wget, so that coreos can
-use it.</p>
-<p><code>wget https://raw.github.com/triplem74/kubernetes-netcup/master/cloud-config.yml</code></p>
-<p>Afterwards the CoreOS installer can be called using the following commands:</p>
-<p><code>chmod u+x coreos-install
-bash coreos-install -d /dev/vda -C alpha -c cloud-config.yml</code></p>
-<p>Could be, that you have to provide the above mentioned cloud-config.yml again
-during the install as an http-link again. Furthermore I needed to copy the
-cloud-config file to a specific location, so that it could be loaded after a
-reboot again, see <a href="https://github.com/coreos/bugs/issues/100">CoreOS Issue 100</a>.</p>
-<p><code>sudo cp cloud-config.yml /var/lib/coreos-install/user_data
-sudo coreos-cloudinit --from-file /var/lib/coreos-install/user_data</code></p>
-<h2 id="install-kubernetes">Install kubernetes</h2>
-<p>To install kubernetes on a single-node, I followed the <a href="https://coreos.com/kubernetes/docs/latest/kubernetes-on-vagrant-single.html">CoreOS - Single-Node Kubernetes Installation</a>. This installation description is
-mainly for vagrant, but since we do have a single-node install as well, this fits quite nicely.</p>
-<h3 id="prepare-installation">Prepare Installation</h3>
-<p>Before we do setup kubernetes, we do need some SSL certificates. This can be done using the scripts in the
-repository mentioned in the above description <a href="https://github.com/coreos/coreos-kubernetes/tree/master/lib">CoreOS - Single-Node Repository (scripts)</a>.
-All of this should happen on the local machine.</p>
-<p>Note: Those scripts are in this local repository as well, but those are not updated regularly, so in case
-of errors or questions, I cannot really help you.</p>
-<p>The IP.1 should be the Public IP of the CoreOS host (eg. 8.8.8.8), the IP.2 should be the Internal IP of the
-CoreOS host, which is defined in the Cloud-Config-file above.</p>
-<p><code>./init-ssl-ca ssl
-./init-ssl ssl apiserver controller IP.1=&lt;PUBLIC_IP_HOST&gt;,IP.2=172.17.0.1
-./init-ssl ssl admin kube-admin</code></p>
-<p>The generated files are then copied to the CoreOS host:</p>
-<p><code>scp -r ssl core@&lt;PUBLIC_IP_HOST&gt;:/home/core</code></p>
-<p>Then on the remote machine (CoreOS host), those files need to get moved to the correct location:</p>
-<p><code>sudo tar -C /etc/kubernetes/ssl -xf ssl/controller.tar</code></p>
-<h3 id="start-installation">Start Installation</h3>
-<p>To start the installation, the user_data from the <a href="https://github.com/coreos/coreos-kubernetes/blob/master/single-node/user-data">CoreOS-repository</a>
-has to be adopted and copied to the remote host. Afterwards it can get executed and the install is basically done.</p>
-<p>Note: I have adopted this file, which can be found in the current repository.</p>
-<p>Ĉopy the user data to the remote host:</p>
-<p><code>scp user_data core@&lt;PUBLIC_IP_HOST&gt;:/home/core</code></p>
-<p>Move the User-Data on the remote host to the correct location and execute it:</p>
-<p><code>sudo mkdir -p /var/lib/coreos-kubernetes
-sudo cp /home/core/user_data /var/lib/coreos-kubernetes/user_data
-sudo /var/lib/coreos-kubernetes/user_data</code></p>
-<h3 id="execute-kubectl">Execute kubectl</h3>
-<p>To be able to execute kubectl on your local machine, you have to provide a valid kubeconfig. There is
-one in this repository, but it needs to get adopted. Afterwards, you are able to use the following
-commands:</p>
-<p>export KUBECONFIG="${KUBECONFIG}:$(pwd)/kubeconfig"
-kubectl config use-context netcup</p>
-<h3 id="add-useful-pods">Add useful pods</h3>
-<h4 id="pre-requisite-ssl-login-certificate">Pre-Requisite (SSL-Login-Certificate)</h4>
-<p>To be able to login to the following pods, k18s expects you to have an certificate. This can be
-generated using the already created ssl-certificates:</p>
-<p><code>openssl pkcs12 -export -in ./ssl/admin.pem -inkey ./ssl/admin-key.pem -out ./ssl/admin.p12</code></p>
-<p>Afterwards you have to import the generated file into chromium using the used password.</p>
-<h4 id="kubernetes-dashboard-management">Kubernetes Dashboard (Management)</h4>
-<p>We are going to add the <a href="https://github.com/kubernetes/dashboard">Kubernetes Dashboard</a> the following two
-commands should be executed, so that the Administration is helped by a nice web-ui.</p>
-<p>``
-kubectl create -f addon/da</p>
-<p>shboard-controller.yaml
-kubectl create -f addon/dashboard-service.yaml
-``</p>
-<p>Afterwards the Dashboad can be reached on the URL:</p>
-<p><code>https://&lt;PUBLIC_IP_HOST&gt;/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/replicationcontrollers</code></p>
-<p>Please note, that to be able to login to the above mentioned dashboard, the Certificate should be
-imported in Chrome.</p>
-<h4 id="kubernetes-dash-monitoring">Kubernetes Dash (Monitoring)</h4>
-<p>To show the Monitoring information, the <a href="https://github.com/kubernetes/kubedash">Kubernetes Dash</a> should
-be installed using the following command:</p>
-<p><code>kubectl create -f addon/kubedash-config.yaml</code></p>
-<p>Afterwards the Monitoring can be reached via the following URL:</p>
-<p><code>https://&lt;PUBLIC_IP_HOST&gt;/api/v1/proxy/namespaces/kube-system/services/kubedash/#!/</code></p>
-<p>Please note, that to be able to login to the above mentioned dash, the Certificate should be
-imported in Chrome.</p>
-<h4 id="service-loadbalancer-replaced-by-ingress">Service-LoadBalancer --&gt; replaced by Ingress...</h4>
-<p>To be able to access services from the outside, Kubernetes uses the Service-Type "Loadbalancer" on
-cloud platforms like GCE and/or AWS. This is not available on Vagrant/Bare Metal/Netcup. For this to
-work, we do need to use a contrib module called service-loadbalancer (see <a href="https://github.com/kubernetes/contrib/tree/master/service-loadbalancer">Kubernetes Contrib Repository</a>).</p>
-<p><code>kubectl create -f addon/loadbalancer-controller.yml
-kubectl label node &lt;PUBLIC_IP_HOST&gt; role=loadbalancer</code></p>
-<p>The Public IP of the Host is equal to the Nodename. To gather the Nodenames, please use</p>
-<p><code>kubectl get nodes</code></p>
-<p>The Service-Loadbalancer has to be configured in the services. Usually the Service-Type defined in Kubernetes-Services are
-"LoadBalancer", but the Service-Loadbalancer requires "NodePort". Furthermore there are several types of mappings offered by
-the Service-Loadbalancer. Me was interested in the Host-Mapping mainly. There is no example in the documentation of the
-annotation used for this, therefor I did some investigations and found the following (see container/redmine/redmine-service.yml):</p>
-<p><code>annotations:
-    serviceloadbalancer/lb.host: "&lt;PUBLIC_HOSTNAME&gt;"</code></p>
-<p>This makes the service available on the given PUBLIC_HOSTNAME (eg. redmine.example.org).</p>
-<h2 id="todo">TODO</h2>
-<p>[] Add email possibility for Redmine
-[] Make Redmine and other containers SSL-aware
-[] Ingress needs 443, blocked by kube-apiserver (/etc/kubernetes/manifests/kube-apiserver.yaml), use port 444 in there and restart kubelet service</p>
+                <h1 id="setup-single-node">Setup Single Node</h1>
+<p>For a detailed description on the installation on how to install a Kubernetes 1.4 single-node "cluster" at Netcup, please have a look in our <a href="https://github.com/devopskube/devopskube-single-node">devopskube-single-node Repository</a>.</p>
               
             </div>
           </div>
@@ -361,6 +278,8 @@ annotation used for this, therefor I did some investigations and found the follo
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/devopskube/devopskube/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>

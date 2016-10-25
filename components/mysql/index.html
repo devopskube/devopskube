@@ -8,7 +8,7 @@
   
   <meta name="author" content="DevOpsKube Team">
   
-  <title>Jenkins - DevOpsKube</title>
+  <title>MySQL - DevOpsKube</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Jenkins";
-    var mkdocs_page_input_path = "components/jenkins.md";
-    var mkdocs_page_url = "/components/jenkins/";
+    var mkdocs_page_name = "MySQL";
+    var mkdocs_page_input_path = "components/mysql.md";
+    var mkdocs_page_url = "/components/mysql/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -106,28 +106,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Jenkins</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#jenkins-helm-chart">Jenkins Helm Chart</a></li>
-                
-                    <li><a class="toctree-l4" href="#chart-details">Chart Details</a></li>
-                
-                    <li><a class="toctree-l4" href="#get-this-chart">Get this chart</a></li>
-                
-                    <li><a class="toctree-l4" href="#installing-the-chart">Installing the Chart</a></li>
-                
-                    <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
-                
-                    <li><a class="toctree-l4" href="#persistence">Persistence</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#todo">Todo</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../jenkins/">Jenkins</a>
         
     </li>
 
@@ -147,8 +127,28 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../mysql/">MySQL</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">MySQL</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#mysql">MySQL</a></li>
+                
+                    <li><a class="toctree-l4" href="#chart-details">Chart Details</a></li>
+                
+                    <li><a class="toctree-l4" href="#get-this-chart">Get this Chart</a></li>
+                
+                    <li><a class="toctree-l4" href="#installing-the-chart">Installing the chart</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+                
+                    <li><a class="toctree-l4" href="#persistence">Persistence</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#todo">Todo</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -239,7 +239,7 @@
         
       
     
-    <li>Jenkins</li>
+    <li>MySQL</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -253,29 +253,19 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="jenkins-helm-chart">Jenkins Helm Chart</h1>
-<p>Jenkins master and slave cluster utilizing the Jenkins Kubernetes plugin</p>
-<ul>
-<li>https://wiki.jenkins-ci.org/display/JENKINS/Kubernetes+Plugin</li>
-</ul>
-<p>Inspired by the awesome work of Carlos Sanchez <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#97;&#114;&#108;&#111;&#115;&#64;&#97;&#112;&#97;&#99;&#104;&#101;&#46;&#111;&#114;&#103;">&#99;&#97;&#114;&#108;&#111;&#115;&#64;&#97;&#112;&#97;&#99;&#104;&#101;&#46;&#111;&#114;&#103;</a></p>
-<p>This chart is fully based on the chart found at the <a href="https://github.com/kubernetes/charts/tree/master/stable/jenkins">Kubernetes Charts</a>.</p>
+                <h1 id="mysql">MySQL</h1>
+<p>[MySQL]https://www.mysql.com/) is the database used in all our charts as a data store right now.</p>
 <h2 id="chart-details">Chart Details</h2>
-<p>This chart will do the following:</p>
-<ul>
-<li>1 x Jenkins Master with port 80 exposed on an external LoadBalancer</li>
-<li>All using Kubernetes Deployments</li>
-</ul>
-<p>Right now, we are using Jenkins 2.7.4.</p>
-<h2 id="get-this-chart">Get this chart</h2>
+<p>This chart is fully based on the <a href="https://github.com/kubernetes/charts">Kubernetes Chart</a> found.</p>
+<p>It uses version 0.0.1 of our own <a href="https://github.com/devopskube/docker-mysql">docker image</a>.</p>
+<h2 id="get-this-chart">Get this Chart</h2>
 <p>Our central repository is located at: <code>https://devopsku.be/charts</code>, please configure this in your helm installation (via <code>helm repo add</code>). Then you can download and install this chart using the usual helm procedure (see <a href="https://github.com/kubernetes/helm/blob/master/docs/using_helm.md">Using Helm</a>).</p>
 <p>If you would like to contribute and/or like to make changes on this chart, please clone this repo via:</p>
 <p><code>git clone https://github.com/devopskube/devopskube.git</code></p>
-<h2 id="installing-the-chart">Installing the Chart</h2>
+<h2 id="installing-the-chart">Installing the chart</h2>
 <p>The installation-instructions can be found on the above mentioned <a href="https://github.com/kubernetes/helm/blob/master/docs/using_helm.md">Using Helm</a> page.</p>
 <h2 id="configuration">Configuration</h2>
-<p>The following tables lists the configurable parameters of the Jenkins chart and their default values.</p>
-<h3 id="jenkins-master">Jenkins Master</h3>
+<p>The following tables lists the configurable parameters of the SonarQuebe chart and their default values.</p>
 <table>
 <thead>
 <tr>
@@ -286,133 +276,68 @@
 </thead>
 <tbody>
 <tr>
-<td><code>master.name</code></td>
-<td>Jenkins master name</td>
-<td><code>jenkins-master</code></td>
-</tr>
-<tr>
-<td><code>master.image</code></td>
-<td>Master image name</td>
-<td><code>gcr.io/kubernetes-charts-ci/jenkins-master-k8s</code></td>
-</tr>
-<tr>
-<td><code>master.imageTag</code></td>
-<td>Master image tag</td>
-<td><code>v0.1.0</code></td>
-</tr>
-<tr>
-<td><code>master.imagePullPolicy</code></td>
-<td>Master image pull policy</td>
-<td><code>Always</code></td>
-</tr>
-<tr>
-<td><code>master.vomponent</code></td>
-<td>k8s selector key</td>
-<td><code>jenkins-master</code></td>
-</tr>
-<tr>
-<td><code>master.cpu</code></td>
-<td>Master requested cpu</td>
+<td><code>cpu</code></td>
+<td>The CPU resource limit</td>
 <td><code>200m</code></td>
 </tr>
 <tr>
-<td><code>master.memory</code></td>
-<td>Master requested memory</td>
-<td><code>256Mi</code></td>
+<td><code>memory</code></td>
+<td>The RAM resource limit</td>
+<td><code>512Mi</code></td>
 </tr>
 <tr>
-<td><code>master.servicePort</code></td>
-<td>k8s service port</td>
-<td><code>80</code></td>
+<td><code>databaseName</code></td>
+<td>The name of the database</td>
+<td><code>test</code></td>
 </tr>
 <tr>
-<td><code>master.containerPort</code></td>
-<td>Master listening port</td>
-<td><code>8080</code></td>
+<td><code>databaseUser</code></td>
+<td>The user of the database</td>
+<td><code>test</code></td>
 </tr>
 <tr>
-<td><code>master.slaveListenerPort</code></td>
-<td>Listening port for agents</td>
-<td><code>50000</code></td>
+<td><code>databasePassword</code></td>
+<td>The password of the database user</td>
+<td><code>test</code></td>
 </tr>
 <tr>
-<td><code>master.adminUser</code></td>
-<td>The initial admin user</td>
-<td><code>admin</code></td>
+<td><code>databaseCharset</code></td>
+<td>The Charset used in the database</td>
+<td><code>utf8</code></td>
 </tr>
 <tr>
-<td><code>master.adminPassword</code></td>
-<td>The initial admin user password</td>
-<td><code>admin1234</code></td>
-</tr>
-<tr>
-<td><code>master.javaOpts</code></td>
-<td>Some java options</td>
-<td><code>-Xms512m -Xmx512m</code></td>
-</tr>
-<tr>
-<td><code>master.hostName</code></td>
-<td>The hostName of the jenkins instance</td>
-<td><code>jenkins.example.com</code></td>
+<td><code>databaseCollation</code></td>
+<td>The Collation used in the database</td>
+<td><code>utf8_unicode_ci</code></td>
 </tr>
 <tr>
 <td><code>persistence.path</code></td>
-<td>The path where data is stored</td>
-<td><code>/data/jenkins</code></td>
+<td>The path where the data is stored</td>
+<td><code>/data/mysql</code></td>
 </tr>
 </tbody>
 </table>
-<h3 id="jenkins-agent">Jenkins Agent</h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>agent.image</code></td>
-<td>Agent image name</td>
-<td><code>jenkinsci/jnlp-slave</code></td>
-</tr>
-<tr>
-<td><code>agent.imageTag</code></td>
-<td>Agent image tag</td>
-<td><code>2.52</code></td>
-</tr>
-<tr>
-<td><code>agent.cpu</code></td>
-<td>Agent requested cpu</td>
-<td><code>200m</code></td>
-</tr>
-<tr>
-<td><code>agent.memory</code></td>
-<td>Agent requested memory</td>
-<td><code>256Mi</code></td>
-</tr>
-</tbody>
-</table>
-<p>Specify each parameter using the <code>--set key=value[,key=value]</code> argument to <code>helm install</code>.</p>
+<p>Specify each parameter using the --set key=value[,key=value] argument to helm install.</p>
 <p>Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,</p>
-<pre><code class="bash">$ helm install --name my-jenkins -f values.yaml jenkins-x.x.x.tgz
+<pre><code class="bash">$ helm install --name my-kube-lego -f values.private.yaml kube-lego-x.x.x.tgz
 </code></pre>
 
 <blockquote>
-<p><strong>Tip</strong>: You can use the default <a href="https://github.com/devopskube/devopskube/blob/master/charts/jenkins/values.yaml">values.yaml</a></p>
+<p><strong>Tip</strong>: You can use the default <a href="https://github.com/devopskube/devopskube/blob/master/charts/mysql/values.yaml">values.yaml</a></p>
 </blockquote>
 <h2 id="persistence">Persistence</h2>
-<p>To be able to keep stateful data in the jenkins kubernetes container, the following path is used:</p>
-<pre><code>/data/jenkins
+<p>To be able to keep stateful data in the mysql kubernetes container, the following path is used:</p>
+<pre><code>/data/mysql
 </code></pre>
 
+<blockquote>
+<p><strong>Tip</strong>: This path should be adopted for each database instance you set up (eg. for each application)</p>
+</blockquote>
 <p>Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.</p>
 <h1 id="todo">Todo</h1>
 <ul>
-<li>Enable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents</li>
-<li>Add SSO</li>
-<li>Use persistence volume claims</li>
+<li>Right now SonarQube is using a MySQL version of 5.7 (this is a hardcoded requirement for MySQL), but for other Charts, we could use later versions (MariaDB)</li>
+<li>Use a HA/Cluster version of MariaDB/MySQL</li>
 </ul>
               
             </div>
@@ -421,10 +346,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../keycloak/" class="btn btn-neutral float-right" title="Keycloak">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../nexus/" class="btn btn-neutral float-right" title="TheNexus">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../gogs/" class="btn btn-neutral" title="Gogs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../kube-lego/" class="btn btn-neutral" title="Kube-Lego"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -454,10 +379,10 @@
           <a href="https://github.com/devopskube/devopskube/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../gogs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../kube-lego/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../keycloak/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../nexus/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
