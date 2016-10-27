@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ default "default-http-backend" .Values.defaultBackendName }}
+  name: {{ default "default-http-backend" .Values.defaultBackend.name }}
   labels:
-    app: {{ default "default-http-backend" .Values.defaultBackendName }}
+    app: {{ default "default-http-backend" .Values.defaultBackend.name }}
     heritage: {{.Release.Service | quote }}
     release: {{.Release.Name | quote }}
     chart: "{{.Chart.Name}}-{{.Chart.Version}}"
@@ -12,8 +12,8 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 80
-    targetPort: http
+    port: {{ default "8080" .Values.defaultBackend.containerPort }}
+    targetPort: 80
     protocol: TCP
   selector:
-    app: {{ default "default-http-backend" .Values.defaultBackendName }}
+    app: {{ default "default-http-backend" .Values.defaultBackend.name }}

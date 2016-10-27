@@ -65,6 +65,6 @@ spec:
           hostPort: 18080
         args:
         - /nginx-ingress-controller
-        - --default-backend-service=$(POD_NAMESPACE)/{{ default "default-http-backend" .Values.defaultBackendName }}
+        - --default-backend-service=$(POD_NAMESPACE)/{{ default "default-http-backend" .Values.defaultBackend.name }}
 # this is a kind of circular dependency to the gogs chart. not really nice.
         - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-configmap-ssh

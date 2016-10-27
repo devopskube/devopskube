@@ -45,5 +45,5 @@ $ helm install --name my-nginx-ingress -f values.private.yaml nginx-ingress-x.x.
 
 # Todo
 
-* the Default-Backend seems to be slightly unstable right now, this needs to get fixed asap
 * the naming of the default-backend should be adopted, since right now the name is default backend without any release-name
+* There is a dependency on the config-map of gogs (ssh), this should get adopted as well (to fix this right now, you do need to install gogs before installing nginx-ingress)

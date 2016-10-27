@@ -9,11 +9,11 @@ metadata:
 spec:
   replicas: 1
   selector:
-    app: {{ default "default-http-backend" .Values.defaultBackendName }}
+    app: {{ default "default-http-backend" .Values.defaultBackend.name }}
   template:
     metadata:
       labels:
-        app: {{ default "default-http-backend" .Values.defaultBackendName }}
+        app: {{ default "default-http-backend" .Values.defaultBackend.name }}
         heritage: {{.Release.Service | quote }}
         release: {{.Release.Name | quote }}
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
@@ -21,7 +21,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-      - name: {{ default "default-http-backend" .Values.defaultBackendName }}
+      - name: {{ default "default-http-backend" .Values.defaultBackend.name }}
         # Any image is permissable as long as:
         # 1. It serves a 404 page at /
         # 2. It serves 200 on a /healthz endpoint
@@ -29,13 +29,12 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            port: http
+            port: {{ default "8080" .Values.defaultBackend.containerPort }}
             scheme: HTTP
           initialDelaySeconds: 30
           timeoutSeconds: 5
         ports:
-        - name: http
-          containerPort: {{ default "8080" .Values.defaultBackend.containerPort }}
+        - containerPort: {{ default "8080" .Values.defaultBackend.containerPort }}
         resources:
           limits:
             cpu: 10m
