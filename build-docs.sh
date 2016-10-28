@@ -27,12 +27,14 @@ do
         ;;
       -d|--deploy)
         COPY=true
+        BUILD=true
         DEPLOY=true
         shift
         ;;
       -s|--serve)
         echo "Serving Documentation"
         COPY=true
+        BUILD=true
         SERVE=true
         shift
         ;;
