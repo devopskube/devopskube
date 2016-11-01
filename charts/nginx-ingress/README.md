@@ -6,7 +6,7 @@ This is a helm-chart for the "official" Kubernetes [Nginx-Ingress](https://githu
 
 This chart is part of the DevOpsKube package.
 
-Right now we do use version 0.8.3.
+Right now we do use version 0.8.3 of the nginx-ingress-controller.
 
 ## Chart Details
 
@@ -45,13 +45,13 @@ $ helm install --name my-nginx-ingress -f values.private.yaml nginx-ingress-x.x.
 
 ## Check nginx
 
-``
+```bash
 curl <IP>/healthz
 curl <IP>:18080/nginx_status
-``
+```
 
 # Todo
 
 * the naming of the default-backend should be adopted, since right now the name is default backend without any release-name
 * There is a dependency on the config-map of gogs (ssh), this should get adopted as well (to fix this right now, you do need to install gogs before installing nginx-ingress)
-* because of https://github.com/kubernetes/kubernetes/issues/23920 we need to use hostNetwork: true in the ingress-controller, against all examples (thanks to [bacongobbler](http://blog.bacongobbler.com/)) for pointing this out to me
+* because of https://github.com/kubernetes/kubernetes/issues/23920 we need to use `hostNetwork: true` in the ingress-controller, against all examples (thanks to [bacongobbler](http://blog.bacongobbler.com/) for pointing this out to me)
