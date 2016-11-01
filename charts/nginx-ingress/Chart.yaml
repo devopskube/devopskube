@@ -1,5 +1,5 @@
 name: nginx-ingress
-version: 0.0.1
+version: 0.0.2
 description: Ingress-Controller using nginx for devopskube.
 keywords:
   - Ingress

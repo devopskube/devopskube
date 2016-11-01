@@ -12,8 +12,8 @@ metadata:
 spec:
   ports:
   - name: http
-    port: {{ default "8080" .Values.defaultBackend.containerPort }}
-    targetPort: 80
+    port: 80
+    targetPort: {{ default "8080" .Values.defaultBackend.containerPort }}
     protocol: TCP
   selector:
     app: {{ default "default-http-backend" .Values.defaultBackend.name }}

@@ -22,6 +22,7 @@ spec:
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
         provider: "devopskube"
     spec:
+      hostNetwork: true
       terminationGracePeriodSeconds: 60
       containers:
       - image: gcr.io/google_containers/nginx-ingress-controller:{{ .Values.imageTag }}
@@ -50,21 +51,27 @@ spec:
               fieldRef:
                 fieldPath: metadata.namespace
         ports:
-        - containerPort: 80
+        - name: http
+          containerPort: 80
           hostPort: 80
         # for this to work, the "usual" ssl port of the kube-apiserver needs to reset to
         # another port (444)
-        - containerPort: 443
+        - name: https
+          containerPort: 443
           hostPort: 443
         # port 2222 has to be exposed, since we do use it for gogs ssh
-        - containerPort: 2222
+        - name: ssh
+          containerPort: 2222
           hostPort: 2222
         # we expose 18080 to access nginx stats in url /nginx-status
         # this is optional
-        - containerPort: 18080
+        - name: status
+          containerPort: 18080
           hostPort: 18080
         args:
         - /nginx-ingress-controller
+#        - --watch-namespace=$(POD_NAMESPACE)
         - --default-backend-service=$(POD_NAMESPACE)/{{ default "default-http-backend" .Values.defaultBackend.name }}
+        - --nginx-configmap=$(POD_NAMESPACE)/nginx-ingress-conf
 # this is a kind of circular dependency to the gogs chart. not really nice.
-        - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-configmap-ssh
+#        - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-configmap-ssh
