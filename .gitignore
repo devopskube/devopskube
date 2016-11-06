@@ -6,3 +6,4 @@ site
 *.private.md
 *.tgz
 requirements.lock
+_partials.tpl

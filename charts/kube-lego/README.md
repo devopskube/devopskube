@@ -50,4 +50,12 @@ $ helm install --name my-kube-lego -f values.private.yaml kube-lego-x.x.x.tgz
 
 This chart stores the configuration inside its own configmap, no further persistence-store is necessary.
 
+## Check availability
+
+To check the availabilty of the kube-lego key, you can check the following url:
+
+```
+curl http://<HOSTNAME>/.well-known/acme-challenge/_selftest
+```
+
 # Todo

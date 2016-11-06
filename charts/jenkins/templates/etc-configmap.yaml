@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}
+data:
+  config.xml: |
+{{ include "etc/config.xml"  .| printf "%s" | quote | indent 4 }}
+  hudson.tasks.Mailer.xml: |
+{{ include "etc/hudson.tasks.Mailer.xml"  .| printf "%s" | quote | indent 4 }}
+  jenkins.model.JenkinsLocationConfiguration.xml: |
+{{ include "etc/jenkins.model.JenkinsLocationConfiguration.xml"  .| printf "%s" | quote | indent 4 }}

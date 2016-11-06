@@ -25,6 +25,24 @@ spec:
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
         component: "{{.Release.Name}}-{{.Values.master.component}}"
         provider: "devopskube"
+      annotations:
+        pod.beta.kubernetes.io/init-containers: '[
+              {
+                  "name": "copy-default-config",
+                  "image": "{{ .Values.master.image }}:{{ .Values.master.imageTag }}",
+                  "command": ["cp", "-n", "/var/jenkins_config/*.xml", "/var/jenkins_home"],
+                  "volumeMounts": [
+                      {
+                          "name": "jenkins-config",
+                          "mountPath": "/var/jenkins_config"
+                      },
+                      {
+                          "name": "jenkins-home",
+                          "mountPath": "/var/jenkins_home"
+                      }
+                  ]
+              }
+          ]'
     spec:
       securityContext:
         privileged: true
@@ -63,9 +81,9 @@ spec:
               name: jenkins-config
               readOnly: true
       volumes:
-      - name: jenkins-config
-        configMap:
-          name: {{ template "fullname" . }}
       - name: jenkins-home
         hostPath:
           path: {{ .Values.persistence.path }}
+      - name: jenkins-config
+        configMap:
+          name: {{ template "fullname" . }}

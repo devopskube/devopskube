@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jenkins.model.JenkinsLocationConfiguration>
+  <adminAddress>buildmaster@devopsku.be</adminAddress>
+  <jenkinsUrl>https://{{ .Values.master.hostName }}/</jenkinsUrl>
+</jenkins.model.JenkinsLocationConfiguration>

@@ -6,7 +6,7 @@
 master:
   name: jenkins-master
   image: "gcr.io/kubernetes-charts-ci/jenkins-master-k8s"
-  imageTag: "v0.1.0"
+  imageTag: "v0.2.0"
   imagePullPolicy: "Always"
   component: "jenkins-master"
   adminUser: admin
@@ -18,6 +18,7 @@ master:
   hostName: jenkins.example.com
   containerPort: 8080
   slaveListenerPort: 50000
+  systemMessage: "DevOpsKube Build Server"
 
 agent:
   image: jenkinsci/jnlp-slave
