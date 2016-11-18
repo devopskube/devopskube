@@ -71,6 +71,21 @@ spec:
                           "mountPath": "/var/jenkins_home"
                       }
                   ]
+              },
+              {
+                  "name": "copy-default-credentials",
+                  "image": "{{ .Values.master.image }}:{{ .Values.master.imageTag }}",
+                  "command": ["cp", "-n", "/var/jenkins_config/credentials.xml", "/var/jenkins_home"],
+                  "volumeMounts": [
+                      {
+                          "name": "jenkins-config",
+                          "mountPath": "/var/jenkins_config"
+                      },
+                      {
+                          "name": "jenkins-home",
+                          "mountPath": "/var/jenkins_home"
+                      }
+                  ]
               }
           ]'
     spec:

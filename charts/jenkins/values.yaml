@@ -21,8 +21,8 @@ master:
   systemMessage: "DevOpsKube Build Server"
 
 docker:
-  account: ""
-  password: ""
+  account: yourUserName
+  password: yourPassword
 
 agent:
   image: jenkinsci/jnlp-slave

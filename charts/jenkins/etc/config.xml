@@ -16,17 +16,16 @@
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds>
-    <org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud plugin="kubernetes@0.8">
+    <org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud plugin="kubernetes@0.10-SNAPSHOT">
       <name>kubernetes</name>
-      <templates></templates>
+      <templates/>
       <serverUrl>https://kubernetes.default.svc.cluster.local/</serverUrl>
-      <serverCertificate></serverCertificate>
       <skipTlsVerify>true</skipTlsVerify>
       <namespace>default</namespace>
       <jenkinsUrl>http://{{ .Release.Name }}-{{ .Chart.Name }}.default.svc.cluster.local</jenkinsUrl>
       <containerCap>10</containerCap>
       <retentionTimeout>5</retentionTimeout>
-      <serviceAccount>jenkins</serviceAccount>
+      <credentialsId>jenkins</credentialsId>
     </org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud>
   </clouds>
   <quietPeriod>5</quietPeriod>
