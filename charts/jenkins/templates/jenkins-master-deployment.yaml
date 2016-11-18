@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
   labels:
-    heritage: {{.Release.Service | quote }}
-    release: {{.Release.Name | quote }}
-    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
-    component: "{{.Release.Name}}-{{.Values.master.name}}"
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: "{{ .Release.Name }}-{{ .Values.master.name }}"
     provider: "devopskube"
   annotations:
     "helm.sh/created": {{.Release.Time.Seconds | quote }}
@@ -30,7 +30,37 @@ spec:
               {
                   "name": "copy-default-config",
                   "image": "{{ .Values.master.image }}:{{ .Values.master.imageTag }}",
-                  "command": ["cp", "-n", "/var/jenkins_config/*.xml", "/var/jenkins_home"],
+                  "command": ["cp", "-n", "/var/jenkins_config/config.xml", "/var/jenkins_home"],
+                  "volumeMounts": [
+                      {
+                          "name": "jenkins-config",
+                          "mountPath": "/var/jenkins_config"
+                      },
+                      {
+                          "name": "jenkins-home",
+                          "mountPath": "/var/jenkins_home"
+                      }
+                  ]
+              },
+              {
+                  "name": "copy-default-mailer",
+                  "image": "{{ .Values.master.image }}:{{ .Values.master.imageTag }}",
+                  "command": ["cp", "-n", "/var/jenkins_config/hudson.tasks.Mailer.xml", "/var/jenkins_home"],
+                  "volumeMounts": [
+                      {
+                          "name": "jenkins-config",
+                          "mountPath": "/var/jenkins_config"
+                      },
+                      {
+                          "name": "jenkins-home",
+                          "mountPath": "/var/jenkins_home"
+                      }
+                  ]
+              },
+              {
+                  "name": "copy-default-location",
+                  "image": "{{ .Values.master.image }}:{{ .Values.master.imageTag }}",
+                  "command": ["cp", "-n", "/var/jenkins_config/jenkins.model.JenkinsLocationConfiguration.xml", "/var/jenkins_home"],
                   "volumeMounts": [
                       {
                           "name": "jenkins-config",
@@ -64,6 +94,16 @@ spec:
                 secretKeyRef:
                   name: {{ template "fullname" . }}
                   key: jenkins-admin-user
+            - name: DOCKER_USER
+              valueFrom:
+                secretKeyRef:
+                  name: jenkins-docker-credentials
+                  key: docker-account
+            - name: DOCKER_PWD
+              valueFrom:
+                secretKeyRef:
+                  name: jenkins-docker-credentials
+                  key: docker-password
           ports:
             - containerPort: {{.Values.master.containerPort}}
               name: http

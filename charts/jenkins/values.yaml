@@ -5,8 +5,8 @@
 
 master:
   name: jenkins-master
-  image: "gcr.io/kubernetes-charts-ci/jenkins-master-k8s"
-  imageTag: "v0.2.0"
+  image: "devopskube/jenkins"
+  imageTag: "latest"
   imagePullPolicy: "Always"
   component: "jenkins-master"
   adminUser: admin
@@ -20,11 +20,22 @@ master:
   slaveListenerPort: 50000
   systemMessage: "DevOpsKube Build Server"
 
+docker:
+  account: ""
+  password: ""
+
 agent:
   image: jenkinsci/jnlp-slave
   imageTag: 2.52
   cpu: "200m"
   memory: "256Mi"
+
+smtp:
+  host: mail.example.com
+  port: 999
+  auth:
+    userName: buildmaster@example.com
+  replyTo: buildmaster@example.com
 
 persistence:
 #  enabled: true

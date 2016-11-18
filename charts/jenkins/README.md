@@ -51,8 +51,8 @@ The following tables lists the configurable parameters of the Jenkins chart and 
 |`master.adminPassword`| The initial admin user password | `admin1234` |
 |`master.javaOpts`| Some java options | `-Xms512m -Xmx512m` |
 |`master.hostName`| The hostName of the jenkins instance | `jenkins.example.com` |
+|`master.systemMessaage`| The Systemmessage | `DevOpsKube Build Server` |
 |`persistence.path`| The path where data is stored | `/data/jenkins` |
-
 
 ### Jenkins Agent
 
@@ -62,6 +62,17 @@ The following tables lists the configurable parameters of the Jenkins chart and 
 |`agent.imageTag`| Agent image tag | `2.52` |
 |`agent.cpu`| Agent requested cpu | `200m` |
 |`agent.memory`| Agent requested memory | `256Mi` |
+
+### Other Settings
+
+|       Parameter       |           Description            |                         Default                          |
+|-----------------------|----------------------------------|----------------------------------------------------------|
+|`smtp.host`| Smtp Host | `mail.example.com` |
+|`smtp.port`| Smtp Host Port | `999` |
+|`smtp.replyTo`| The replyTo Address | `buildmaster@example.com` |
+|`smtp.auth.userName`| The username to authenticate on the smtp server | `buildmaster@example.com` |
+|`docker.account`| Docker Registry Login | `yourUserName` |
+|`docker.password`| Docker Registry Password | `yourPassword` |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
@@ -88,3 +99,5 @@ Right now, we do use HostPathes, which do not work in a real cluster environment
 * Enable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents
 * Add SSO
 * Use persistence volume claims
+* pre-start script
+* install needs volume on host (with correct rights `sudo chown 1000:1000 jenkins`)

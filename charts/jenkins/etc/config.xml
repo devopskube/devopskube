@@ -17,59 +17,16 @@
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds>
     <org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud plugin="kubernetes@0.8">
-      <name>devopskube</name>
-      <templates>
-        <org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
-          <name>Teplate1Name</name>
-          <image>Uh-valid-image</image>
-          <privileged>false</privileged>
-          <alwaysPullImage>false</alwaysPullImage>
-          <command>startCommand</command>
-          <args>arg1 arg2</args>
-          <remoteFs>/home/jenkins</remoteFs>
-          <instanceCap>1</instanceCap>
-          <label>label1</label>
-          <nodeSelector></nodeSelector>
-          <resourceRequestCpu></resourceRequestCpu>
-          <resourceRequestMemory></resourceRequestMemory>
-          <resourceLimitCpu></resourceLimitCpu>
-          <resourceLimitMemory></resourceLimitMemory>
-          <volumes>
-            <org.csanchez.jenkins.plugins.kubernetes.PodVolumes_-EmptyDirVolume>
-              <mountPath>/mountpath7emtpydir</mountPath>
-              <memory>false</memory>
-            </org.csanchez.jenkins.plugins.kubernetes.PodVolumes_-EmptyDirVolume>
-            <org.csanchez.jenkins.plugins.kubernetes.PodVolumes_-HostPathVolume>
-              <mountPath>/mountpath/host</mountPath>
-              <hostPath>/hostpath</hostPath>
-            </org.csanchez.jenkins.plugins.kubernetes.PodVolumes_-HostPathVolume>
-          </volumes>
-          <envVars>
-            <org.csanchez.jenkins.plugins.kubernetes.PodEnvVar>
-              <key>env1</key>
-              <value>env1value</value>
-            </org.csanchez.jenkins.plugins.kubernetes.PodEnvVar>
-            <org.csanchez.jenkins.plugins.kubernetes.PodEnvVar>
-              <key>env2</key>
-              <value>env2value</value>
-            </org.csanchez.jenkins.plugins.kubernetes.PodEnvVar>
-          </envVars>
-          <annotations>
-            <org.csanchez.jenkins.plugins.kubernetes.PodAnnotation>
-              <key>annotation1</key>
-              <value>annotationvalue</value>
-            </org.csanchez.jenkins.plugins.kubernetes.PodAnnotation>
-          </annotations>
-          <imagePullSecrets/>
-        </org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
-      </templates>
-      <serverUrl>http://localhost:8080/api-server</serverUrl>
-      <serverCertificate>aValidKubernetesCertificate</serverCertificate>
+      <name>kubernetes</name>
+      <templates></templates>
+      <serverUrl>https://kubernetes.default.svc.cluster.local/</serverUrl>
+      <serverCertificate></serverCertificate>
       <skipTlsVerify>true</skipTlsVerify>
       <namespace>default</namespace>
-      <jenkinsUrl>http://jenkins.svc.default.cluster.local</jenkinsUrl>
+      <jenkinsUrl>http://{{ .Release.Name }}-{{ .Chart.Name }}.default.svc.cluster.local</jenkinsUrl>
       <containerCap>10</containerCap>
       <retentionTimeout>5</retentionTimeout>
+      <serviceAccount>jenkins</serviceAccount>
     </org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud>
   </clouds>
   <quietPeriod>5</quietPeriod>
