@@ -15,7 +15,7 @@ This chart will do the following:
 * 1 x Jenkins Master with port 80 exposed on an external LoadBalancer
 * All using Kubernetes Deployments
 
-Right now, we are using Jenkins 2.7.4.
+Right now, we are using Jenkins 2.19.3.
 
 ## Get this chart
 
