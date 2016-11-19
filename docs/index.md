@@ -8,7 +8,7 @@ It was/is the dream of the team to be able to install such a stack easily on own
 
 Up until now there is no full DevOps Stack for vanilla Kubernetes. The following "solutions" can be found when googling:
 
-* [fabric8](http://fabric8.io/) - highly based on RedHats [OpenShift](https://www.openshift.com/), probably the closest to our requirements
+* [fabric8](http://fabric8.io/) - probably the closest to our requirements, and we already talk about some interaction between the two projects
 * [Harbur](https://github.com/harbur/docker-sdlc) - mainly focused on docker and has no real kubernetes support
 * [Software Factory](http://softwarefactory-project.io/) - from RedHat as well, based on OpenStack
 * [Marcel Birkner](https://blog.codecentric.de/en/2015/10/continuous-integration-platform-using-docker-container-jenkins-sonarqube-nexus-gitlab/) - a blog-post from codecentric (merely an blog-post with some docker containers)
