@@ -266,7 +266,7 @@
 <li>1 x Jenkins Master with port 80 exposed on an external LoadBalancer</li>
 <li>All using Kubernetes Deployments</li>
 </ul>
-<p>Right now, we are using Jenkins 2.7.4.</p>
+<p>Right now, we are using Jenkins 2.19.3.</p>
 <h2 id="get-this-chart">Get this chart</h2>
 <p>Our central repository is located at: <code>https://devopsku.be/charts</code>, please configure this in your helm installation (via <code>helm repo add</code>). Then you can download and install this chart using the usual helm procedure (see <a href="https://github.com/kubernetes/helm/blob/master/docs/using_helm.md">Using Helm</a>).</p>
 <p>If you would like to contribute and/or like to make changes on this chart, please clone this repo via:</p>
@@ -356,6 +356,11 @@
 <td><code>jenkins.example.com</code></td>
 </tr>
 <tr>
+<td><code>master.systemMessaage</code></td>
+<td>The Systemmessage</td>
+<td><code>DevOpsKube Build Server</code></td>
+</tr>
+<tr>
 <td><code>persistence.path</code></td>
 <td>The path where data is stored</td>
 <td><code>/data/jenkins</code></td>
@@ -394,6 +399,48 @@
 </tr>
 </tbody>
 </table>
+<h3 id="other-settings">Other Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smtp.host</code></td>
+<td>Smtp Host</td>
+<td><code>mail.example.com</code></td>
+</tr>
+<tr>
+<td><code>smtp.port</code></td>
+<td>Smtp Host Port</td>
+<td><code>999</code></td>
+</tr>
+<tr>
+<td><code>smtp.replyTo</code></td>
+<td>The replyTo Address</td>
+<td><code>buildmaster@example.com</code></td>
+</tr>
+<tr>
+<td><code>smtp.auth.userName</code></td>
+<td>The username to authenticate on the smtp server</td>
+<td><code>buildmaster@example.com</code></td>
+</tr>
+<tr>
+<td><code>docker.account</code></td>
+<td>Docker Registry Login</td>
+<td><code>yourUserName</code></td>
+</tr>
+<tr>
+<td><code>docker.password</code></td>
+<td>Docker Registry Password</td>
+<td><code>yourPassword</code></td>
+</tr>
+</tbody>
+</table>
 <p>Specify each parameter using the <code>--set key=value[,key=value]</code> argument to <code>helm install</code>.</p>
 <p>Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,</p>
 <pre><code class="bash">$ helm install --name my-jenkins -f values.yaml jenkins-x.x.x.tgz
@@ -413,6 +460,8 @@
 <li>Enable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents</li>
 <li>Add SSO</li>
 <li>Use persistence volume claims</li>
+<li>pre-start script</li>
+<li>install needs volume on host (with correct rights <code>sudo chown 1000:1000 jenkins</code>)</li>
 </ul>
               
             </div>

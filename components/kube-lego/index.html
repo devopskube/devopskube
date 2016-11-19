@@ -137,6 +137,8 @@
                 
                     <li><a class="toctree-l4" href="#persistence">Persistence</a></li>
                 
+                    <li><a class="toctree-l4" href="#check-availability">Check availability</a></li>
+                
             
                 <li class="toctree-l3"><a href="#todo">Todo</a></li>
                 
@@ -314,6 +316,11 @@
 </blockquote>
 <h2 id="persistence">Persistence</h2>
 <p>This chart stores the configuration inside its own configmap, no further persistence-store is necessary.</p>
+<h2 id="check-availability">Check availability</h2>
+<p>To check the availabilty of the kube-lego key, you can check the following url:</p>
+<pre><code>curl http://&lt;HOSTNAME&gt;/.well-known/acme-challenge/_selftest
+</code></pre>
+
 <h1 id="todo">Todo</h1>
               
             </div>
