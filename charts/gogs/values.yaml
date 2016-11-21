@@ -6,6 +6,8 @@ sshContainerPort: 2222
 
 startSshServer: true
 
+skipTlsVerify: true
+
 persistence:
   dataPath: /data/gogs/data
 

@@ -32,6 +32,7 @@ The following tables lists the configurable parameters of the Gogs chart and the
 | `hostName`|Host Name of this Gogs Instance|`gogs.example.com`|
 | `httpContainerPort`|HTTP Port of gogs in the container|`3000`|
 | `sshContainerPort`|SSH Port of gogs in the container|`2222`|
+| `skipTlsVerify`|Should TLS certificate verification be skipped for webhooks|`true`|
 | `startSshServer`|Should the SSH-Server of gogs be startet|`true`|
 | `persistence.dataPath`|Path on the host, where gogs stores data|`/data/gogs/data`|
 | `databaseType`|The databaseType `mysql`. `postgres` or `sqlite3`|`mysql`|
@@ -64,7 +65,22 @@ To be able to keep stateful data in the gogs kubernetes container, the following
 
 Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.
 
+## Initial Login
+
+The first user, registered into gogs is going to be the Admin User.
+
+## Connect to the gogs instance
+
+The gogs Instance can be reached via the configure URL and the corresponding port (port: 443 for SSL, port: 2222 (sshContainerPort) for ssh). Therefor using the above mentioned default configuration, the gogs instance is then reachable via:
+
+```
+http://gogs.example.com/
+ssh://git@gogs.example.com:2222/
+```
+
+
 # Todo
 
 * Adopt persistence to be able to run this in the cloud as well as on single node "clusters"
 * Update to a later version of MariaDb
+* Version 0.9.97 has a bug ([#3801](https://github.com/gogits/gogs/issues/3801))

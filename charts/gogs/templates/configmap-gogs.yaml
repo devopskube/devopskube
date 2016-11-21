@@ -26,6 +26,8 @@ data:
     [service]
     ENABLE_REVERSE_PROXY_AUTO_REGISTRATION=true
     ENABLE_REVERSE_PROXY_AUTHENTICATION=true
+    [webhook]
+    SKIP_TLS_VERIFY={{ .Values.skipTlsVerify }}
     [repository]
     ROOT=/data/gogs/git
     [attachment]
