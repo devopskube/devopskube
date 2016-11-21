@@ -96,8 +96,10 @@ Right now, we do use HostPathes, which do not work in a real cluster environment
 
 # Todo
 
-* Enable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents
+* <del>Enable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents</del>
+* <del>pre-start script</del>
 * Add SSO
 * Use persistence volume claims
-* pre-start script
 * install needs volume on host (with correct rights `sudo chown 1000:1000 jenkins`)
+* Document clearer that right now the usage of the jenkins-jnlp-slave docker image is moved to the Jenkinsfile (or even better: use it in the central config, and delete it from the Jenkinsfiles)
+* Provide additional slaves, like needed (building charts, building nodejs stuff)
