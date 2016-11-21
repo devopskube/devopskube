@@ -1,7 +1,15 @@
 #!/bin/sh
 if [[ -f $1/Makefile ]]; then
+  echo "Running pre-requisites using make"
   pushd $1
   make
+  popd
+fi
+
+if [[ -f $1/requirements.yaml ]]; then
+  echo "Installing dependencies"
+  pushd $1
+  helm dependency update
   popd
 fi
 
