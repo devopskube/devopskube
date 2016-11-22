@@ -2,7 +2,7 @@
 if [[ -f $1/Makefile ]]; then
   echo "Running pre-requisites using make"
   pushd $1
-  make
+  make build
   popd
 fi
 

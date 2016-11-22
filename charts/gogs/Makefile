@@ -8,6 +8,11 @@ package:
 	@echo "Packaging Chart $(CURRENT_DIR)"
 	helm package $(CURRENT_DIR)
 
+.PHONY: dependencies
+dependencies:
+	@echo "Installing dependencies"
+	helm dependency update
+
 .PHONY: bump
 bump:
 	@echo "Bumping Version"
