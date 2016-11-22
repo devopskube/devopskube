@@ -1,11 +1,3 @@
-# Fedora Atomic
-
-Download QCOW2 Image from https://getfedora.org/de/cloud/download/atomic.html.
-
-Upload this Image to the netcup servers.
-
-
-
 # Kubernetes (k8s)
 
 Because we do have some specific necessities (eg. SSL on all Applications, and we do have only one host), we do need to implement some specific settings in the kubernetes install. These settings are documented in here.
