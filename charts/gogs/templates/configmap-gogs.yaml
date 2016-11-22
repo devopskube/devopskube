@@ -19,7 +19,7 @@ data:
     START_SSH_SERVER={{ .Values.startSshServer }}
     APP_DATA_PATH=/data/gogs/data
     DOMAIN={{ .Values.hostName }}
-    ROOT_URL=http://{{ .Values.hostName }}
+    ROOT_URL=https://{{ .Values.hostName }}
     HTTP_PORT=3000
     SSH_ROOT_PATH=/data/ssh
     SSH_PORT=2222
@@ -28,6 +28,14 @@ data:
     ENABLE_REVERSE_PROXY_AUTHENTICATION=true
     [webhook]
     SKIP_TLS_VERIFY={{ .Values.skipTlsVerify }}
+    [mailer]
+    ENABLED={{ .Values.mailer.enabled }}
+    HELO_HOSTNAME={{ .Values.mailer.heloHostname }}
+    HOST={{ .Values.mailer.host }}
+    FROM={{ .Values.mailer.from }}
+    USER={{ .Values.mailer.user }}
+    PASSWD={{ .Values.mailer.passwd }}
+    SKIP_VERIFY={{ .Values.mailer.skipVerify }}
     [repository]
     ROOT=/data/gogs/git
     [attachment]

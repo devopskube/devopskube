@@ -8,6 +8,15 @@ startSshServer: true
 
 skipTlsVerify: true
 
+mailer:
+  enabled: true
+  heloHostname: gogs.example.com
+  host: smtp.example.com:587
+  from: gogs@example.com
+  user: gogs@example.com
+  passwd: averysecretpassword
+  skipVerify: false
+
 persistence:
   dataPath: /data/gogs/data
 

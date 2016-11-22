@@ -34,6 +34,13 @@ The following tables lists the configurable parameters of the Gogs chart and the
 | `sshContainerPort`|SSH Port of gogs in the container|`2222`|
 | `skipTlsVerify`|Should TLS certificate verification be skipped for webhooks|`true`|
 | `startSshServer`|Should the SSH-Server of gogs be startet|`true`|
+| `mailer.enabled`|Should the Mailer-Service be enabled|`false`|
+| `mailer.heloHostname`|HostName for Helo|`gogs.example.com`|
+| `mailer.host`|SMTP Server including Port|`smtp.example:587`|
+| `mailer.from`|From Address|`gogs@example.com`|
+| `mailer.user`|User for SMTP (usually an email-address)|`gogs@example.com`|
+| `mailer.passwd`|SMTP Password|`averysecretpassword`|
+| `mailer.skipVerify`|Skip certificate verification|`false`|
 | `persistence.dataPath`|Path on the host, where gogs stores data|`/data/gogs/data`|
 | `databaseType`|The databaseType `mysql`. `postgres` or `sqlite3`|`mysql`|
 | `mysql.databaseName`|The name of the database|`gogs`|
