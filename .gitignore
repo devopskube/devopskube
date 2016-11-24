@@ -2,8 +2,7 @@ repository
 docs/components/*.md
 site
 *.private
-*.private.yaml
-*.private.md
+*.private.*
 *.tgz
 requirements.lock
 _partials.tpl
