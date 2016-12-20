@@ -54,6 +54,7 @@ The following tables lists the configurable parameters of the Redmine chart and 
 |`persistence.accessMode`|Access Mode of the persistence volume|`ReadWriteOnce`|
 |`persistence.size`|Size of the volume|`8Gi`|
 |`persistence.path`|Path where all data on the host is stored|`/data/redmine/files`|
+|`persistence.log.path`|Path where all logs on the host are stored|`/data/redmine/logs`|
 |`databaseAdapter`|The databaseAdapter to use `mysql`. `mysql2` or `postgresql`|`mysql`|
 |`mysql.databasePort`|The port of the database|`3306`|
 |`mysql.databaseName`|The name of the database|`redmine`|
@@ -84,6 +85,11 @@ To be able to keep stateful data in the redmine kubernetes container, the follow
 ```
 
 Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.
+
+## Initial login
+
+Username: admin
+Password: admin
 
 # Todo
 

@@ -2,6 +2,7 @@
 
 **0.0.4 (WIP)**
 - Add Changelog
+- Rework tag name for versionbump
 
 **0.0.3**
 - Add Makefile, versionbump possibility

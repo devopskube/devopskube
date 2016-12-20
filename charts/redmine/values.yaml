@@ -1,4 +1,5 @@
-imageTag: 3.3.0-4
+imageTag: latest
+#imageTag: 3.3.1
 
 imagePullPolicy: Always
 
@@ -36,6 +37,10 @@ persistence:
   accessMode: ReadWriteOnce
   size: 8Gi
   path: /data/redmine/files
+  log:
+    path: /data/redmine/logs
+
+
 
 databaseAdapter: mysql2
 mysql:

@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: {{ template "fullname" . }}
-        image: "sameersbn/redmine:{{ .Values.imageTag }}"
+        image: "devopskube/redmine:{{ .Values.imageTag }}"
         imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
         env:
         - name: REDMINE_PORT
@@ -97,7 +97,12 @@ spec:
         volumeMounts:
         - name: redmine-data
           mountPath: /home/redmine/data
+        - name: redmine-log
+          mountPath: /var/log/redmine
       volumes:
       - name: redmine-data
         hostPath:
           path: {{ .Values.persistence.path }}
+      - name: redmine-log
+        hostPath:
+          path: {{ .Values.persistence.log.path }}
