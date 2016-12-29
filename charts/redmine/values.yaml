@@ -1,5 +1,4 @@
-imageTag: latest
-#imageTag: 3.3.1
+imageTag: 3.3.1-2
 
 imagePullPolicy: Always
 
@@ -40,8 +39,6 @@ persistence:
   log:
     path: /data/redmine/logs
 
-
-
 databaseAdapter: mysql2
 mysql:
   databasePort: 3306
@@ -50,3 +47,13 @@ mysql:
   databasePassword: redmine
   persistence:
     path: /data/redmine/mysql
+
+scm:
+  autoCreate: force
+  forceRepo: true
+  denyDelete: true
+
+initial:
+  mailSender: redmine@example.net
+
+fetchCommits: disable

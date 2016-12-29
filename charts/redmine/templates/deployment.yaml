@@ -79,6 +79,20 @@ spec:
             secretKeyRef:
               name: "{{ .Release.Name }}-mysql"
               key: database-password
+
+        - name: SCM_AUTO_CREATE
+          value: {{ .Values.scm.autoCreate }}
+        - name: SCM_FORCE_REPO
+          value: {{ .Values.scm.forceRepo }}
+        - name: SCM_DENY_DELETE
+          value: {{ .Values.scm.denyDelete }}
+
+        - name: MAIL_SENDER
+          value: {{ .Values.initial.mailSender | quote }}
+
+        - name: REDMINE_FETCH_COMMITS
+          value: {{ .Values.fetchCommits | quote }}
+
         ports:
         - name: http
           containerPort: {{ .Values.redminePort }}

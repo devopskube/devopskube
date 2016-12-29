@@ -4,7 +4,7 @@
 
 This chart was based on the [bitnami](https://github.com/bitnami/charts/tree/master/redmine) redmine chart, but adopted to our needs.
 
-Right now we do use version 3.3.0.
+Right now we do use version 3.3.1.
 
 ## Chart Details
 
@@ -61,6 +61,11 @@ The following tables lists the configurable parameters of the Redmine chart and 
 |`mysql.databaseUser`|The database user|`redmine`|
 |`mysql.databasePassword`|The password of the database|`redmine`|
 |`mysql.persistence.path`|the path where the mysql stores the data on the  node|`/data/redmine/mysql`|
+|`scm.autoCreate`|Are repos created automatically during project creation?|`force`|
+|`scm.forceRepo`|Is Repo Module enabled on project creation?|`true`|
+|`scm.denyDelete`|Deletion of Repositories not allowed anymore|`true`|
+|`initial.mailSender`|Initial Configuration of the mail sender|`redmine@example.net`|
+|`fetchCommits`|Should changesets get fetched via cron? One of: hourly, daily or monthly|`disable`|
 
 > **NOTE**: The persistence settings are right now rather useless (except the path), since we are not using any persistence claim, we are still using hostpath
 
