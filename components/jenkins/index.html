@@ -90,6 +90,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/redmine_keycloak/">Setup Redmine SSO</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -457,11 +464,13 @@
 <p>Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.</p>
 <h1 id="todo">Todo</h1>
 <ul>
-<li>Enable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents</li>
+<li><del>Enable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents</del></li>
+<li><del>pre-start script</del></li>
 <li>Add SSO</li>
 <li>Use persistence volume claims</li>
-<li>pre-start script</li>
 <li>install needs volume on host (with correct rights <code>sudo chown 1000:1000 jenkins</code>)</li>
+<li>Document clearer that right now the usage of the jenkins-jnlp-slave docker image is moved to the Jenkinsfile (or even better: use it in the central config, and delete it from the Jenkinsfiles)</li>
+<li>Provide additional slaves, like needed (building charts, building nodejs stuff)</li>
 </ul>
               
             </div>

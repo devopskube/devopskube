@@ -90,6 +90,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/redmine_keycloak/">Setup Redmine SSO</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -157,6 +164,8 @@
                     <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
                 
                     <li><a class="toctree-l4" href="#persistence">Persistence</a></li>
+                
+                    <li><a class="toctree-l4" href="#initial-login">Initial login</a></li>
                 
             
                 <li class="toctree-l3"><a href="#todo">Todo</a></li>
@@ -256,7 +265,7 @@
                 <h1 id="redmine">Redmine</h1>
 <p><a href="http://www.redmine.org">Redmine</a> is a flexible project management and issue tracking web application.</p>
 <p>This chart was based on the <a href="https://github.com/bitnami/charts/tree/master/redmine">bitnami</a> redmine chart, but adopted to our needs.</p>
-<p>Right now we do use version 3.3.0.</p>
+<p>Right now we do use version 3.3.1.</p>
 <h2 id="chart-details">Chart Details</h2>
 <p>This chart uses the docker image from <a href="https://github.com/sameersbn/docker-redmine">sameersbn</a>. Furthermore it has a requirement on our Mysql-Chart to provide a datastore.</p>
 <h2 id="get-this-chart">Get this Chart</h2>
@@ -398,6 +407,11 @@
 <td><code>/data/redmine/files</code></td>
 </tr>
 <tr>
+<td><code>persistence.log.path</code></td>
+<td>Path where all logs on the host are stored</td>
+<td><code>/data/redmine/logs</code></td>
+</tr>
+<tr>
 <td><code>databaseAdapter</code></td>
 <td>The databaseAdapter to use <code>mysql</code>. <code>mysql2</code> or <code>postgresql</code></td>
 <td><code>mysql</code></td>
@@ -427,6 +441,31 @@
 <td>the path where the mysql stores the data on the  node</td>
 <td><code>/data/redmine/mysql</code></td>
 </tr>
+<tr>
+<td><code>scm.autoCreate</code></td>
+<td>Are repos created automatically during project creation?</td>
+<td><code>force</code></td>
+</tr>
+<tr>
+<td><code>scm.forceRepo</code></td>
+<td>Is Repo Module enabled on project creation?</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>scm.denyDelete</code></td>
+<td>Deletion of Repositories not allowed anymore</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>initial.mailSender</code></td>
+<td>Initial Configuration of the mail sender</td>
+<td><code>redmine@example.net</code></td>
+</tr>
+<tr>
+<td><code>fetchCommits</code></td>
+<td>Should changesets get fetched via cron? One of: hourly, daily or monthly</td>
+<td><code>disable</code></td>
+</tr>
 </tbody>
 </table>
 <blockquote>
@@ -447,6 +486,9 @@
 </code></pre>
 
 <p>Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.</p>
+<h2 id="initial-login">Initial login</h2>
+<p>Username: admin
+Password: admin</p>
 <h1 id="todo">Todo</h1>
 <ul>
 <li>Adopt persistence to be able to run this in the cloud as well as on single node "clusters"</li>

@@ -90,6 +90,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../setup/redmine_keycloak/">Setup Redmine SSO</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -115,6 +122,10 @@
                     <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
                 
                     <li><a class="toctree-l4" href="#persistence">Persistence</a></li>
+                
+                    <li><a class="toctree-l4" href="#initial-login">Initial Login</a></li>
+                
+                    <li><a class="toctree-l4" href="#connect-to-the-gogs-instance">Connect to the gogs instance</a></li>
                 
             
                 <li class="toctree-l3"><a href="#todo">Todo</a></li>
@@ -297,9 +308,49 @@
 <td><code>2222</code></td>
 </tr>
 <tr>
+<td><code>skipTlsVerify</code></td>
+<td>Should TLS certificate verification be skipped for webhooks</td>
+<td><code>true</code></td>
+</tr>
+<tr>
 <td><code>startSshServer</code></td>
 <td>Should the SSH-Server of gogs be startet</td>
 <td><code>true</code></td>
+</tr>
+<tr>
+<td><code>mailer.enabled</code></td>
+<td>Should the Mailer-Service be enabled</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>mailer.heloHostname</code></td>
+<td>HostName for Helo</td>
+<td><code>gogs.example.com</code></td>
+</tr>
+<tr>
+<td><code>mailer.host</code></td>
+<td>SMTP Server including Port</td>
+<td><code>smtp.example:587</code></td>
+</tr>
+<tr>
+<td><code>mailer.from</code></td>
+<td>From Address</td>
+<td><code>gogs@example.com</code></td>
+</tr>
+<tr>
+<td><code>mailer.user</code></td>
+<td>User for SMTP (usually an email-address)</td>
+<td><code>gogs@example.com</code></td>
+</tr>
+<tr>
+<td><code>mailer.passwd</code></td>
+<td>SMTP Password</td>
+<td><code>averysecretpassword</code></td>
+</tr>
+<tr>
+<td><code>mailer.skipVerify</code></td>
+<td>Skip certificate verification</td>
+<td><code>false</code></td>
 </tr>
 <tr>
 <td><code>persistence.dataPath</code></td>
@@ -351,10 +402,19 @@
 </code></pre>
 
 <p>Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.</p>
+<h2 id="initial-login">Initial Login</h2>
+<p>The first user, registered into gogs is going to be the Admin User.</p>
+<h2 id="connect-to-the-gogs-instance">Connect to the gogs instance</h2>
+<p>The gogs Instance can be reached via the configure URL and the corresponding port (port: 443 for SSL, port: 2222 (sshContainerPort) for ssh). Therefor using the above mentioned default configuration, the gogs instance is then reachable via:</p>
+<pre><code>http://gogs.example.com/
+ssh://git@gogs.example.com:2222/
+</code></pre>
+
 <h1 id="todo">Todo</h1>
 <ul>
 <li>Adopt persistence to be able to run this in the cloud as well as on single node "clusters"</li>
 <li>Update to a later version of MariaDb</li>
+<li>Version 0.9.97 has a bug (<a href="https://github.com/gogits/gogs/issues/3801">#3801</a>)</li>
 </ul>
               
             </div>
@@ -366,7 +426,7 @@
         <a href="../jenkins/" class="btn btn-neutral float-right" title="Jenkins">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../setup/helm/" class="btn btn-neutral" title="Setup Helm"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../setup/redmine_keycloak/" class="btn btn-neutral" title="Setup Redmine SSO"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -396,7 +456,7 @@
           <a href="https://github.com/devopskube/devopskube/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../setup/helm/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../setup/redmine_keycloak/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../jenkins/" style="color: #fcfcfc">Next &raquo;</a></span>
