@@ -44,7 +44,7 @@ Furthermore the Role Mapper has to get created. This mapper (with the name 'mapp
 
 It is necessary to assign the wanted Client Roles to the Scope of the Client. This has to be done on the Scope-Tab. Both above created Roles ('User' and 'Admin') have to get assigned to the Scope.
 
-![Keycloak Scope](../assets/redmine_sso/Keycloak_scope.png)
+![Keycloak Scope](../assets/redmine_sso/keycloak_scope.png)
 
 ## Redmine OpenId Connect Settings
 
