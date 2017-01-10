@@ -65,3 +65,5 @@ The 'Client Secret' is the secret found in the Keycloak Credentials page (see ab
 In our forked version of the [Redmine OpenId Connect Plugin](https://bitbucket.org/triplem74/redmine_openid_connect) we added a setting, to be able to avoid the Validation of SSL Certificates ('Disable Ssl Validation'). This should just be used on Development Systems and not on Production Environments, therefore usage of this setting is on your own risk.
 
 To be still able to login into Redmine during the testing and configuration phase (eg. your Keycloak is not working correctly or your settings in Redmine are not correct already), you can use the login URL with the parameter 'loccal_login', which allows you to login using the Redmine login form (eg. http://localhost:3000/login?local_login=true).
+
+Via the Keycloak Url https://KEYCLOAK_SERVER/auth/realms/<REALMNAME>/.well-known/openid-configuration you can retrieve all endpoints available on the Keycloak server.
