@@ -66,6 +66,14 @@ The following tables lists the configurable parameters of the Redmine chart and 
 |`scm.denyDelete`|Deletion of Repositories not allowed anymore|`true`|
 |`initial.mailSender`|Initial Configuration of the mail sender|`redmine@example.net`|
 |`fetchCommits`|Should changesets get fetched via cron? One of: hourly, daily or monthly|`disable`|
+|`sso.enabled`|Should the SSO functionality be enabled?|`false`|
+|`sso.protocol`|The protocol used by the SSO Keycloak server|`https`|
+|`sso.host`|The hostname of the SSO Keycloak server|`sso.example.com`|
+|`sso.client.id`|The Id of the client in Keycloak|`redmine`|
+|`sso.client.secret`|The secret of the client in the Keycloak|``|
+|`sso.userGroup`|The Group Users should be in|`User`|
+|`sso.adminGroup`|The Group Admins should be in|`Admin`|
+|`sso.disableSslValidation`|Should the SSL Validation get disabled|`false`|
 
 > **NOTE**: The persistence settings are right now rather useless (except the path), since we are not using any persistence claim, we are still using hostpath
 

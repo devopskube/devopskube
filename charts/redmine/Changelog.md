@@ -1,7 +1,10 @@
 # Changelog
 
 **0.0.3 (WIP)**
-
+- Added missing quote for added values
+- Versionbump Redmine to latest Container (3.3.1-3)
+- Removed settings for SCM Creator (which is replaced in the latest redmine container with redmine_git_remote)
+- Add SSO functionality using redmine_openid_connect
 
 **0.0.2**
 - Add versionbump possibility (Makefile, versionbump)

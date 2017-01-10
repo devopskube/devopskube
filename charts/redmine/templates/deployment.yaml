@@ -80,18 +80,28 @@ spec:
               name: "{{ .Release.Name }}-mysql"
               key: database-password
 
-        - name: SCM_AUTO_CREATE
-          value: {{ .Values.scm.autoCreate }}
-        - name: SCM_FORCE_REPO
-          value: {{ .Values.scm.forceRepo }}
-        - name: SCM_DENY_DELETE
-          value: {{ .Values.scm.denyDelete }}
-
         - name: MAIL_SENDER
           value: {{ .Values.initial.mailSender | quote }}
 
         - name: REDMINE_FETCH_COMMITS
           value: {{ .Values.fetchCommits | quote }}
+
+        - name: OPENID_ENABLED
+          value: {{ .Values.sso.enabled | quote }}
+        - name: KEYCLOAK_PROTOCOL
+          value: {{ .Values.sso.protocol | quote }}
+        - name: KEYCLOAK_HOST
+          value: {{ .Values.sso.host | quote }}
+        - name: OPENID_CLIENT_ID
+          value: {{ .Values.sso.client.id | quote }}
+        - name: OPENID_CLIENT_SECRET
+          value: {{ .Values.sso.client.secret | quote }}
+        - name: OPENID_USER_GROUP
+          value: {{ .Values.sso.userGroup | quote }}
+        - name: OPENID_ADMIN_GROUP
+          value: {{ .Values.sso.adminGroup | quote }}
+        - name: OPENID_DISABLE_SSL_VALIDATION
+          value: {{ .Values.sso.disableSslValidation | quote }}
 
         ports:
         - name: http

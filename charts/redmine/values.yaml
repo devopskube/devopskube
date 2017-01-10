@@ -1,4 +1,4 @@
-imageTag: 3.3.1-2
+imageTag: latest
 
 imagePullPolicy: Always
 
@@ -48,12 +48,18 @@ mysql:
   persistence:
     path: /data/redmine/mysql
 
-scm:
-  autoCreate: force
-  forceRepo: true
-  denyDelete: true
-
 initial:
   mailSender: redmine@example.net
 
 fetchCommits: disable
+
+sso:
+  enabled: false
+  protocol: https
+  host: sso.example.com
+  client:
+    id: redmine
+    secret: ''
+  userGroup: User
+  adminGroup: Admin
+  disableSslValidation: false
