@@ -10,7 +10,8 @@ pages:
 - Setup:
   - 'Setup Single Node': 'setup/single-node.md'
   - 'Setup Helm': 'setup/helm.md'
-  - 'Setup Redmine SSO': 'setup/redmine_keycloak.md'
+  - 'Setup Redmine SSO': 'setup/redmine-keycloak.md'
+  - 'Setup Jenkins SSO': 'setup/jenkins-keycloak.md'
 - Components:
   - 'Gogs': 'components/gogs.md'
   - 'Jenkins': 'components/jenkins.md'

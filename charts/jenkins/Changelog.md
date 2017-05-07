@@ -3,6 +3,8 @@
 **0.0.4 (WIP)**
 - Add Changelog
 - Rework tag name for versionbump
+- use latest jenkins base image
+- use latest jenkins devopskube docker image to allow sso
 
 **0.0.3**
 - Add Makefile, versionbump possibility

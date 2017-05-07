@@ -10,7 +10,7 @@ All Settings done in the Keycloak Server are described in this section.
 
 ### Keycloak Client
 
-The Keycloak client needs to get configured in the following way. The Client needs to havve a unique name (in this case 'redmine') and the 'Access Type' needs to get defined as 'confidential'. Please note especially the 'Valid Redirect URIs', which needs to get set to the URL of the Redmine System (http://loccalhost:3000 in the screenshot).
+The Keycloak client needs to get configured in the following way. The Client needs to have a unique name (in this case 'redmine') and the 'Access Type' needs to get defined as 'confidential'. Please note especially the 'Valid Redirect URIs', which needs to get set to the URL of the Redmine System (http://loccalhost:3000 in the screenshot).
 
 ![Keycloak Redmine Client](../assets/redmine_sso/keycloak_client.png)
 
