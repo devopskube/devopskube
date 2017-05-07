@@ -3,8 +3,8 @@
 
     
     <url>
-     <loc>None/</loc>
-     <lastmod>2017-01-08</lastmod>
+     <loc>/</loc>
+     <lastmod>2017-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,72 +12,26 @@
     
         
     <url>
-     <loc>None/setup/single-node/</loc>
-     <lastmod>2017-01-08</lastmod>
+     <loc>/setup/single-node/</loc>
+     <lastmod>2017-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/setup/helm/</loc>
-     <lastmod>2017-01-08</lastmod>
+     <loc>/setup/helm/</loc>
+     <lastmod>2017-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/setup/redmine_keycloak/</loc>
-     <lastmod>2017-01-08</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>None/components/gogs/</loc>
-     <lastmod>2017-01-08</lastmod>
+     <loc>/setup/redmine-keycloak/</loc>
+     <lastmod>2017-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/components/jenkins/</loc>
-     <lastmod>2017-01-08</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/components/keycloak/</loc>
-     <lastmod>2017-01-08</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/components/kube-lego/</loc>
-     <lastmod>2017-01-08</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/components/mysql/</loc>
-     <lastmod>2017-01-08</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/components/nexus/</loc>
-     <lastmod>2017-01-08</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/components/redmine/</loc>
-     <lastmod>2017-01-08</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/components/sonarqube/</loc>
-     <lastmod>2017-01-08</lastmod>
+     <loc>/setup/jenkins-keycloak/</loc>
+     <lastmod>2017-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -86,26 +40,78 @@
     
         
     <url>
-     <loc>None/about/license/</loc>
-     <lastmod>2017-01-08</lastmod>
+     <loc>/components/gogs/</loc>
+     <lastmod>2017-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/about/team/</loc>
-     <lastmod>2017-01-08</lastmod>
+     <loc>/components/jenkins/</loc>
+     <lastmod>2017-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/about/release-notes/</loc>
-     <lastmod>2017-01-08</lastmod>
+     <loc>/components/keycloak/</loc>
+     <lastmod>2017-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/about/roadmap/</loc>
-     <lastmod>2017-01-08</lastmod>
+     <loc>/components/kube-lego/</loc>
+     <lastmod>2017-05-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/components/mysql/</loc>
+     <lastmod>2017-05-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/components/nexus/</loc>
+     <lastmod>2017-05-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/components/redmine/</loc>
+     <lastmod>2017-05-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/components/sonarqube/</loc>
+     <lastmod>2017-05-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/about/license/</loc>
+     <lastmod>2017-05-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/about/team/</loc>
+     <lastmod>2017-05-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/about/release-notes/</loc>
+     <lastmod>2017-05-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/about/roadmap/</loc>
+     <lastmod>2017-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

@@ -8,7 +8,7 @@
   
   <meta name="author" content="DevOpsKube Team">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Release Notes - DevOpsKube</title>
+  <title>Setup Jenkins SSO - DevOpsKube</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Release Notes";
-    var mkdocs_page_input_path = "about/release-notes.md";
-    var mkdocs_page_url = "/about/release-notes/";
+    var mkdocs_page_name = "Setup Jenkins SSO";
+    var mkdocs_page_input_path = "setup/jenkins-keycloak.md";
+    var mkdocs_page_url = "/setup/jenkins-keycloak/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -68,19 +68,35 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../setup/single-node/">Setup Single Node</a>
+    <a class="" href="../single-node/">Setup Single Node</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../setup/helm/">Setup Helm</a>
+    <a class="" href="../helm/">Setup Helm</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../setup/redmine-keycloak/">Setup Redmine SSO</a>
+    <a class="" href="../redmine-keycloak/">Setup Redmine SSO</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../setup/jenkins-keycloak/">Setup Jenkins SSO</a>
+    <a class="current" href="./">Setup Jenkins SSO</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#jenkins-sso">Jenkins SSO</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#keycloak-settings">Keycloak Settings</a></li>
+        
+            <li><a class="toctree-l4" href="#jenkins-openid-connect-settings">Jenkins OpenId Connect Settings</a></li>
+        
+            <li><a class="toctree-l4" href="#hints">Hints</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -130,25 +146,19 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../license/">License</a>
+    <a class="" href="../../about/license/">License</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../team/">Team</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Release Notes</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#release-notes">Release Notes</a></li>
-    
-
-    </ul>
+    <a class="" href="../../about/team/">Team</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../roadmap/">Roadmap</a>
+    <a class="" href="../../about/release-notes/">Release Notes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../about/roadmap/">Roadmap</a>
                 </li>
     </ul>
 	    </li>
@@ -175,14 +185,14 @@
     
       
         
-          <li>About &raquo;</li>
+          <li>Setup &raquo;</li>
         
       
     
-    <li>Release Notes</li>
+    <li>Setup Jenkins SSO</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/devopskube/devopskube/edit/master/docs/about/release-notes.md"
+        <a href="https://github.com/devopskube/devopskube/edit/master/docs/setup/jenkins-keycloak.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -192,8 +202,29 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="release-notes">Release Notes</h1>
-<p>nothing released yet...</p>
+                <h1 id="jenkins-sso">Jenkins SSO</h1>
+<p>To provide SSO Services in our environemnt, we do use <a href="http://www.keycloak.org/">Keycloak</a> as the central service. To use this in <a href="http://www.jenkins.io/">Jenkins</a>, we do use the <a href="https://github.com/jenkinsci/oic-auth-plugin">OpenId Connect Plugin</a>.</p>
+<p>For this to work, a new client has to be created in the Keycloak System, and a couple of endpoints have to be configured in the Jenkins Security Settings.</p>
+<h2 id="keycloak-settings">Keycloak Settings</h2>
+<p>All Settings done in the Keycloak Server are described in this section.</p>
+<h3 id="keycloak-client">Keycloak Client</h3>
+<p>The Keycloak client needs to get configured in the following way. The Client needs to have a unique name (in this case 'jenkins') and the 'Access Type' needs to get defined as 'confidential'. Please note especially the 'Valid Redirect URIs', which needs to get set to the URL of the Jenkins System (http://loccalhost:3000 in the screenshot).</p>
+<p><img alt="Keycloak Jenkins Client" src="../../assets/jenkins_sso/keycloak_client.png" /></p>
+<h3 id="keycloak-credentials">Keycloak Credentials</h3>
+<p>Because we have set the 'Access Type' to 'confidential' we do get offered the Credentials Tab. On this tab, we get a secret, which needs to get put into the corresponding Setting of the Jenkins OpenId Connect plugin. This secret allows to initiate a secure connection between the Keycloak System and your client application (Jenkins in this case).</p>
+<p><img alt="Keycloak Credentials" src="../../assets/jenkins_sso/keycloak_client_credentials.png" /></p>
+<h3 id="keycloak-mappers">Keycloak Mappers</h3>
+<p>In order to provide some necessary user information to the Redmine System, the standard Keycloak Mappers have to be adopted and a new Mapper has to get created.</p>
+<p><img alt="Keycloak Mapper" src="../../assets/redmine_sso/keycloak_mappers.png" /></p>
+<h2 id="jenkins-openid-connect-settings">Jenkins OpenId Connect Settings</h2>
+<p>The Settings done in the OpenId Connect Plugin Settings page are described in here.</p>
+<p>The most relevant settings are the 'Client ID', the 'Client Secret' and the 'Urls'.</p>
+<p>The 'Client ID' is the name of the client in your Keycloak System (jenkins in our case). By Specification, this should be a URI, but a plain name is working as well, and seems to be easier IMHO.</p>
+<p>The 'Urls' have to be set to the Keycloak Server with the path /auth/realms/<REALMNAME>. Please adopt the REALMNAME (devopskube in the picture), to your own needs.</p>
+<p>The 'Client Secret' is the secret found in the Keycloak Credentials page (see above), and should be copied from there.</p>
+<p><img alt="Jenkins OpenId Connect Plugin Settings" src="../../assets/jenkins_sso/jenkins_openid_plugin_setting.png" /></p>
+<h2 id="hints">Hints</h2>
+<p>To retrieve the Keycloak Endpoints, you can use the Url https://KEYCLOAK_SERVER/auth/realms/<REALMNAME>/.well-known/openid-configuration.</p>
               
             </div>
           </div>
@@ -201,10 +232,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../roadmap/" class="btn btn-neutral float-right" title="Roadmap">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../components/gogs/" class="btn btn-neutral float-right" title="Gogs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../team/" class="btn btn-neutral" title="Team"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../redmine-keycloak/" class="btn btn-neutral" title="Setup Redmine SSO"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -234,10 +265,10 @@
           <a href="https://github.com/devopskube/devopskube/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../team/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../redmine-keycloak/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../roadmap/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../components/gogs/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
