@@ -1,5 +1,11 @@
 # Changelog
 
+**0.0.5 (WIP)**
+
+**0.0.4**
+- version bump gogs to 0.11.29
+- add secret key to config options
+
 **0.0.3**
 - Add E-Mail settings
 - Adopt Root-Url to use https

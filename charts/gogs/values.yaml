@@ -1,4 +1,6 @@
 # Default values for gogs.
+imageTag: 0.11.29
+
 domainName: example.com
 hostName: gogs.example.com
 httpContainerPort: 3000
@@ -7,6 +9,8 @@ sshContainerPort: 2222
 startSshServer: true
 
 skipTlsVerify: true
+
+secretKey: !#@FDEWREWR&*(
 
 mailer:
   enabled: true

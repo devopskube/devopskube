@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: {{ template "fullname" . }}
-        image: "gogs/gogs:0.9.97"
+        image: "gogs/gogs:{{ .Values.imageTag }}"
         imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
         env:
         - name: DOMAIN

@@ -8,13 +8,13 @@ metadata:
 data:
   app.ini: |-
     RUN_MODE=prod
-    VERSION=0.9.97
     RUN_USER=git
     [log]
     ROOT_PATH=/data/gogs/logs
     LEVEL=Trace
     [security]
     INSTALL_LOCK=true
+    SECRET_KEY={{ .Values.secretKey }}
     [server]
     START_SSH_SERVER={{ .Values.startSshServer }}
     APP_DATA_PATH=/data/gogs/data
