@@ -1,5 +1,5 @@
 name: kube-lego
-version: 0.0.1
+version: 0.0.2
 description: Kube-Lego retrieves ssl-certificates for all configured ingress.
 home: https://github.com/jetstack/kube-lego
 sources:
