@@ -91,4 +91,3 @@ ssh://git@gogs.example.com:2222/
 
 * Adopt persistence to be able to run this in the cloud as well as on single node "clusters"
 * Update to a later version of MariaDb
-* Version 0.9.97 has a bug ([#3801](https://github.com/gogits/gogs/issues/3801))
