@@ -1,6 +1,5 @@
-imageTag: 0.8.3
+imageTag: 0.9.0-beta.13
 
 defaultBackend:
   name: default-http-backend
   containerPort: 8080
-  
