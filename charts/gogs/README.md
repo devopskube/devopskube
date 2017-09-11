@@ -34,6 +34,7 @@ The following tables lists the configurable parameters of the Gogs chart and the
 | `sshContainerPort`|SSH Port of gogs in the container|`2222`|
 | `skipTlsVerify`|Should TLS certificate verification be skipped for webhooks|`true`|
 | `startSshServer`|Should the SSH-Server of gogs be startet|`true`|
+| `secretKey`|Secret Key for private data encryption (Should be changed)|`!#@FDEWREWR&*(`|
 | `mailer.enabled`|Should the Mailer-Service be enabled|`false`|
 | `mailer.heloHostname`|HostName for Helo|`gogs.example.com`|
 | `mailer.host`|SMTP Server including Port|`smtp.example:587`|
