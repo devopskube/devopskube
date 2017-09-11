@@ -6,7 +6,7 @@
 
 This chart is fully based on the [examples](https://github.com/jetstack/kube-lego/tree/master/examples/nginx) found on their github pages.
 
-It uses version 0.1.2 of the corresponding docker image.
+It uses version 0.1.5 of the corresponding docker image.
 
 This chart needs a Nodeport, so that the letsencrypt server can contact us. This is configured via the properties .Values.extNodePort as well as .Values.legoKubeApiUrl.
 

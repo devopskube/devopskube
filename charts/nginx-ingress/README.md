@@ -2,11 +2,11 @@
 
 An Ingress Controller is a daemon, deployed as a Kubernetes Pod, that watches the ApiServer's /ingresses endpoint for updates to the Ingress resource. Its job is to satisfy requests for ingress.
 
-This is a helm-chart for the "official" Kubernetes [Nginx-Ingress](https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx) Controller. This chart includes the default-http-backend, which is used and configured in the Nginx-Ingress ConfigMap.
+This is a helm-chart for the "official" Kubernetes [Nginx-Ingress](https://github.com/kubernetes/ingress) Controller. This chart includes the default-http-backend, which is used and configured in the Nginx-Ingress ConfigMap.
 
 This chart is part of the DevOpsKube package.
 
-Right now we do use version 0.8.3 of the nginx-ingress-controller.
+Right now we do use version 0.9.0-beta.13 of the nginx-ingress-controller.
 
 ## Chart Details
 
