@@ -2,7 +2,7 @@
 
 [Gogs](https://gogs.io/) is a painless self-hosted Git service. It is used in our environment to allow an easy management of Git-Repositories.
 
-Right now we do use version 0.9.97.
+Right now we do use version 0.11.29.
 
 ## Chart Details
 
