@@ -6,7 +6,7 @@
 
 This chart is fully based on the [Kubernetes Chart](https://github.com/kubernetes/charts) found.
 
-It uses version 0.0.1 of our own [docker image](https://github.com/devopskube/docker-mysql).
+It uses version 0.0.5 of our own [docker image](https://github.com/devopskube/docker-mysql).
 
 ## Get this Chart
 
