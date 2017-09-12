@@ -1,6 +1,7 @@
 # Changelog
 
 **0.0.4 (WIP)**
+- Rework provider tag
 
 **0.0.3**
 - remove invalid provider tag
