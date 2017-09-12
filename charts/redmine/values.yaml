@@ -1,4 +1,4 @@
-imageTag: latest
+imageTag: 3.4.2-1
 
 imagePullPolicy: Always
 

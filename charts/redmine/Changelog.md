@@ -2,9 +2,10 @@
 
 **0.0.3 (WIP)**
 - Added missing quote for added values
-- Use latest Container (3.3.1-3)
+- Use latest Container (3.4.2-1)
 - Removed settings for SCM Creator (which is replaced in the latest redmine container with redmine_git_remote)
 - Add SSO functionality using redmine_openid_connect
+* rework provider tag
 
 **0.0.2**
 - Add versionbump possibility (Makefile, versionbump)
