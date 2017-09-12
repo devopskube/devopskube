@@ -8,6 +8,7 @@ metadata:
     release: {{.Release.Name | quote }}
     chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     tmp: {{ template "fullname" . }}
+    provider: devopskube
 spec:
   ports:
   - name: http

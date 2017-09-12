@@ -2,5 +2,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-ingress-conf
+  provider: devopskube
 data:
   enable-vts-status: "true"
