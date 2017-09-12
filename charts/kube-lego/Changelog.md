@@ -1,6 +1,9 @@
 # Changelog
 
-**0.0.3 (WIP)**
+**0.0.4 (WIP)**
+
+**0.0.3**
+- remove invalid provider tag
 
 **0.0.2**
 - Add Makefile, versionbump possibility
