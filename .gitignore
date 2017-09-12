@@ -6,3 +6,4 @@ site
 *.tgz
 requirements.lock
 _partials.tpl
+.idea
