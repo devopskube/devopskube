@@ -1,6 +1,9 @@
 # Changelog
 
-**0.0.4 (WIP)**
+**0.0.5 (WIP)**
+
+**0.0.4**
+- remove provider, since it is not a valid field anymore
 
 **0.0.3**
 - Add Changelog
