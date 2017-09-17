@@ -1,10 +1,12 @@
 # Changelog
 
-**0.0.3 (WIP)**
+**WIP**
+
+**0.0.3**
 - Added missing quote for added values
-- Use latest Container (3.4.2-1)
+- Use latest Container (3.4.2-2)
 - Removed settings for SCM Creator (which is replaced in the latest redmine container with redmine_git_remote)
-- Add SSO functionality using redmine_openid_connect
+- Add SSO functionality using redmine_openid_connect (0.9.2)
 * rework provider tag
 
 **0.0.2**

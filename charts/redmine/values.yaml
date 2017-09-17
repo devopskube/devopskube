@@ -1,5 +1,4 @@
-imageTag: 3.4.2-1
-
+imageTag: 3.4.2-2
 imagePullPolicy: Always
 
 # Hostname on which the redmine service will be published
