@@ -4,24 +4,24 @@ metadata:
   creationTimestamp: 2016-09-22T20:05:38Z
   name: gogs-config
   namespace: default
-  provider: "devopskube"
 data:
   app.ini: |-
     RUN_MODE=prod
     RUN_USER=git
     [log]
-    ROOT_PATH=/data/gogs/logs
+    ROOT_PATH={{ .Values.log.rootPath }}
     LEVEL=Trace
+    MODE=file
     [security]
     INSTALL_LOCK=true
     SECRET_KEY={{ .Values.secretKey }}
     [server]
     START_SSH_SERVER={{ .Values.startSshServer }}
-    APP_DATA_PATH=/data/gogs/data
+    APP_DATA_PATH={{ .Values.server.appDataPath }}
     DOMAIN={{ .Values.hostName }}
     ROOT_URL=https://{{ .Values.hostName }}
     HTTP_PORT=3000
-    SSH_ROOT_PATH=/data/ssh
+    SSH_ROOT_PATH={{ .Values.server.sshRootPath }}
     SSH_PORT=2222
     [service]
     ENABLE_REVERSE_PROXY_AUTO_REGISTRATION=true
@@ -37,15 +37,15 @@ data:
     PASSWD={{ .Values.mailer.passwd }}
     SKIP_VERIFY={{ .Values.mailer.skipVerify }}
     [repository]
-    ROOT=/data/gogs/git
+    ROOT={{ .Values.repository.root }}
     [attachment]
-    PATH=/data/gogs/data/attachments
+    PATH={{ .Values.attachment.path }}
     [database]
     DB_TYPE={{ .Values.databaseType }}
     HOST={{ .Release.Name }}-mysql:3306
     USER={{ .Values.mysql.databaseUser }}
     PASSWD={{ .Values.mysql.databasePassword }}
     [session]
-    PROVIDER_CONFIG=/data/gogs/data/sessions
+    PROVIDER_CONFIG={{ .Values.session.providerConfig }}
     [picture]
-    AVATAR_UPLOAD_PATH=/data/gogs/data/avatars
+    AVATAR_UPLOAD_PATH={{ .Values.picture.avatarUploadPath }}

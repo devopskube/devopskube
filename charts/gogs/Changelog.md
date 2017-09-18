@@ -1,6 +1,10 @@
 # Changelog
 
-**0.0.5 (WIP)**
+**WIP**
+
+**0.0.5**
+- adopt gogs configuration settings (pathes)
+- add new config options to readme
 
 **0.0.4**
 - version bump gogs to 0.11.29

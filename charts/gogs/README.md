@@ -42,6 +42,13 @@ The following tables lists the configurable parameters of the Gogs chart and the
 | `mailer.user`|User for SMTP (usually an email-address)|`gogs@example.com`|
 | `mailer.passwd`|SMTP Password|`averysecretpassword`|
 | `mailer.skipVerify`|Skip certificate verification|`false`|
+| `log.rootPath`|path where logs are stored in gogs|`/data/gogs/log`|
+| `server.appDataPath`|path where gogs app data is stored|`/data/gogs/data`|
+| `server.sshRootPath`|path where ssh-data is stored|`/data/ssh`|
+| `repository.root`|path where the git repositories on the guest are stored|`/data/git`|
+| `attachment.path`|path where attachments are stored|`/data/gogs/data/attachments`|
+| `session.providerConfig`|session data is stored here|`/data/gogs/data/sessions`|
+| `picture.avatarUploadPath`|avatar storeage path|`/data/gogs/data/avatars`|
 | `persistence.dataPath`|Path on the host, where gogs stores data|`/data/gogs/data`|
 | `databaseType`|The databaseType `mysql`. `postgres` or `sqlite3`|`mysql`|
 | `mysql.databaseName`|The name of the database|`gogs`|

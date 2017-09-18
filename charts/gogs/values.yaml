@@ -1,4 +1,3 @@
-# Default values for gogs.
 imageTag: 0.11.29
 
 domainName: example.com
@@ -10,7 +9,26 @@ startSshServer: true
 
 skipTlsVerify: true
 
-secretKey: !#@FDEWREWR&*(
+secretKey: '!#@FDEWREWR&*('
+
+log:
+  rootPath: /data/gogs/log
+
+server:
+  appDataPath: /data/gogs/data
+  sshRootPath: /data/ssh
+
+repository:
+  root: /data/git
+
+attachment:
+  path: /data/gogs/data/attachments
+
+session:
+  providerConfig: /data/gogs/data/sessions
+
+picture:
+  avatarUploadPath: /data/gogs/data/avatars
 
 mailer:
   enabled: true
