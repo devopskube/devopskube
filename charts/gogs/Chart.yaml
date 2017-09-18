@@ -1,5 +1,5 @@
 name: gogs
-version: 0.0.4
+version: 0.0.5
 description: A painless self-hosted Git service.
 home: https://gogs.io/
 sources:
