@@ -15,7 +15,7 @@ This chart will do the following:
 * 1 x Jenkins Master with port 80 exposed on an external LoadBalancer
 * All using Kubernetes Deployments
 
-Right now, we are using Jenkins 2.19.3.
+Right now, we are using Jenkins 2.73.1.
 
 ## Get this chart
 
@@ -83,6 +83,7 @@ $ helm install --name my-jenkins -f values.yaml jenkins-x.x.x.tgz
 ```
 
 > **Tip**: You can use the default [values.yaml](https://github.com/devopskube/devopskube/blob/master/charts/jenkins/values.yaml)
+> **Tip**: Initial Username/Password is (as listed above) admin/admin1234.
 
 ## Persistence
 
@@ -93,6 +94,11 @@ To be able to keep stateful data in the jenkins kubernetes container, the follow
 ```
 
 Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.
+
+## Login Url
+
+http://jenkins.devopskube.org/loginEntry?from=%2F
+
 
 # Todo
 

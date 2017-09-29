@@ -5,15 +5,16 @@
 
 master:
   name: jenkins-master
-  image: "devopskube/jenkins"
-  imageTag: "latest"
-  imagePullPolicy: "Always"
-  component: "jenkins-master"
+  image: devopskube/jenkins
+  imageTag: latest
+  imagePullPolicy: Never
+  component: jenkins-master
   adminUser: admin
   adminPassword: admin1234
   cpu: "200m"
   memory: "256Mi"
-  javaOpts: "-Xms512m -Xmx512m"
+  javaOpts: "-Xms512m -Xmx512m -Djenkins.install.runSetupWizard=false -Ddocker.host=unix:/var/run/docker.sock"
+  jenkinsOpts:
   servicePort: 80
   hostName: jenkins.example.com
   containerPort: 8080

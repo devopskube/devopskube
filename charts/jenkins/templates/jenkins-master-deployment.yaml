@@ -3,13 +3,11 @@ kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
   labels:
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
+    app: "{{ .Chart.Name }}"
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    component: "{{ .Release.Name }}-{{ .Values.master.name }}"
-    provider: "devopskube"
-  annotations:
-    "helm.sh/created": {{.Release.Time.Seconds | quote }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    provider: devopskube
 spec:
   replicas: 1
   strategy:
@@ -24,12 +22,13 @@ spec:
         release: {{.Release.Name | quote }}
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
         component: "{{.Release.Name}}-{{.Values.master.component}}"
-        provider: "devopskube"
+        provider: devopskube
       annotations:
         pod.beta.kubernetes.io/init-containers: '[
               {
                   "name": "copy-default-config",
                   "image": "{{ .Values.master.image }}:{{ .Values.master.imageTag }}",
+                  "imagePullPolicy": {{.Values.master.imagePullPolicy  | quote }},
                   "command": ["cp", "-n", "/var/jenkins_config/config.xml", "/var/jenkins_home"],
                   "volumeMounts": [
                       {
@@ -45,6 +44,7 @@ spec:
               {
                   "name": "copy-default-mailer",
                   "image": "{{ .Values.master.image }}:{{ .Values.master.imageTag }}",
+                  "imagePullPolicy": {{.Values.master.imagePullPolicy  | quote }},
                   "command": ["cp", "-n", "/var/jenkins_config/hudson.tasks.Mailer.xml", "/var/jenkins_home"],
                   "volumeMounts": [
                       {
@@ -60,6 +60,7 @@ spec:
               {
                   "name": "copy-default-location",
                   "image": "{{ .Values.master.image }}:{{ .Values.master.imageTag }}",
+                  "imagePullPolicy": {{.Values.master.imagePullPolicy  | quote }},
                   "command": ["cp", "-n", "/var/jenkins_config/jenkins.model.JenkinsLocationConfiguration.xml", "/var/jenkins_home"],
                   "volumeMounts": [
                       {
@@ -75,6 +76,7 @@ spec:
               {
                   "name": "copy-default-credentials",
                   "image": "{{ .Values.master.image }}:{{ .Values.master.imageTag }}",
+                  "imagePullPolicy": {{.Values.master.imagePullPolicy  | quote }},
                   "command": ["cp", "-n", "/var/jenkins_config/credentials.xml", "/var/jenkins_home"],
                   "volumeMounts": [
                       {
@@ -89,16 +91,18 @@ spec:
               }
           ]'
     spec:
-      securityContext:
-        privileged: true
       containers:
         - name: {{ template "fullname" . }}
+          securityContext:
+            privileged: true
           image: "{{.Values.master.image}}:{{.Values.master.imageTag}}"
-          imagePullPolicy: "{{.Values.master.imagePullPolicy}}"
-          args: [ "--argumentsRealm.passwd.$(ADMIN_USER)=$(ADMIN_PASSWORD)",  "--argumentsRealm.roles.$(ADMIN_USER)=admin"]
+          imagePullPolicy: {{ .Values.master.imagePullPolicy | quote }}
+          args: [ "--argumentsRealm.passwd.jenkins=$(ADMIN_PASSWORD)", "--argumentsRealm.roles.jenkins=admin"]
           env:
             - name: JAVA_OPTS
-              value: "{{ default "" .Values.master.javaOpts}}"
+              value: "{{ default "" .Values.master.javaOpts }}"
+            - name: JENKINS_OPS
+              value: "{{ default "" .Values.master.jenkinsOpts }}"
             - name: ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
