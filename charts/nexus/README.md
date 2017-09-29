@@ -99,6 +99,8 @@ To be able to keep stateful data in the nexus kubernetes container, the followin
 
 Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.
 
+The above mentioned path should be read/writable on the host for the user 1000.
+
 # Todo
 
 * Provide more initial configurations (smtp-settings, ldap-settings, ...)
