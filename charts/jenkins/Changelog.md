@@ -1,6 +1,9 @@
 # Changelog
 
-**0.0.4 (WIP)**
+**0.0.5**
+- Use release version of jenkins image
+
+**0.0.4**
 - Add Changelog
 - Rework tag name for versionbump
 - use latest jenkins base image

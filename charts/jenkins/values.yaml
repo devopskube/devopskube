@@ -6,7 +6,7 @@
 master:
   name: jenkins-master
   image: devopskube/jenkins
-  imageTag: latest
+  imageTag: 2.73.1-1
   imagePullPolicy: Never
   component: jenkins-master
   adminUser: admin
