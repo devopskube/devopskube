@@ -1,4 +1,4 @@
-imageTag: 3.0.2
+imageTag: 3.6.0
 
 # Hostname on which the nexus service will be published
 hostName: nexus.example.com
