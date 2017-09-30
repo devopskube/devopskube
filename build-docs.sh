@@ -47,6 +47,7 @@ do
 done
 
 if [[ "$COPY" ]]; then
+  echo "Copying Component READMEs"
   find charts -maxdepth 2 -type f -name "README.md" -print0 | while read -d $'\0' readme
   do
     cp $readme $MKDOC_COMP_PATH/$(basename $(dirname $readme)).md
