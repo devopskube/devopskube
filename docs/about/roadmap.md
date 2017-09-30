@@ -29,7 +29,7 @@ Add additional components to the Stack to provide a fully featured SDLC Stack. T
 
 * [Gerrit](https://www.gerritcodereview.com/) - Web based code Review
 * [Rocket.chat](https://rocket.chat/) - A chat application
-* [GitBucket](https://github.com/gitbucket/gitbucket) - An open source Github clone (replace Gogs?)
+* [GitBucket](https://github.com/gitbucket/gitbucket) - An open source Github clone
 
 ## Version 0.5
 
