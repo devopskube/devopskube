@@ -319,6 +319,7 @@ readinessProbe:
 </code></pre>
 
 <p>Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.</p>
+<p>The above mentioned path should be read/writable on the host for the user 1000.</p>
 <h1 id="todo_1">Todo</h1>
 <ul>
 <li>Provide more initial configurations (smtp-settings, ldap-settings, ...)</li>

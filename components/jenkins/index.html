@@ -112,6 +112,8 @@
         
             <li><a class="toctree-l4" href="#persistence">Persistence</a></li>
         
+            <li><a class="toctree-l4" href="#login-url">Login Url</a></li>
+        
         </ul>
     
 
@@ -222,7 +224,7 @@
 <li>1 x Jenkins Master with port 80 exposed on an external LoadBalancer</li>
 <li>All using Kubernetes Deployments</li>
 </ul>
-<p>Right now, we are using Jenkins 2.19.3.</p>
+<p>Right now, we are using Jenkins 2.73.1.</p>
 <h2 id="get-this-chart">Get this chart</h2>
 <p>Our central repository is located at: <code>https://devopsku.be/charts</code>, please configure this in your helm installation (via <code>helm repo add</code>). Then you can download and install this chart using the usual helm procedure (see <a href="https://github.com/kubernetes/helm/blob/master/docs/using_helm.md">Using Helm</a>).</p>
 <p>If you would like to contribute and/or like to make changes on this chart, please clone this repo via:</p>
@@ -403,7 +405,8 @@
 </code></pre>
 
 <blockquote>
-<p><strong>Tip</strong>: You can use the default <a href="https://github.com/devopskube/devopskube/blob/master/charts/jenkins/values.yaml">values.yaml</a></p>
+<p><strong>Tip</strong>: You can use the default <a href="https://github.com/devopskube/devopskube/blob/master/charts/jenkins/values.yaml">values.yaml</a>
+<strong>Tip</strong>: Initial Username/Password is (as listed above) admin/admin1234.</p>
 </blockquote>
 <h2 id="persistence">Persistence</h2>
 <p>To be able to keep stateful data in the jenkins kubernetes container, the following path is used:</p>
@@ -411,6 +414,8 @@
 </code></pre>
 
 <p>Right now, we do use HostPathes, which do not work in a real cluster environment (like AWS or GCE). Please adopt this one to your own needs.</p>
+<h2 id="login-url">Login Url</h2>
+<p>http://jenkins.devopskube.org/loginEntry?from=%2F</p>
 <h1 id="todo">Todo</h1>
 <ul>
 <li><del>Enable Docker-in-Docker or Docker-on-Docker support on the Jenkins agents</del></li>

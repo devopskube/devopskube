@@ -215,7 +215,7 @@
               
                 <h1 id="gogs-go-git-service">Gogs - Go Git Service</h1>
 <p><a href="https://gogs.io/">Gogs</a> is a painless self-hosted Git service. It is used in our environment to allow an easy management of Git-Repositories.</p>
-<p>Right now we do use version 0.9.97.</p>
+<p>Right now we do use version 0.11.29.</p>
 <h2 id="chart-details">Chart Details</h2>
 <p>This chart uses the <a href="https://hub.docker.com/r/gogs/gogs/">Docker image</a> provided by gogs itself. Furthermore it has a requirement on our Mysql-Chart to provide a datastore.</p>
 <h2 id="get-this-chart">Get this Chart</h2>
@@ -267,6 +267,11 @@
 <td><code>true</code></td>
 </tr>
 <tr>
+<td><code>secretKey</code></td>
+<td>Secret Key for private data encryption (Should be changed)</td>
+<td><code>!#@FDEWREWR&amp;*(</code></td>
+</tr>
+<tr>
 <td><code>mailer.enabled</code></td>
 <td>Should the Mailer-Service be enabled</td>
 <td><code>false</code></td>
@@ -300,6 +305,41 @@
 <td><code>mailer.skipVerify</code></td>
 <td>Skip certificate verification</td>
 <td><code>false</code></td>
+</tr>
+<tr>
+<td><code>log.rootPath</code></td>
+<td>path where logs are stored in gogs</td>
+<td><code>/data/gogs/log</code></td>
+</tr>
+<tr>
+<td><code>server.appDataPath</code></td>
+<td>path where gogs app data is stored</td>
+<td><code>/data/gogs/data</code></td>
+</tr>
+<tr>
+<td><code>server.sshRootPath</code></td>
+<td>path where ssh-data is stored</td>
+<td><code>/data/ssh</code></td>
+</tr>
+<tr>
+<td><code>repository.root</code></td>
+<td>path where the git repositories on the guest are stored</td>
+<td><code>/data/git</code></td>
+</tr>
+<tr>
+<td><code>attachment.path</code></td>
+<td>path where attachments are stored</td>
+<td><code>/data/gogs/data/attachments</code></td>
+</tr>
+<tr>
+<td><code>session.providerConfig</code></td>
+<td>session data is stored here</td>
+<td><code>/data/gogs/data/sessions</code></td>
+</tr>
+<tr>
+<td><code>picture.avatarUploadPath</code></td>
+<td>avatar storeage path</td>
+<td><code>/data/gogs/data/avatars</code></td>
 </tr>
 <tr>
 <td><code>persistence.dataPath</code></td>
@@ -363,7 +403,6 @@ ssh://git@gogs.example.com:2222/
 <ul>
 <li>Adopt persistence to be able to run this in the cloud as well as on single node "clusters"</li>
 <li>Update to a later version of MariaDb</li>
-<li>Version 0.9.97 has a bug (<a href="https://github.com/gogits/gogs/issues/3801">#3801</a>)</li>
 </ul>
               
             </div>

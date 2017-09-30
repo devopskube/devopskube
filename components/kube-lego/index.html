@@ -215,7 +215,7 @@
 <p><a href="https://github.com/jetstack/kube-lego">Kube-Lego</a> automatically requests certificates for Kubernetes Ingress resources from Let's Encrypt.</p>
 <h2 id="chart-details">Chart Details</h2>
 <p>This chart is fully based on the <a href="https://github.com/jetstack/kube-lego/tree/master/examples/nginx">examples</a> found on their github pages.</p>
-<p>It uses version 0.1.2 of the corresponding docker image.</p>
+<p>It uses version 0.1.5 of the corresponding docker image.</p>
 <p>This chart needs a Nodeport, so that the letsencrypt server can contact us. This is configured via the properties .Values.extNodePort as well as .Values.legoKubeApiUrl.</p>
 <h2 id="get-this-chart">Get this Chart</h2>
 <p>Our central repository is located at: <code>https://devopsku.be/charts</code>, please configure this in your helm installation (via <code>helm repo add</code>). Then you can download and install this chart using the usual helm procedure (see <a href="https://github.com/kubernetes/helm/blob/master/docs/using_helm.md">Using Helm</a>).</p>
