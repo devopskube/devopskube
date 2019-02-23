@@ -1,4 +1,4 @@
-repository
+repository/
 docs/components/*.md
 site
 *.private
@@ -6,4 +6,5 @@ site
 *.tgz
 requirements.lock
 _partials.tpl
-.idea
+.idea/
+*.iml
