@@ -54,10 +54,9 @@ done
 
 if [[ "$CLEAN" ]]; then
   echo "Cleaning generated Content"
-  find charts -maxdepth 2 -type f -name "README.md" -print0 | while read -d $'\0' readme
-  do
-    rm -f $MKDOC_COMP_PATH/$(basename $(dirname $readme)).md
-  done
+  pushd docs/components
+  rm -f *.md
+  popd
 fi
 
 if [[ "$COPY" ]]; then

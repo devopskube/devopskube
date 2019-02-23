@@ -13,6 +13,7 @@ pages:
   - 'Setup Redmine SSO': 'setup/redmine-keycloak.md'
   - 'Setup Jenkins SSO': 'setup/jenkins-keycloak.md'
   - 'Setup Minikube': 'setup/minikube.md'
+  - 'Setup Components': 'setup/components.md'
 - Components:
   - 'Gogs': 'components/gogs.md'
   - 'Jenkins': 'components/jenkins.md'
