@@ -26,6 +26,7 @@ do
         shift
         ;;
       -d|--deploy)
+        CLEAN=true
         COPY=true
         BUILD=true
         DEPLOY=true
@@ -33,18 +34,31 @@ do
         ;;
       -s|--serve)
         echo "Serving Documentation"
+        CLEAN=true
         COPY=true
         BUILD=true
         SERVE=true
         shift
         ;;
+      -cl|--clean)
+        CLEAN=true
+        shift
+        ;;
       *)
-        echo "-b|-c|-d|-s"
+        echo "-b|-c|-d|-s|-cl"
         # unknown option
         ;;
   esac
   shift
 done
+
+if [[ "$CLEAN" ]]; then
+  echo "Cleaning generated Content"
+  find charts -maxdepth 2 -type f -name "README.md" -print0 | while read -d $'\0' readme
+  do
+    rm -f $MKDOC_COMP_PATH/$(basename $(dirname $readme)).md
+  done
+fi
 
 if [[ "$COPY" ]]; then
   echo "Copying Component READMEs"
