@@ -36,7 +36,7 @@ The 'username' Mapper is usually mapped to the 'preferred_username' Token Claim 
 
 ![Keycloak Username Mapper](../assets/redmine_sso/keycloak_mapper_username.png)
 
-Furthermore the Role Mapper has to get created. This mapper (with the name 'mapper_of') has to be set to be of the Type 'User Client Role', and will contain the Client Role, the user is a member of.   
+Furthermore the Role Mapper has to get created. This mapper (with the name 'member_of') has to be set to be of the Type 'User Client Role', and will contain the Client Role, the user is a member of.   
 
 ![Keacloak Role Mapper](../assets/redmine_sso/keycloak_mapper_roles.png)
 

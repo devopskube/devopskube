@@ -22,7 +22,7 @@ Because we have set the 'Access Type' to 'confidential' we do get offered the Cr
 
 ### Keycloak Mappers
 
-In order to provide some necessary user information to the Redmine System, the standard Keycloak Mappers have to be adopted and a new Mapper has to get created.
+In order to provide some necessary user information to the Jenkins System, the standard Keycloak Mappers have to be adopted and a new Mapper has to get created.
 
 ![Keycloak Mapper](../assets/redmine_sso/keycloak_mappers.png)
 
