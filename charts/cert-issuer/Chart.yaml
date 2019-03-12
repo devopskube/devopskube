@@ -1,0 +1,14 @@
+name: cert-issuer
+version: 0.0.1
+description: Common resources for cert-manager used in devopskube
+keywords:
+  - kube-lego
+  - certificates
+  - https
+home: https://github.com/jetstack/cert-manager/
+sources:
+  - https://github.com/jetstack/cert-manager/
+maintainers:
+  - name: Markus M. May
+    email: triplem@javafreedom.org
+engine: gotpl

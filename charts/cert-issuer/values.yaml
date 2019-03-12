@@ -1,0 +1,9 @@
+issuer:
+  secretref: letsencrypt
+
+  ## The email used for the generated certificates
+  email: cert@example.com
+
+  ## The Url with which the certificates are created, staging by default
+  # lego_url: https://acme-v01.api.letsencrypt.org/directory
+  url: https://acme-staging.api.letsencrypt.org/directory

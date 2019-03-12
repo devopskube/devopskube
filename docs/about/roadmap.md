@@ -17,7 +17,12 @@ This will be a pre-liminary version to provide all the components and steps to b
 Add additional components for eg. SSO and other things, which can be useful in an SDLC Stack:
 
 * [Keycloak](http://www.keycloak.org/) - SSO Solution
-* [ELK](https://www.elastic.co/products/kibana) - Log Stack
+
+Furthermore, we do need to keep the already existing components updated. Right now, several components
+are deprecated and replaced by other ones (eg. kube-lego) or are updated to newer versions (eg. Nignx-Ingress).
+
+To keep the install process close to the helm standards, we should use [helmsman](https://github.com/Praqma/helmsman),
+which seems to be a sensible choice to provide a process to deploy DevOpsKube in a cluster.
 
 ## Version 0.3
 

@@ -1,0 +1,15 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Issuer
+metadata:
+  name: {{ template "fullname" . }}
+spec:
+  acme:
+    # The ACME server URL - use https://acme-v02.api.letsencrypt.org/directory for production
+    server: {{ .Values.issuer.url }}
+    # Email address used for ACME registration
+    email: {{ .Values.issuer.email }}
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: {{ .Values.issuer.secretref | quote }}
+    # Enable the HTTP-01 challenge provider
+    http01: {}

@@ -16,6 +16,11 @@ Up until now there is no full DevOps Stack for vanilla Kubernetes. The following
 
 None of the above mentioned stacks do fulfill our needs, therefor we decided to put this stack together to allow you to install a full SDLC stack on your own Kubernetes cluster.
 
+In the last year, a new project [jenkins-x](https://jenkins-x.io) appeared on the market. This is a project founded by some guys which worked already 
+on fabric8. This project provides a full solution to setup and implements a cloud CI/CD workflow using tools, which are used in DevopsKube as well. Our
+focus is still slightly different, in that we do not focus on providing a workflow for a cloud only environment, but to provide a solution to setup a SDLC 
+stack for small to midsize teams rather easy.
+
 ## Components
 
 The following components are included in the current version:

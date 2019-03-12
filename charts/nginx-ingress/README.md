@@ -1,5 +1,7 @@
 # Nginx-Ingress Controller
 
+**This helm install is deprecated. We will provide a newer version of this asap.**
+
 An Ingress Controller is a daemon, deployed as a Kubernetes Pod, that watches the ApiServer's /ingresses endpoint for updates to the Ingress resource. Its job is to satisfy requests for ingress.
 
 This is a helm-chart for the "official" Kubernetes [Nginx-Ingress](https://github.com/kubernetes/ingress) Controller. This chart includes the default-http-backend, which is used and configured in the Nginx-Ingress ConfigMap.
@@ -16,7 +18,7 @@ This chart uses the configration from the [Nginx-Ingress Examples](https://githu
 
 Our central repository is located at: `https://devopsku.be/charts`, please configure this in your helm installation (via `helm repo add`). Then you can download and install this chart using the usual helm procedure (see [Using Helm](https://github.com/kubernetes/helm/blob/master/docs/using_helm.md)).
 
-If you would like to contribute and/or like to make changes on this chart, please clone this repo via:
+If you would like to contribute and/or lnoike to make changes on this chart, please clone this repo via:
 
 `git clone https://github.com/devopskube/devopskube.git`
 

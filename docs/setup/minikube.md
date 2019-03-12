@@ -1,6 +1,8 @@
-# Setup Minikube "Cluster"
+# Minikube "Cluster"
 
 For testing purposes, it is mostly easier to just use a local minikube.
+
+## Setup
 
 We do use KVM as the driver for minikube. This is just possible on Linux devices. 
 You are still able to use other drivers, if wanted. 
@@ -31,3 +33,12 @@ To switch back to this context if it changed, run:
 ```
 kubectl config use-context minikube.
 ```
+
+## Further notes
+
+To be able to test SSL (with lets-encrypt), we do use [serveo.net](https://serveo.net/). 
+
+```
+ssh -R redmine:443:$(minikube ip):443 serveo.net
+```
+

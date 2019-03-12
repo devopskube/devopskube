@@ -1,6 +1,9 @@
 imageTag: 3.4.2-2
 imagePullPolicy: Always
 
+issuer:
+  secretref: letsencrypt
+
 # Hostname on which the redmine service will be published
 hostName: redmine.example.com
 
